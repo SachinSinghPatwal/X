@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { useNavigate } from "react-router-dom";
-function Logo() {
+function Logo({ classname = "", navigateTo, sendBy = "" }) {
   const navigate = useNavigate();
   const [hoverStatus, steHoverStatus] = useState(false);
   return (
     <>
       <div
-        className="mb-8 grid place-items-center lg:place-items-start
-        mt-5 ml-[2.5vw] "
-        onClick={() => navigate("/Home")}
+        className={`${classname}`}
+        onClick={() => (sendBy !== "" ? navigate(`${navigateTo}`) : null)}
       >
         <FontAwesomeIcon
           onMouseEnter={() => {
@@ -26,7 +25,6 @@ function Logo() {
             transition: "color .2s linear",
             cursor: "pointer",
           }}
-          className=""
         />
       </div>
     </>

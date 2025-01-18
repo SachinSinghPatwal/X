@@ -86,7 +86,12 @@ function NavContainer() {
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
     <>
-      <Logo />
+      <Logo
+        sendBy="PageNavigation"
+        navigateTo="/Home"
+        classname="mb-8 grid place-items-center lg:place-items-start
+        mt-5 ml-[2.5vw]"
+      />
       <style>
         {`
           .prefix::before{content:var(--prefix);
@@ -109,7 +114,7 @@ function NavContainer() {
           }
           `}
       </style>
-      <div className="grid justify-items-center lg:justify-items-start content-between h-[86vh]">
+      <div className="grid justify-items-center lg:justify-items-start content-between h-[86vh] ">
         <div className="grid place-cols-9 max-w-fit gap-[1.8rem] ml-[2.5vw] justify-items-center lg:justify-items-start">
           {pageNavItems.map((navItems) => (
             <div
