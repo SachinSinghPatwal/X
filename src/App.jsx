@@ -4,7 +4,6 @@ import authService from "./AppwriteServices/Auth/Auth";
 import { Outlet } from "react-router-dom";
 import { NavContainer, Loader } from "./Component/index";
 import { logout } from "./store/authSlice";
-import Animation from "../src/Public/Animation.mp4";
 function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
@@ -30,7 +29,7 @@ function App() {
       </div>
     </div>
   ) : (
-    <Loader bg="#000000" />
+    <Loader bg="#050505" />
   );
 }
 
