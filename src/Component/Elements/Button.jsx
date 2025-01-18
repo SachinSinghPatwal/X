@@ -1,7 +1,7 @@
 import React from "react";
 
-function Button() {
-  return <div>Button</div>;
+function Button({ classname }) {
+  return <button className={`${classname} `}>Sign in</button>;
 }
 
 export default Button;

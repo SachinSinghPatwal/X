@@ -1,5 +1,5 @@
 import React from "react";
-import { CreateAccount, SignUp } from "../../index";
+import { Button, CreateAccount, SignUp } from "../../index";
 import Logo from "../../../Public/Logo.svg";
 function AuthenticatingPage() {
   return (
@@ -18,11 +18,11 @@ function AuthenticatingPage() {
           </h1>
         </header>
         <main className="grid mt-[3rem]">
-          <h3 className="text-white font-[Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] text-3xl font-bold">
+          <h3 className="text-white font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] text-3xl font-bold">
             Join today .
           </h3>
           <div className="grid grid-rows-[42px_1px_42px] h-[16vh] w-[20rem] gap-[1rem] mt-[2.5rem]">
-            <div className="grid w-full rounded-full place-items-center bg-white hover:cursor-pointer">
+            <div className="grid w-full rounded-full place-items-center hover:bg-gray-50 bg-white hover:cursor-pointer">
               <SignUp />
             </div>
             <div
@@ -51,10 +51,22 @@ function AuthenticatingPage() {
           </span>{" "}
           Use.
         </p>
-        <h4 className="text-white mt-[1.7rem] font-bold font-[Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]">
+        <h4 className="text-white mt-[1.2rem] font-bold font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] mb-[1rem]">
           Already have a account ?
         </h4>
-        <button>Sign in</button>
+        <Button
+          classname={
+            "text-[#1A8CD8] border-[#1A8CD8] border-[1px] rounded-full w-[20rem] h-[40px] hover:cursor-pointer hover:bg-[#031018]"
+          }
+        />
+        <div className="mt-[5rem] text-gray-600">
+          <p className="text-center -ml-[6rem] font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] text-[14px] mb-[2rem]">
+            About Download the X app Help Center Terms of Service Privacy Policy
+            Cookie Policy <br /> Accessibility Ads info Blog Careers Brand
+            Resources Advertising Marketing X for Business <br /> Developers
+            Directory Settings © 2025 X Corp.
+          </p>
+        </div>
       </div>
     </>
   );
