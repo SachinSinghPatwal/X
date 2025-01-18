@@ -26,7 +26,7 @@ import Account from "./Elements/Account";
 
 // elements
 import Header from "./Elements/Header";
-
+import Footer from "./Elements/footer";
 //loader
 import Loader from "./Loader/Loader";
 
@@ -52,4 +52,5 @@ export {
   AuthenticatingPage,
   SignUp,
   CreateAccount,
+  Footer,
 };

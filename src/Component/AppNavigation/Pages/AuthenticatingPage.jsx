@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, CreateAccount, SignUp } from "../../index";
+import { Button, CreateAccount, SignUp, Footer } from "../../index";
 import Logo from "../../../Public/Logo.svg";
 function AuthenticatingPage() {
   return (
@@ -59,13 +59,8 @@ function AuthenticatingPage() {
             "text-[#1A8CD8] border-[#1A8CD8] border-[1px] rounded-full w-[20rem] h-[40px] hover:cursor-pointer hover:bg-[#031018]"
           }
         />
-        <div className="mt-[5rem] text-gray-600">
-          <p className="text-center -ml-[6rem] font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] text-[14px] mb-[2rem]">
-            About Download the X app Help Center Terms of Service Privacy Policy
-            Cookie Policy <br /> Accessibility Ads info Blog Careers Brand
-            Resources Advertising Marketing X for Business <br /> Developers
-            Directory Settings © 2025 X Corp.
-          </p>
+        <div className="mt-[5rem] ">
+          <Footer />
         </div>
       </div>
     </>
