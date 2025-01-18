@@ -17,6 +17,7 @@ import Notification from "./AppNavigation/Pages/Notification";
 import SearchonNav from "./AppNavigation/Pages/SearchonNav";
 import Subscription from "./AppNavigation/Pages/Subscription";
 import More from "./Elements/More";
+import ComposePost from "./AppNavigation/Pages/ComposePost";
 
 // logout and add account
 import Account from "./Elements/Account";
@@ -45,4 +46,5 @@ export {
   More,
   Account,
   Loader,
+  ComposePost,
 };

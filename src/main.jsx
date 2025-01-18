@@ -13,6 +13,7 @@ import {
   Subscription,
   Profile,
   More,
+  ComposePost,
 } from "./Component/index.js";
 import {
   createBrowserRouter,
@@ -27,11 +28,11 @@ const router = createBrowserRouter(
       <Route path="/Home" element={<Home />} />
       <Route path="/Search" element={<SearchonNav />} />
       <Route path="/Notification" element={<Notification />} />
-      <Route path="Messages" element={<Message />} />
-      <Route path="AIMessage" element={<AIPage />} />
-      <Route path="Subscription" element={<Subscription />} />
-      <Route path="Profile" element={<Profile />} />
-      <Route path="More" element={<More />} />
+      <Route path="/Messages" element={<Message />} />
+      <Route path="/AI" element={<AIPage />} />
+      <Route path="/Premium" element={<Subscription />} />
+      <Route path="/Profile" element={<Profile />} />
+      <Route path="/More" element={<More />} />
     </Route>
   )
 );

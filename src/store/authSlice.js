@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   status: false,
   userData: null,
+  composePostVisibility: false,
 };
 const authSlice = createSlice({
   name: "auth",
@@ -16,8 +17,11 @@ const authSlice = createSlice({
       state.status = false;
       state.userData = null;
     },
+    changeVisibility: (state, action) => {
+      state.composePostVisibility = action.payload;
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { login, logout } = authSlice.actions;
+export const { login, logout, changeVisibility } = authSlice.actions;

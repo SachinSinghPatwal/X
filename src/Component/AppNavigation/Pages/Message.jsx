@@ -1,7 +1,7 @@
 import React from "react";
 
 function Message() {
-  return <div></div>;
+  return <div className="text-white">Message</div>;
 }
 
 export default Message;
