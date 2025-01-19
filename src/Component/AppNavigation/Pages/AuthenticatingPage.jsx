@@ -1,67 +1,71 @@
 import React from "react";
-import { Button, CreateAccount, SignUp, Footer } from "../../index";
+import { Button, CreateAccount, SignUpGoogle, Footer } from "../../index";
 import Logo from "../../../Public/Logo.svg";
-function AuthenticatingPage() {
+import { useMediaQuery } from "react-responsive";
+function AuthenticatingPage({ styles }) {
+  const screenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
   return (
     <>
-      <div className="grid ml-[15%] gap-3 mt-[2rem]">
-        <header className="grid justify-items-start gap-[3rem]">
+      <div
+        className="grid sm:mx-[15%] lg:grid-cols-2 lg:mx-0 lg:w-[99dvw]  
+        lg:gap-0 lg:justify-items-center items-center gap-3 mt-[1rem] mb-[4rem] 
+        sm:mr-auto  md:ml-[30%]"
+      >
+        <header className="grid justify-items-start gap-[1.5rem] w-fit">
           <img
-            className="w-[6.5rem] aspect-square -ml-3 "
+            className="w-[6.5rem] lg:w-[25rem] aspect-square -ml-3 "
             src={Logo}
             alt="logo"
             style={{ filter: "invert(100%)" }}
           />
-          <h1 className="text-white font- text-7xl font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] font-semibold">
-            Start Yapping <br />
+        </header>
+        <main className="w-fit">
+          <h1 className={`text-7xl ${styles} font-semibold`}>
+            Start Yapping {!screenStatus ? <br /> : null}
             now
           </h1>
-        </header>
-        <main className="grid mt-[3rem]">
-          <h3 className="text-white font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] text-3xl font-bold">
+          <h3 className={`${styles} text-3xl font-bold w-fit mt-[4.2rem]`}>
             Join today .
           </h3>
-          <div className="grid grid-rows-[42px_1px_42px] h-[16vh] w-[20rem] gap-[1rem] mt-[2.5rem]">
-            <div className="grid w-full rounded-full place-items-center hover:bg-gray-50 bg-white hover:cursor-pointer">
-              <SignUp />
-            </div>
+          <div
+            className="grid grid-rows-[40px_40px_1px_40px] h-fit w-[20rem] 
+          gap-[1rem] mt-[2rem]"
+          >
+            <Button calledBy="signUpGoogle" type="google" />
+            <Button calledBy="signUpApple" type="apple" />
             <div
               className="w-full bg-gray-800 before:content-['or'] text-center
             before:h-[1.2rem] before:aspect-video before:text-white before:left-[45%] before:-bottom-[3px] before:absolute relative before:text-lg before:pb-4 "
             ></div>
             <div
-              className="grid rounded-full text-white w-full bg-[#1A8CD8] 
-            place-items-center hover:cursor-pointer"
+              className="grid rounded-full w-full bg-[#1A8CD8] 
+            place-items-center"
             >
-              <CreateAccount />
+              <Button calledBy="createAccount" />
             </div>
           </div>
+          <p className="text-[#9b9e9c] text-[12px] ml-[1px] mt-[6px]">
+            By signing up, you agree to the{" "}
+            <span className="text-[#1A8CD8] hover:cursor-pointer">
+              Terms of Service{" "}
+            </span>
+            and{" "}
+            <span className="text-[#1A8CD8] hover:cursor-pointer">
+              Privacy <br /> Policy
+            </span>{" "}
+            <span>, including</span>{" "}
+            <span className="text-[#1A8CD8] hover:cursor-pointer">
+              Cookie Use.
+            </span>
+          </p>
+          <h4 className={`${styles} mt-[3rem] mb-[15px]`}>
+            Already have a account ?
+          </h4>
+          <Button calledBy="signIn">Sign in</Button>
         </main>
-        <p className="text-white text-[12px] ml-[1px]">
-          By signing up, you agree to the{" "}
-          <span className="text-[#1A8CD8] hover:cursor-pointer">
-            Terms of Service{" "}
-          </span>
-          and{" "}
-          <span className="text-[#1A8CD8] hover:cursor-pointer">
-            Privacy <br /> Policy
-          </span>{" "}
-          <span className="text-[#1A8CD8] hover:cursor-pointer">
-            including Cookie
-          </span>{" "}
-          Use.
-        </p>
-        <h4 className="text-white mt-[1.2rem] font-bold font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif] mb-[1rem]">
-          Already have a account ?
-        </h4>
-        <Button
-          classname={
-            "text-[#1A8CD8] border-[#1A8CD8] border-[1px] rounded-full w-[20rem] h-[40px] hover:cursor-pointer hover:bg-[#031018]"
-          }
-        />
-        <div className="mt-[5rem] ">
-          <Footer />
-        </div>
+      </div>
+      <div className="grid place-items-center ">
+        <Footer styles="font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]" />
       </div>
     </>
   );

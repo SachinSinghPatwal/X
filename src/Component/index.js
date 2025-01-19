@@ -19,7 +19,7 @@ import Subscription from "./AppNavigation/Pages/Subscription";
 import More from "./Elements/More";
 import ComposePost from "./AppNavigation/Pages/ComposePost";
 import AuthenticatingPage from "./AppNavigation/Pages/AuthenticatingPage";
-import SignUp from "./Elements/SignUp";
+import SignUpGoogle from "./Elements/SignUpGoogle";
 import CreateAccount from "./Elements/CreateAccount";
 // logout and add account
 import Account from "./Elements/Account";
@@ -50,7 +50,7 @@ export {
   Loader,
   ComposePost,
   AuthenticatingPage,
-  SignUp,
+  SignUpGoogle,
   CreateAccount,
   Footer,
 };

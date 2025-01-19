@@ -48,7 +48,7 @@ function App() {
   ) : authStatus ? (
     <Loader bg="#050505" />
   ) : (
-    <AuthenticatingPage />
+    <AuthenticatingPage styles="text-white font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]" />
   );
 }
 

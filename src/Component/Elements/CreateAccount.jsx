@@ -1,7 +1,7 @@
 import React from "react";
 
 function CreateAccount() {
-  return <div className="font-semibold ">Create account</div>;
+  return <div></div>;
 }
 
 export default CreateAccount;
