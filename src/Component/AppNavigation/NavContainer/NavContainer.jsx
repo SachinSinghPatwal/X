@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   faHouse,
   faMagnifyingGlass,
@@ -20,13 +20,17 @@ import {
 import { faXing } from "@fortawesome/free-brands-svg-icons";
 import { Logo, Account } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
-import { changeVisibility } from "../../../store/authSlice";
+import { changeVisibility, setIconStatus } from "../../../store/authSlice";
 
 function NavContainer() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [iconStatus, setIconStatus] = useState("Home");
+  const iconStatus = useSelector((state) => state.auth.iconStatus);
   const BigScreenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
+  useEffect(() => {
+    console.log("rendered");
+    navigate("/Home");
+  }, []);
   const pageNavItems = [
     {
       name: "Home",
@@ -76,22 +80,24 @@ function NavContainer() {
       logoOnClicked: null,
       centring: -21,
     },
-    {
-      name: "Post",
-      logoOnClicked: faPlus,
-      logoUnClicked: null,
-      centring: -2,
-    },
   ];
+  useEffect(() => {
+    console.log(iconStatus);
+  }, [iconStatus]);
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
     <>
-      <Logo
-        sendBy="PageNavigation"
-        navigateTo="/Home"
-        classname="mb-8 grid place-items-center lg:place-items-start
+      <NavLink
+        to="/Home"
+        onClick={() => {
+          dispatch(setIconStatus("Home"));
+        }}
+      >
+        <Logo
+          classname="mb-8 grid place-items-center lg:place-items-start
         mt-5 ml-[2.5vw]"
-      />
+        />
+      </NavLink>
       <style>
         {`
           .prefix::before{content:var(--prefix);
@@ -107,7 +113,7 @@ function NavContainer() {
             letter-spacing:1px;
             border-radius:2px;
             opacity:0;
-            transition:opacity .2s .8s linear
+            transition:opacity .2s  linear
           }
           .prefix:hover::before{
             opacity:1;
@@ -117,16 +123,11 @@ function NavContainer() {
       <div className="grid justify-items-center lg:justify-items-start content-between h-[86vh] ">
         <div className="grid place-cols-9 max-w-fit gap-[1.8rem] ml-[2.5vw] justify-items-center lg:justify-items-start">
           {pageNavItems.map((navItems) => (
-            <div
-              to={navItems.to}
+            <NavLink
               key={navItems.name}
+              to={`${navItems.name !== "Post" ? `/${navItems.name}` : "/"}`}
               onClick={() => {
-                navItems.name !== "Post"
-                  ? navigate(
-                      navItems.name !== "Post" ? `/${navItems.name}` : ""
-                    )
-                  : dispatch(changeVisibility(!status));
-                setIconStatus(navItems.name);
+                dispatch(setIconStatus(navItems.name));
               }}
               className={`prefix lg:hover:cursor-pointer relative 
               ${
@@ -142,21 +143,14 @@ function NavContainer() {
             >
               <FontAwesomeIcon
                 icon={
-                  navItems.name !== "Post"
-                    ? iconStatus == navItems.name && navItems.logoOnClicked
-                      ? navItems.logoOnClicked
-                      : navItems.logoUnClicked
-                    : faPlus
+                  iconStatus == navItems.name && navItems.logoOnClicked
+                    ? navItems.logoOnClicked
+                    : navItems.logoUnClicked
                 }
-                key={navItems.name}
-                className={` `}
                 size="xl"
                 style={{
                   color: `${
-                    (iconStatus == navItems.name && !navItems.logoOnClicked) ||
-                    (iconStatus == navItems.name && navItems.logoOnClicked)
-                      ? "#7b3bd4"
-                      : "#f7f5f5"
+                    iconStatus == navItems.name ? "#7b3bd4" : "#f7f5f5"
                   }`,
                   textAlign: "center",
                   cursor: "pointer",
@@ -172,9 +166,24 @@ function NavContainer() {
                   {navItems.name}
                 </span>
               ) : null}
-            </div>
+            </NavLink>
           ))}
-          <button className=" bg-white "></button>
+          <button
+            className="before:content-['Post'] before:h-[17.9px] 
+            before:p-[2px] before:w-fit before:text-white before:absolute 
+            before:text-[10px] before:font-['Gill Sans sans-serif']
+            before:left-[-2.8px] before:mt-[28px] before:tracking-[1px]
+            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 relative before:border-none"
+            onClick={() => {
+              dispatch(changeVisibility(!status));
+            }}
+          >
+            <FontAwesomeIcon
+              icon={faPlus}
+              size="xl"
+              style={{ color: `${status ? "#7b3bd4" : "#f7f5f5"}` }}
+            />
+          </button>
         </div>
         <div className="grid grid-flow-col w-fit ">
           <Account screenStatus={BigScreenStatus} />

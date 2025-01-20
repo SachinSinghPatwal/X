@@ -1,15 +1,17 @@
 import React from "react";
-import { Button, CreateAccount, SignUpGoogle, Footer } from "../../index";
+import { Button, Footer } from "../../index";
 import Logo from "../../../Public/Logo.svg";
 import { useMediaQuery } from "react-responsive";
+import { Outlet } from "react-router-dom";
 function AuthenticatingPage({ styles }) {
   const screenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
   return (
     <>
+      <Outlet />
       <div
-        className="grid sm:mx-[15%] lg:grid-cols-2 lg:mx-0 lg:w-[99dvw]  
-        lg:gap-0 lg:justify-items-center items-center gap-3 mt-[1rem] mb-[4rem] 
-        sm:mr-auto  md:ml-[30%]"
+        className="grid md:mr-auto sm:mx-[15%] lg:grid-cols-2 lg:mx-0 
+        lg:w-[99dvw] lg:gap-0 lg:justify-items-center items-center gap-3 
+        mt-[1rem] mb-[4rem] md:ml-[30%]"
       >
         <header className="grid justify-items-start gap-[1.5rem] w-fit">
           <img
@@ -24,7 +26,7 @@ function AuthenticatingPage({ styles }) {
             Start Yapping {!screenStatus ? <br /> : null}
             now
           </h1>
-          <h3 className={`${styles} text-3xl font-bold w-fit mt-[4.2rem]`}>
+          <h3 className={`${styles}  text-3xl font-bold w-fit mt-[4.2rem]`}>
             Join today .
           </h3>
           <div
@@ -37,12 +39,7 @@ function AuthenticatingPage({ styles }) {
               className="w-full bg-gray-800 before:content-['or'] text-center
             before:h-[1.2rem] before:aspect-video before:text-white before:left-[45%] before:-bottom-[3px] before:absolute relative before:text-lg before:pb-4 "
             ></div>
-            <div
-              className="grid rounded-full w-full bg-[#1A8CD8] 
-            place-items-center"
-            >
-              <Button calledBy="createAccount" />
-            </div>
+            <Button calledBy="createAccount" />
           </div>
           <p className="text-[#9b9e9c] text-[12px] ml-[1px] mt-[6px]">
             By signing up, you agree to the{" "}
@@ -58,14 +55,12 @@ function AuthenticatingPage({ styles }) {
               Cookie Use.
             </span>
           </p>
-          <h4 className={`${styles} mt-[3rem] mb-[15px]`}>
-            Already have a account ?
-          </h4>
+          <h4 className={`${styles} my-[3rem]`}>Already have a account ?</h4>
           <Button calledBy="signIn">Sign in</Button>
         </main>
       </div>
       <div className="grid place-items-center ">
-        <Footer styles="font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]" />
+        <Footer styles=" font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]" />
       </div>
     </>
   );

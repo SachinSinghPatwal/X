@@ -2,15 +2,12 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { useNavigate } from "react-router-dom";
-function Logo({ classname = "", navigateTo, sendBy = "" }) {
+function Logo({ classname = "" }) {
   const navigate = useNavigate();
   const [hoverStatus, steHoverStatus] = useState(false);
   return (
     <>
-      <div
-        className={`${classname}`}
-        onClick={() => (sendBy !== "" ? navigate(`${navigateTo}`) : null)}
-      >
+      <div className={`${classname}`}>
         <FontAwesomeIcon
           onMouseEnter={() => {
             steHoverStatus(true);

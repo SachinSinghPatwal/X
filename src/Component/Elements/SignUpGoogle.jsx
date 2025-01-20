@@ -1,6 +1,6 @@
 import React from "react";
 function SignUpGoogle() {
-  return <></>;
+  return <div className="text-white">google</div>;
 }
 
 export default SignUpGoogle;

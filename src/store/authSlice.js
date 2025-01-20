@@ -4,6 +4,7 @@ const initialState = {
   status: false,
   userData: null,
   composePostVisibility: false,
+  iconStatus: "Home",
 };
 const authSlice = createSlice({
   name: "auth",
@@ -11,7 +12,7 @@ const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.status = true;
-      state.userData = action.payload.userData;
+      state.userData = action.payload;
     },
     logout: (state) => {
       state.status = false;
@@ -20,8 +21,12 @@ const authSlice = createSlice({
     changeVisibility: (state, action) => {
       state.composePostVisibility = action.payload;
     },
+    setIconStatus: (state, action) => {
+      state.iconStatus = action.payload;
+    },
   },
 });
 
 export default authSlice.reducer;
-export const { login, logout, changeVisibility } = authSlice.actions;
+export const { login, logout, changeVisibility, setIconStatus } =
+  authSlice.actions;

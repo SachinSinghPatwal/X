@@ -11,7 +11,7 @@ import NavContainer from "./AppNavigation/NavContainer/NavContainer";
 
 // pages
 import AIPage from "./AppNavigation/Pages/AIPage";
-import Home from "./AppNavigation/Pages/Home";
+import Layout from "./AppNavigation/Pages/Layout";
 import Message from "./AppNavigation/Pages/Message";
 import Notification from "./AppNavigation/Pages/Notification";
 import SearchonNav from "./AppNavigation/Pages/SearchonNav";
@@ -19,14 +19,16 @@ import Subscription from "./AppNavigation/Pages/Subscription";
 import More from "./Elements/More";
 import ComposePost from "./AppNavigation/Pages/ComposePost";
 import AuthenticatingPage from "./AppNavigation/Pages/AuthenticatingPage";
-import SignUpGoogle from "./Elements/SignUpGoogle";
 import CreateAccount from "./Elements/CreateAccount";
+import Home from "./AppNavigation/Pages/Home";
 // logout and add account
 import Account from "./Elements/Account";
 
 // elements
 import Header from "./Elements/Header";
 import Footer from "./Elements/footer";
+import SignUpGoogle from "./Elements/SignUpGoogle";
+import SignUpApple from "./Elements/SignUpApple";
 //loader
 import Loader from "./Loader/Loader";
 
@@ -39,7 +41,7 @@ export {
   LogOutBtn,
   NavContainer,
   AIPage,
-  Home,
+  Layout,
   Message,
   Notification,
   SearchonNav,
@@ -53,4 +55,6 @@ export {
   SignUpGoogle,
   CreateAccount,
   Footer,
+  SignUpApple,
+  Home,
 };
