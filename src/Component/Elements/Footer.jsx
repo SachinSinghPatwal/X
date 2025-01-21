@@ -55,7 +55,7 @@ function Footer({ styles }) {
         (lines) => (
           <div
             key={lines}
-            className="grid  grid-flow-col md:gap-[2rem] sm:gap-[1.7rem] hover:cursor-pointer lg:gap-[1rem]"
+            className="grid  grid-flow-col md:gap-[1.2rem] sm:gap-[1rem] hover:cursor-pointer lg:gap-[1.8rem]"
           >
             {lines.map((content) => (
               <span key={content} className="tracking-wider hover:underline ">

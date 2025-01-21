@@ -2,10 +2,14 @@ import React from "react";
 import google from "../../Public/Google.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faApple } from "@fortawesome/free-brands-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuthPageSizeStatus } from "../../store/authSlice";
 function Button({ children, calledBy, type }) {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const state = useSelector((state) => state.auth.authPageSizeStatus);
   if (calledBy == "signIn") {
     return (
       <button
@@ -14,6 +18,7 @@ function Button({ children, calledBy, type }) {
         }
         onClick={() => {
           navigate("SignIn");
+          dispatch(setAuthPageSizeStatus(true));
         }}
       >
         {children}
@@ -21,7 +26,7 @@ function Button({ children, calledBy, type }) {
     );
   }
 
-  if (calledBy == "signUpGoogle" || calledBy == "signUpApple") {
+  if (calledBy == "signUp") {
     return (
       <div
         className={`grid rounded-full place-items-center hover:cursor-pointer
@@ -31,7 +36,7 @@ function Button({ children, calledBy, type }) {
               : "hover:bg-[#e1e2e3] bg-white"
           }`}
         onClick={() => {
-          navigate(type == "google" ? "/SignUpGoogle" : "/SignUpApple");
+          navigate(type == "google" ? "SignUpGoogle" : "SignUpApple");
         }}
       >
         <button
@@ -60,13 +65,47 @@ function Button({ children, calledBy, type }) {
   if (calledBy == "createAccount") {
     return (
       <div
-        className="grid rounded-full w-full bg-[#1A8CD8] 
+        className="grid rounded-full w-full bg-[#2e85d7] hover:bg-[#2981cd] 
                   place-items-center hover:cursor-pointer"
         onClick={() => {
-          navigate("/CreateAccount");
+          navigate("CreateAccount");
+          dispatch(setAuthPageSizeStatus(true));
         }}
       >
         <button className="font-semibold text-white">Create account</button>
+      </div>
+    );
+  }
+  if (calledBy == "NextInCreateAccount") {
+    return (
+      <div
+        className="grid rounded-full w-fit black aspect-square
+                  place-items-center hover:cursor-pointer absolute left-[.7rem] top-[.6rem] hover:bg-[#141414] h-[2rem] hover:transition-color duration-300 ease-in-out"
+        onClick={() => {
+          dispatch(setAuthPageSizeStatus(false));
+          navigate("/");
+        }}
+      >
+        <FontAwesomeIcon icon={faXmark} style={{ color: "white" }} />
+      </div>
+    );
+  }
+  if (calledBy == "submitCreateAccount") {
+    return (
+      <div
+        className="grid rounded-full place-items-center hover:cursor-pointer 
+        h-[3rem] w-[70%] "
+        onClick={() => {
+          dispatch(setAuthPageSizeStatus(false));
+          navigate("/");
+        }}
+      >
+        <button
+          type="submit"
+          className="font-semibold h-full w-full rounded-full bg-gray-600 text-black"
+        >
+          Create Account
+        </button>
       </div>
     );
   }

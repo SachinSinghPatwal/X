@@ -1,10 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  status: false,
+  status: true,
   userData: null,
   composePostVisibility: false,
-  iconStatus: "Home",
+  pageNavIconStatus: "home",
+  authPageSizeStatus: false,
+  authServiceError: "",
 };
 const authSlice = createSlice({
   name: "auth",
@@ -12,7 +14,7 @@ const authSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.status = true;
-      state.userData = action.payload;
+      state.userData = action.payload.userData;
     },
     logout: (state) => {
       state.status = false;
@@ -21,12 +23,24 @@ const authSlice = createSlice({
     changeVisibility: (state, action) => {
       state.composePostVisibility = action.payload;
     },
-    setIconStatus: (state, action) => {
-      state.iconStatus = action.payload;
+    setPageNavIconStatus: (state, action) => {
+      state.pageNavIconStatus = action.payload;
+    },
+    setAuthPageSizeStatus: (state, action) => {
+      state.authPageSizeStatus = action.payload;
+    },
+    setAuthServiceError: (state, action) => {
+      state.authPageSizeStatus = action.payload;
     },
   },
 });
 
 export default authSlice.reducer;
-export const { login, logout, changeVisibility, setIconStatus } =
-  authSlice.actions;
+export const {
+  login,
+  logout,
+  changeVisibility,
+  setPageNavIconStatus,
+  setAuthPageSizeStatus,
+  setAuthServiceError,
+} = authSlice.actions;

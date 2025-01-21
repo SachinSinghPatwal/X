@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMediaQuery } from "react-responsive";
 import { NavLink, useNavigate } from "react-router-dom";
@@ -20,77 +20,75 @@ import {
 import { faXing } from "@fortawesome/free-brands-svg-icons";
 import { Logo, Account } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
-import { changeVisibility, setIconStatus } from "../../../store/authSlice";
+import {
+  changeVisibility,
+  setPageNavIconStatus,
+} from "../../../store/authSlice";
 
 function NavContainer() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const iconStatus = useSelector((state) => state.auth.iconStatus);
+  const pageNavIconStatus = useSelector(
+    (state) => state.auth.pageNavIconStatus
+  );
   const BigScreenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
-  useEffect(() => {
-    console.log("rendered");
-    navigate("/Home");
-  }, []);
   const pageNavItems = [
     {
-      name: "Home",
+      name: "home",
       logoUnClicked: faHouseChimney,
       logoOnClicked: faHouse,
       centring: -15,
     },
     {
-      name: "Search",
+      name: "search",
       logoUnClicked: faMagnifyingGlass,
       logoOnclicked: null,
       centring: -35,
     },
     {
-      name: "Notification",
+      name: "notification",
       logoUnClicked: bellonclick,
       logoOnClicked: faBell,
       centring: -100,
     },
     {
-      name: "Messages",
+      name: "messages",
       logoUnClicked: enveloponclick,
       logoOnClicked: faEnvelope,
       centring: -70,
     },
     {
-      name: "AI",
+      name: "ai",
       logoUnClicked: faMicrochip,
       logoOnClicked: null,
       centring: 18,
     },
     {
-      name: "Premium",
+      name: "premium",
       logoUnClicked: faXing,
       logoOnClicked: null,
       centring: -90,
     },
     {
-      name: "Profile",
+      name: "profile",
       logoUnClicked: faUser,
       logoOnClicked: null,
       centring: -46,
     },
     {
-      name: "More",
+      name: "more",
       logoUnClicked: faEllipsis,
       logoOnClicked: null,
       centring: -21,
     },
   ];
-  useEffect(() => {
-    console.log(iconStatus);
-  }, [iconStatus]);
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
     <>
       <NavLink
         to="/Home"
         onClick={() => {
-          dispatch(setIconStatus("Home"));
+          dispatch(setPageNavIconStatus("home"));
         }}
       >
         <Logo
@@ -123,15 +121,17 @@ function NavContainer() {
       <div className="grid justify-items-center lg:justify-items-start content-between h-[86vh] ">
         <div className="grid place-cols-9 max-w-fit gap-[1.8rem] ml-[2.5vw] justify-items-center lg:justify-items-start">
           {pageNavItems.map((navItems) => (
-            <NavLink
+            <div
               key={navItems.name}
-              to={`${navItems.name !== "Post" ? `/${navItems.name}` : "/"}`}
               onClick={() => {
-                dispatch(setIconStatus(navItems.name));
+                navItems.name !== "home"
+                  ? navigate(`${navItems.name}`)
+                  : navigate("");
+                dispatch(setPageNavIconStatus(navItems.name));
               }}
               className={`prefix lg:hover:cursor-pointer relative 
               ${
-                navItems.name == "Post"
+                navItems.name == "post"
                   ? " w-fit transition-colors aspect-square ease-in prefix relative lg:hover:cursor-pointer pl-[2px] lg:pl-[]"
                   : ""
               }
@@ -143,14 +143,14 @@ function NavContainer() {
             >
               <FontAwesomeIcon
                 icon={
-                  iconStatus == navItems.name && navItems.logoOnClicked
+                  pageNavIconStatus == navItems.name && navItems.logoOnClicked
                     ? navItems.logoOnClicked
                     : navItems.logoUnClicked
                 }
                 size="xl"
                 style={{
                   color: `${
-                    iconStatus == navItems.name ? "#7b3bd4" : "#f7f5f5"
+                    pageNavIconStatus == navItems.name ? "#7b3bd4" : "#f7f5f5"
                   }`,
                   textAlign: "center",
                   cursor: "pointer",
@@ -160,13 +160,15 @@ function NavContainer() {
                 <span
                   key={navItems.name}
                   className={`ml-5 text-white ${
-                    iconStatus == navItems.name ? "font-bold " : "font-normal"
+                    pageNavIconStatus == navItems.name
+                      ? "font-bold "
+                      : "font-normal"
                   }`}
                 >
                   {navItems.name}
                 </span>
               ) : null}
-            </NavLink>
+            </div>
           ))}
           <button
             className="before:content-['Post'] before:h-[17.9px] 

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { useNavigate } from "react-router-dom";
 function Logo({ classname = "" }) {
-  const navigate = useNavigate();
   const [hoverStatus, steHoverStatus] = useState(false);
   return (
     <>

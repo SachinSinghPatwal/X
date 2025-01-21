@@ -9,7 +9,6 @@ class AuthService {
       .setProject(conf.appwriteProjectId);
     this.account = new Account(this.client);
   }
-
   async createAccount({ email, password, name }) {
     try {
       const userAccount = await this.account.create(
@@ -18,12 +17,17 @@ class AuthService {
         password,
         name
       );
-      userAccount ? this.login({ email, password }) : userAccount;
+      if (userAccount) {
+        return this.login({ email, password });
+      } else {
+        return userAccount;
+      }
     } catch (error) {
       console.log(
         "error || appwriteService/Auth || createAccount error",
         error.message
       );
+      return { error };
     }
   }
 
@@ -44,7 +48,7 @@ class AuthService {
     } catch (error) {
       console.log(
         "error || appwriteService/Auth || could'nt get getCurrentUSer error",
-        error
+        error.message
       );
     }
   }

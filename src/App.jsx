@@ -1,34 +1,27 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { Outlet, useNavigate } from "react-router-dom";
 import authService from "./AppwriteServices/Auth/Auth";
-import { logout, login } from "./store/authSlice";
-import { Layout, AuthenticatingPage, Loader } from "./Component";
+import { login, logout } from "./store/authSlice";
 function App() {
-  const [loading, setLoading] = useState(true);
-  let userAuthStatus = useSelector((state) => state.auth.status);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   useEffect(() => {
-    authService
-      .getCurrentUser()
-      .then((userData) => {
-        if (userData) {
-          dispatch(login({ userData }));
-        } else {
-          dispatch(logout());
-        }
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [userAuthStatus]);
-  if (loading) {
-    return <Loader bg="#050505" />;
-  }
-  if (userAuthStatus) {
-    return <Layout />;
-  }
+    authService.getCurrentUser().then((userData) => {
+      if (!userData) {
+        dispatch(login({ userData }));
+        navigate("/Home");
+        console.log("app called false");
+      } else {
+        dispatch(logout());
+        navigate("/AuthenticatingPage");
+      }
+    });
+  }, []);
   return (
-    <AuthenticatingPage styles="text-white font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]" />
+    <div className="grid place-items-center h-screen">
+      <Outlet />
+    </div>
   );
 }
 export default App;
