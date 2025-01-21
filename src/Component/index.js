@@ -20,6 +20,7 @@ import ComposePost from "./AppNavigation/Pages/ComposePost";
 import AuthenticatingPage from "./AppNavigation/Pages/AuthenticatingPage";
 import CreateAccount from "./Elements/CreateAccount";
 import Home from "./AppNavigation/Pages/Home";
+import AllPost from "./AppNavigation/Pages/AllPost";
 
 // logout and add account
 import Account from "./Elements/Account";
@@ -63,4 +64,5 @@ export {
   Protected,
   App,
   SignIn,
+  AllPost,
 };

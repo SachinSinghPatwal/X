@@ -7,8 +7,14 @@ function Account({ screenStatus }) {
   return (
     <>
       <button
-        className="bg-[#212529] rounded-full aspect-square ml-[2.5vw]
-          w-[43px] "
+        className="bg-[#303235] rounded-full aspect-square ml-[2.5vw] relative
+          w-[43px] mb-[.5rem]
+          before:content-['Account'] before:h-[17.9px] 
+            before:p-[2px] before:w-fit before:text-white before:absolute 
+            before:text-[14px] before:font-['Gill Sans sans-serif']
+            before:left-[-.8rem] before:tracking-[1px] before:top-[-2rem]
+            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 relative before:border-none
+          "
       >
         <FontAwesomeIcon
           onMouseEnter={() => {

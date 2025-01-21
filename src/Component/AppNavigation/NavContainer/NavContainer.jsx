@@ -37,49 +37,49 @@ function NavContainer() {
       name: "home",
       logoUnClicked: faHouseChimney,
       logoOnClicked: faHouse,
-      centring: -15,
+      centring: -10,
     },
     {
       name: "search",
       logoUnClicked: faMagnifyingGlass,
       logoOnclicked: null,
-      centring: -35,
+      centring: -25,
     },
     {
       name: "notification",
       logoUnClicked: bellonclick,
       logoOnClicked: faBell,
-      centring: -100,
+      centring: -90,
     },
     {
       name: "messages",
       logoUnClicked: enveloponclick,
       logoOnClicked: faEnvelope,
-      centring: -70,
+      centring: -56,
     },
     {
       name: "ai",
       logoUnClicked: faMicrochip,
       logoOnClicked: null,
-      centring: 18,
+      centring: 25,
     },
     {
       name: "premium",
       logoUnClicked: faXing,
       logoOnClicked: null,
-      centring: -90,
+      centring: -80,
     },
     {
       name: "profile",
       logoUnClicked: faUser,
       logoOnClicked: null,
-      centring: -46,
+      centring: -40,
     },
     {
       name: "more",
       logoUnClicked: faEllipsis,
       logoOnClicked: null,
-      centring: -21,
+      centring: -16,
     },
   ];
   const status = useSelector((state) => state.auth.composePostVisibility);
@@ -111,14 +111,15 @@ function NavContainer() {
             letter-spacing:1px;
             border-radius:2px;
             opacity:0;
-            transition:opacity .2s  linear
+            transition:opacity .1s .6s ease-in-out;
+            text-align:center
           }
           .prefix:hover::before{
             opacity:1;
           }
           `}
       </style>
-      <div className="grid justify-items-center lg:justify-items-start content-between h-[86vh] ">
+      <div className="grid justify-items-center lg:justify-items-start content-between h-[88vh] ">
         <div className="grid place-cols-9 max-w-fit gap-[1.8rem] ml-[2.5vw] justify-items-center lg:justify-items-start">
           {pageNavItems.map((navItems) => (
             <div
@@ -129,7 +130,7 @@ function NavContainer() {
                   : navigate("");
                 dispatch(setPageNavIconStatus(navItems.name));
               }}
-              className={`prefix lg:hover:cursor-pointer relative 
+              className={`md:prefix sm:prefix lg:hover:cursor-pointer relative 
               ${
                 navItems.name == "post"
                   ? " w-fit transition-colors aspect-square ease-in prefix relative lg:hover:cursor-pointer pl-[2px] lg:pl-[]"
@@ -165,7 +166,10 @@ function NavContainer() {
                       : "font-normal"
                   }`}
                 >
-                  {navItems.name}
+                  {navItems.name !== "home"
+                    ? navItems.name.charAt(0).toLocaleUpperCase() +
+                      navItems.name.slice(1)
+                    : "Home"}
                 </span>
               ) : null}
             </div>
