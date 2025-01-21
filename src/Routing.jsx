@@ -16,6 +16,7 @@ import {
   Home,
   App,
   SignIn,
+  AllPost,
 } from "./Component/index.js";
 
 function Routing() {
@@ -69,6 +70,7 @@ function Routing() {
           }
         >
           {/* Nested Routes under Home */}
+          <Route index element={<AllPost />} />
           <Route path="Search" element={<SearchonNav />} />
           <Route path="Messages" element={<Message />} />
           <Route path="AI" element={<AIPage />} />
