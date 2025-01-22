@@ -24,6 +24,7 @@ import {
   changeVisibility,
   setPageNavIconStatus,
 } from "../../../store/authSlice";
+import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 
 function NavContainer() {
   const dispatch = useDispatch();
@@ -85,17 +86,6 @@ function NavContainer() {
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
     <>
-      <NavLink
-        to="/Home"
-        onClick={() => {
-          dispatch(setPageNavIconStatus("home"));
-        }}
-      >
-        <Logo
-          classname="mb-8 grid place-items-center lg:place-items-start
-        mt-5 ml-[2.5vw]"
-        />
-      </NavLink>
       <style>
         {`
           .prefix::before{content:var(--prefix);
@@ -119,8 +109,22 @@ function NavContainer() {
           }
           `}
       </style>
-      <div className="grid justify-items-center lg:justify-items-start content-between h-[88vh] ">
-        <div className="grid place-cols-9 max-w-fit gap-[1.8rem] ml-[2.5vw] justify-items-center lg:justify-items-start">
+      <div className="grid justify-items-end  content-between h-screen ">
+        <div
+          className={`grid place-cols-10 gap-[1.8rem] 
+            sm:mr-[1.2rem] lg:mr-[1.6rem] xl:mr-[3rem] sm:justify-items-center 
+            mr-[2.5vw] xl:justify-items-start lg:w-[70%] lg:items-center ${
+              !BigScreenStatus && ""
+            }`}
+        >
+          <NavLink
+            to="/Home"
+            onClick={() => {
+              dispatch(setPageNavIconStatus("home"));
+            }}
+          >
+            <Logo classname="mt-[.8rem]" />
+          </NavLink>
           {pageNavItems.map((navItems) => (
             <div
               key={navItems.name}
@@ -130,10 +134,12 @@ function NavContainer() {
                   : navigate("");
                 dispatch(setPageNavIconStatus(navItems.name));
               }}
-              className={`md:prefix sm:prefix lg:hover:cursor-pointer relative 
+              className={`relative min-h-[28px] hover:cursor-pointer  ${
+                !BigScreenStatus && "prefix"
+              }
               ${
                 navItems.name == "post"
-                  ? " w-fit transition-colors aspect-square ease-in prefix relative lg:hover:cursor-pointer pl-[2px] lg:pl-[]"
+                  ? " w-fit transition-colors  ease-in prefix relative lg:hover:cursor-pointer pl-[2px]"
                   : ""
               }
               `}
@@ -142,36 +148,40 @@ function NavContainer() {
                 "--centring": `${navItems.centring}%`,
               }}
             >
-              <FontAwesomeIcon
-                icon={
-                  pageNavIconStatus == navItems.name && navItems.logoOnClicked
-                    ? navItems.logoOnClicked
-                    : navItems.logoUnClicked
-                }
-                size="xl"
-                style={{
-                  color: `${
-                    pageNavIconStatus == navItems.name ? "#7b3bd4" : "#f7f5f5"
-                  }`,
-                  textAlign: "center",
-                  cursor: "pointer",
-                }}
-              />
-              {BigScreenStatus ? (
-                <span
-                  key={navItems.name}
-                  className={`ml-5 text-white ${
-                    pageNavIconStatus == navItems.name
-                      ? "font-bold "
-                      : "font-normal"
-                  }`}
-                >
-                  {navItems.name !== "home"
-                    ? navItems.name.charAt(0).toLocaleUpperCase() +
-                      navItems.name.slice(1)
-                    : "Home"}
-                </span>
-              ) : null}
+              <div className="h-full grid grid-flow-col gap-[1rem] items-center text-[18.5px] ">
+                <FontAwesomeIcon
+                  icon={
+                    pageNavIconStatus == navItems.name && navItems.logoOnClicked
+                      ? navItems.logoOnClicked
+                      : navItems.logoUnClicked
+                  }
+                  size="xl"
+                  style={{
+                    color: `${
+                      pageNavIconStatus == navItems.name
+                        ? "#7b3bd4 "
+                        : "#f7f5f5 "
+                    }`,
+                    cursor: "pointer",
+                    minWidth: "31.21px",
+                  }}
+                />
+                {BigScreenStatus ? (
+                  <span
+                    key={navItems.name}
+                    className={`text-white h-full ${
+                      pageNavIconStatus == navItems.name
+                        ? "font-normal"
+                        : "font-thin"
+                    }`}
+                  >
+                    {navItems.name !== "home"
+                      ? navItems.name.charAt(0).toLocaleUpperCase() +
+                        navItems.name.slice(1)
+                      : "Home"}
+                  </span>
+                ) : null}
+              </div>
             </div>
           ))}
           <button
@@ -179,19 +189,29 @@ function NavContainer() {
             before:p-[2px] before:w-fit before:text-white before:absolute 
             before:text-[10px] before:font-['Gill Sans sans-serif']
             before:left-[-2.8px] before:mt-[28px] before:tracking-[1px]
-            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 relative before:border-none"
+            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none xl:h-[3rem] grid place-items-center w-full xl:bg-gray-800 font-bold rounded-[2rem] text-[18px] tracking-wider
+            "
             onClick={() => {
               dispatch(changeVisibility(!status));
             }}
           >
-            <FontAwesomeIcon
-              icon={faPlus}
-              size="xl"
-              style={{ color: `${status ? "#7b3bd4" : "#f7f5f5"}` }}
-            />
+            {BigScreenStatus ? (
+              "Post"
+            ) : (
+              <FontAwesomeIcon
+                icon={faPlus}
+                size="xl"
+                style={{
+                  color: `${status ? "#7b3bd4" : "#f7f5f5"}`,
+                }}
+              />
+            )}
           </button>
         </div>
-        <div className="grid grid-flow-col w-fit ">
+        <div
+          className="xl:grid grid-cols-[3rem_1fr] xl:justify-items-center xl:w-full xl:items-center xl:justify-center mb-[2rem] xl:gap-[1rem] xl:h-[3rem] 
+        "
+        >
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>

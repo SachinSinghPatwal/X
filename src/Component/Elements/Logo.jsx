@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
-import { useNavigate } from "react-router-dom";
 function Logo({ classname = "" }) {
   const [hoverStatus, steHoverStatus] = useState(false);
   return (
     <>
-      <div className={`${classname}`}>
+      <div
+        className={`${classname} before:content-['Yapper'] before:h-[17.9px] 
+            before:p-[2px] before:w-fit before:text-white before:absolute 
+            before:text-[10px] before:font-['Gill Sans sans-serif']
+            before:left-[-2px] before:mt-[2rem] before:tracking-[1px]
+            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none`}
+      >
         <FontAwesomeIcon
           onMouseEnter={() => {
             steHoverStatus(true);

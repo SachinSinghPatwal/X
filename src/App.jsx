@@ -19,7 +19,7 @@ function App() {
     });
   }, []);
   return (
-    <div className="grid place-items-center h-screen">
+    <div className="">
       <Outlet />
     </div>
   );
