@@ -155,7 +155,7 @@ function NavContainer() {
                       ? navItems.logoOnClicked
                       : navItems.logoUnClicked
                   }
-                  size="xl"
+                  size="lg"
                   style={{
                     color: `${
                       pageNavIconStatus == navItems.name
