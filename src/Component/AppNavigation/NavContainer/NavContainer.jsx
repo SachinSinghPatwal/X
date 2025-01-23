@@ -109,7 +109,12 @@ function NavContainer() {
           `}
       </style>
       <div
-        className={`grid place-cols-10 gap-[1.8rem] justify-items-center top-0 sticky`}
+        className={`grid place-cols-10 gap-[1.8rem] overflow-x-hidden
+          justify-items-center 
+          sm:justify-items-end
+          sm:mr-[1.5rem]
+          xl:justify-items-start
+          top-[0rem] sticky`}
       >
         <NavLink
           to="/Home"
@@ -117,7 +122,7 @@ function NavContainer() {
             dispatch(setPageNavIconStatus("home"));
           }}
         >
-          <Logo />
+          <Logo classname="" />
         </NavLink>
         {pageNavItems.map((navItems) => (
           <div
@@ -181,7 +186,13 @@ function NavContainer() {
             before:p-[2px] before:w-fit before:text-white before:absolute 
             before:text-[10px] before:font-['Gill Sans sans-serif']
             before:left-[-2.8px] before:mt-[28px] before:tracking-[1px]
-            before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none xl:h-[3rem] grid place-items-center w-full xl:bg-gray-800 font-bold rounded-[2rem] text-[18px] tracking-wider
+            before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none xl:h-[3rem]  w-full xl:bg-gray-800 font-bold rounded-[2rem] text-[18px] tracking-wider
+            grid 
+            justify-items-center 
+            sm:justify-items-end
+            sm:mr-[.3rem]
+            xl:justify-items-center
+            xl:content-center
             "
           onClick={() => {
             dispatch(changeVisibility(!status));
@@ -199,12 +210,9 @@ function NavContainer() {
             />
           )}
         </button>
-      </div>
-      <div
-        className="fixed bottom-0 
-        "
-      >
-        <Account screenStatus={BigScreenStatus} />
+        <div className="mt-[4rem] xl:mt-[3rem] ">
+          <Account screenStatus={BigScreenStatus} />
+        </div>
       </div>
     </>
   );

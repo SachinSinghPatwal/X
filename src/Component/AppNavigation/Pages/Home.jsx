@@ -8,13 +8,17 @@ function Home() {
   const screenStatus = useMediaQuery({ query: "(max-width:640px)" });
   return (
     <div
-      className={` grid grid-cols-[13vw_83vw] 
+      className={` grid lg:grid-cols-[14vw_60vw] 
+        grid-cols-[13vw_80vw] xl:justify-center
         `}
     >
-      <aside className={` bg-pink-500`}>
+      <aside className={` `}>
         <NavContainer />
       </aside>
-      <main className="grid sm:grid-cols-[80vw] md:grid-cols-[600px_auto] lg:grid-cols-[600px_auto] ">
+      <main
+        className="grid sm:grid-cols-[80vw_0px] md:grid-cols-[600px_0px] overflow-x-hidden
+      lg:grid-cols-[600px_auto] "
+      >
         {status ? <ComposePost /> : null}
         <Outlet />
         <aside className=" invisible xl:visible ">
