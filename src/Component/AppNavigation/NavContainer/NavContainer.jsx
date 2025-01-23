@@ -24,7 +24,6 @@ import {
   changeVisibility,
   setPageNavIconStatus,
 } from "../../../store/authSlice";
-import { width } from "@fortawesome/free-brands-svg-icons/fa42Group";
 
 function NavContainer() {
   const dispatch = useDispatch();
@@ -109,111 +108,103 @@ function NavContainer() {
           }
           `}
       </style>
-      <div className="grid justify-items-end  content-between h-screen ">
-        <div
-          className={`grid place-cols-10 gap-[1.8rem] 
-            sm:mr-[1.2rem] lg:mr-[1.6rem] xl:mr-[3rem] sm:justify-items-center 
-            mr-[2.5vw] xl:justify-items-start lg:w-[70%] lg:items-center ${
-              !BigScreenStatus && ""
-            }`}
+      <div
+        className={`grid place-cols-10 gap-[1.8rem] justify-items-center top-0 sticky`}
+      >
+        <NavLink
+          to="/Home"
+          onClick={() => {
+            dispatch(setPageNavIconStatus("home"));
+          }}
         >
-          <NavLink
-            to="/Home"
+          <Logo />
+        </NavLink>
+        {pageNavItems.map((navItems) => (
+          <div
+            key={navItems.name}
             onClick={() => {
-              dispatch(setPageNavIconStatus("home"));
+              navItems.name !== "home"
+                ? navigate(`${navItems.name}`)
+                : navigate("");
+              dispatch(setPageNavIconStatus(navItems.name));
             }}
-          >
-            <Logo classname="mt-[.8rem]" />
-          </NavLink>
-          {pageNavItems.map((navItems) => (
-            <div
-              key={navItems.name}
-              onClick={() => {
-                navItems.name !== "home"
-                  ? navigate(`${navItems.name}`)
-                  : navigate("");
-                dispatch(setPageNavIconStatus(navItems.name));
-              }}
-              className={`relative min-h-[28px] hover:cursor-pointer  ${
-                !BigScreenStatus && "prefix"
-              }
+            className={`relative min-h-[28px] hover:cursor-pointer  ${
+              !BigScreenStatus && "prefix"
+            }
               ${
                 navItems.name == "post"
-                  ? " w-fit transition-colors  ease-in prefix relative lg:hover:cursor-pointer pl-[2px]"
+                  ? "w-fit transition-colors  ease-in prefix relative lg:hover:cursor-pointer pl-[2px]"
                   : ""
               }
               `}
-              style={{
-                "--prefix": `'${navItems.name}'`,
-                "--centring": `${navItems.centring}%`,
-              }}
-            >
-              <div className="h-full grid grid-flow-col gap-[1rem] items-center text-[18.5px] ">
-                <FontAwesomeIcon
-                  icon={
-                    pageNavIconStatus == navItems.name && navItems.logoOnClicked
-                      ? navItems.logoOnClicked
-                      : navItems.logoUnClicked
-                  }
-                  size="lg"
-                  style={{
-                    color: `${
-                      pageNavIconStatus == navItems.name
-                        ? "#7b3bd4 "
-                        : "#f7f5f5 "
-                    }`,
-                    cursor: "pointer",
-                    minWidth: "31.21px",
-                  }}
-                />
-                {BigScreenStatus ? (
-                  <span
-                    key={navItems.name}
-                    className={`text-white h-full ${
-                      pageNavIconStatus == navItems.name
-                        ? "font-normal"
-                        : "font-thin"
-                    }`}
-                  >
-                    {navItems.name !== "home"
-                      ? navItems.name.charAt(0).toLocaleUpperCase() +
-                        navItems.name.slice(1)
-                      : "Home"}
-                  </span>
-                ) : null}
-              </div>
+            style={{
+              "--prefix": `'${navItems.name}'`,
+              "--centring": `${navItems.centring}%`,
+            }}
+          >
+            <div className="h-full grid grid-flow-col gap-[1rem] items-center text-[18.5px] ">
+              <FontAwesomeIcon
+                icon={
+                  pageNavIconStatus == navItems.name && navItems.logoOnClicked
+                    ? navItems.logoOnClicked
+                    : navItems.logoUnClicked
+                }
+                size="lg"
+                style={{
+                  color: `${
+                    pageNavIconStatus == navItems.name ? "#7b3bd4 " : "#f7f5f5 "
+                  }`,
+                  cursor: "pointer",
+                  minWidth: "31.21px",
+                }}
+              />
+              {BigScreenStatus ? (
+                <span
+                  key={navItems.name}
+                  className={`text-white h-full ${
+                    pageNavIconStatus == navItems.name
+                      ? "font-normal"
+                      : "font-thin"
+                  }`}
+                >
+                  {navItems.name !== "home"
+                    ? navItems.name.charAt(0).toLocaleUpperCase() +
+                      navItems.name.slice(1)
+                    : "Home"}
+                </span>
+              ) : null}
             </div>
-          ))}
-          <button
-            className="before:content-['Post'] before:h-[17.9px] 
+          </div>
+        ))}
+        <button
+          className="before:content-['Post'] before:h-[17.9px] 
             before:p-[2px] before:w-fit before:text-white before:absolute 
             before:text-[10px] before:font-['Gill Sans sans-serif']
             before:left-[-2.8px] before:mt-[28px] before:tracking-[1px]
-            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none xl:h-[3rem] grid place-items-center w-full xl:bg-gray-800 font-bold rounded-[2rem] text-[18px] tracking-wider
+            before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none xl:h-[3rem] grid place-items-center w-full xl:bg-gray-800 font-bold rounded-[2rem] text-[18px] tracking-wider
             "
-            onClick={() => {
-              dispatch(changeVisibility(!status));
-            }}
-          >
-            {BigScreenStatus ? (
-              "Post"
-            ) : (
-              <FontAwesomeIcon
-                icon={faPlus}
-                size="xl"
-                style={{
-                  color: `${status ? "#7b3bd4" : "#f7f5f5"}`,
-                }}
-              />
-            )}
-          </button>
-        </div>
-        <div
-          className="xl:grid grid-cols-[3rem_1fr] xl:justify-items-center xl:w-full xl:items-center xl:justify-center mb-[2rem] xl:gap-[1rem] xl:h-[3rem] 
-        "
+          onClick={() => {
+            dispatch(changeVisibility(!status));
+          }}
         >
-          <Account screenStatus={BigScreenStatus} />
-        </div>
+          {BigScreenStatus ? (
+            "Post"
+          ) : (
+            <FontAwesomeIcon
+              icon={faPlus}
+              size="xl"
+              style={{
+                color: `${status ? "#7b3bd4" : "#f7f5f5"}`,
+              }}
+            />
+          )}
+        </button>
+      </div>
+      <div
+        className="fixed bottom-0 
+        "
+      >
+        <Account screenStatus={BigScreenStatus} />
       </div>
     </>
   );
