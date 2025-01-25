@@ -40,18 +40,6 @@ function NavContainer() {
       centring: -10,
     },
     {
-      name: "search",
-      logoUnClicked: faMagnifyingGlass,
-      logoOnclicked: null,
-      centring: -25,
-    },
-    {
-      name: "notification",
-      logoUnClicked: bellonclick,
-      logoOnClicked: faBell,
-      centring: -90,
-    },
-    {
       name: "messages",
       logoUnClicked: enveloponclick,
       logoOnClicked: faEnvelope,
@@ -109,7 +97,7 @@ function NavContainer() {
           `}
       </style>
       <div
-        className={`grid place-cols-10 gap-[1.8rem] overflow-x-hidden
+        className={`grid place-cols-9 gap-[2rem] overflow-x-hidden
           justify-items-center 
           sm:justify-items-end
           sm:mr-[1.5rem]
@@ -117,7 +105,7 @@ function NavContainer() {
           top-0 sticky`}
       >
         <NavLink
-          to="/Home"
+          to="/Home/allpost"
           onClick={() => {
             dispatch(setPageNavIconStatus("home"));
           }}
@@ -130,17 +118,12 @@ function NavContainer() {
             onClick={() => {
               navItems.name !== "home"
                 ? navigate(`${navItems.name}`)
-                : navigate("");
+                : navigate("../Home/allpost");
               dispatch(setPageNavIconStatus(navItems.name));
             }}
             className={`relative min-h-[28px] hover:cursor-pointer  ${
               !BigScreenStatus && "prefix"
             }
-              ${
-                navItems.name == "post"
-                  ? "w-fit transition-colors  ease-in prefix relative lg:hover:cursor-pointer pl-[2px]"
-                  : ""
-              }
               `}
             style={{
               "--prefix": `'${navItems.name}'`,
@@ -191,6 +174,7 @@ function NavContainer() {
             1s] before:ease-in-out relative before:border-none xl:h-
             [3rem] w-full xl:bg-gray-800 font-bold rounded-[2rem] 
             text-[18px] tracking-wider
+            h-[3rem]
             grid 
             justify-items-center 
             sm:justify-items-end
@@ -214,7 +198,7 @@ function NavContainer() {
             />
           )}
         </button>
-        <div className="mt-[3rem] ">
+        <div className="mt-[8rem] xl:mb-[1rem]">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>
