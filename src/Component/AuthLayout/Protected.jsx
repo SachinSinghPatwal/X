@@ -15,7 +15,7 @@ function Protected({ authentication = !true, children }) {
       navigate("/AuthenticatingPage");
     } else if (!authentication && authStatus !== authentication) {
       console.log("login");
-      navigate("/Home");
+      navigate("/Home/allpost");
     }
     setLoading(false);
     console.log("protected called");

@@ -10,13 +10,14 @@ import {
   More,
   AuthenticatingPage,
   CreateAccount,
-  SignUpGoogle,
-  SignUpApple,
   Protected,
   Home,
-  App,
-  SignIn,
   AllPost,
+  Following,
+  Preference,
+  ForYou,
+  SignIn,
+  App,
 } from "./Component/index.js";
 
 function Routing() {
@@ -33,30 +34,8 @@ function Routing() {
             </Protected>
           }
         >
-          <Route
-            path="SignUpGoogle"
-            element={
-              <Protected authentication={true}>
-                <SignUpGoogle />
-              </Protected>
-            }
-          />
-          <Route
-            path="SignUpApple"
-            element={
-              <Protected authentication={true}>
-                <SignUpApple />
-              </Protected>
-            }
-          />
-          <Route
-            path="CreateAccount"
-            element={
-              <Protected authentication={true}>
-                <CreateAccount />
-              </Protected>
-            }
-          />
+          <Route path="CreateAccount" element={<CreateAccount />} />
+          <Route path="SignIn" element={<SignIn />} />
         </Route>
         {/* Home Route */}
         <Route
@@ -70,7 +49,11 @@ function Routing() {
           }
         >
           {/* Nested Routes under Home */}
-          <Route index element={<AllPost />} />
+          <Route path="allpost" element={<AllPost />}>
+            <Route index path="foryou" element={<ForYou />} />
+            <Route path="following" element={<Following />} />
+            <Route path="preferences" element={<Preference />} />
+          </Route>
           <Route path="Search" element={<SearchonNav />} />
           <Route path="Messages" element={<Message />} />
           <Route path="AI" element={<AIPage />} />

@@ -1,7 +1,7 @@
 import React from "react";
 
-function SignIn() {
+function Following() {
   return <div></div>;
 }
 
-export default SignIn;
+export default Following;

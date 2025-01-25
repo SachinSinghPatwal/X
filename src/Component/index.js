@@ -21,6 +21,12 @@ import AuthenticatingPage from "./AppNavigation/Pages/AuthenticatingPage";
 import CreateAccount from "./Elements/CreateAccount";
 import Home from "./AppNavigation/Pages/Home";
 import AllPost from "./AppNavigation/Pages/AllPost";
+import App from "../App";
+
+// sub pages
+import Following from "./AppNavigation/Pages/Allpost/Following";
+import Preference from "./AppNavigation/Pages/Allpost/Preference";
+import ForYou from "./AppNavigation/Pages/Allpost/ForYou";
 
 // logout and add account
 import Account from "./Elements/Account";
@@ -28,11 +34,9 @@ import Account from "./Elements/Account";
 // elements
 import Header from "./Elements/Header";
 import Footer from "./Elements/footer";
-import SignUpGoogle from "./Elements/SignUpGoogle";
-import SignUpApple from "./Elements/SignUpApple";
-import App from "../App";
-import SignIn from "./Elements/SignIn";
+import SignIn from "./AppNavigation/Pages/SignIn";
 import PagesContainer from "./AppNavigation/Pages/PagesContainer";
+
 //loader
 import Loader from "./Loader/Loader";
 
@@ -56,15 +60,16 @@ export {
   Loader,
   ComposePost,
   AuthenticatingPage,
-  SignUpGoogle,
   CreateAccount,
   Footer,
-  SignUpApple,
   Home,
   Input,
   Protected,
-  App,
   SignIn,
   AllPost,
   PagesContainer,
+  Following,
+  Preference,
+  ForYou,
+  App,
 };

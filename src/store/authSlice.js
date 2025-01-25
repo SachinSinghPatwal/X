@@ -5,8 +5,7 @@ const initialState = {
   userData: null,
   composePostVisibility: false,
   pageNavIconStatus: "home",
-  authPageSizeStatus: false,
-  authServiceError: "",
+  togglingAuthPageStatus: false,
 };
 const authSlice = createSlice({
   name: "auth",
@@ -26,11 +25,8 @@ const authSlice = createSlice({
     setPageNavIconStatus: (state, action) => {
       state.pageNavIconStatus = action.payload;
     },
-    setAuthPageSizeStatus: (state, action) => {
-      state.authPageSizeStatus = action.payload;
-    },
-    setAuthServiceError: (state, action) => {
-      state.authPageSizeStatus = action.payload;
+    setTogglingAuthPageStatus: (state, action) => {
+      state.togglingAuthPageStatus = action.payload;
     },
   },
 });
@@ -41,6 +37,5 @@ export const {
   logout,
   changeVisibility,
   setPageNavIconStatus,
-  setAuthPageSizeStatus,
-  setAuthServiceError,
+  setTogglingAuthPageStatus,
 } = authSlice.actions;

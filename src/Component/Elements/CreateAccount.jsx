@@ -1,32 +1,35 @@
 import React, { useState, useEffect } from "react";
-import { Button, Input } from "../index";
+import { Input } from "../index";
 import { useForm } from "react-hook-form";
 import authService from "../../AppwriteServices/Auth/Auth";
-import { login as authLogin } from "../../store/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../store/authSlice";
+import { useDispatch } from "react-redux";
 import Logo from "../../Public/Logo.svg";
 import { Loader } from "../index";
+import { useNavigate } from "react-router-dom";
+import { setTogglingAuthPageStatus } from "../../store/authSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+
 function CreateAccount() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { register, handleSubmit } = useForm();
-  let message = useSelector((state) => state.auth.authServiceError);
   useEffect(() => {
     authService.getCurrentUser().finally(() => {
       setLoading(false);
     });
   }, []);
   const create = async (data) => {
-    setError("");
     try {
       const userData = await authService.createAccount(data);
       if (userData) {
         const userData = await authService.getCurrentUser();
-        setError(message);
-        userData && dispatch(authLogin(userData));
+        userData && dispatch(login(userData));
+        navigate("Home/allpost");
       }
     } catch (error) {
-      setError(error);
       console.log("error in create account", error);
     }
   };
@@ -44,13 +47,6 @@ function CreateAccount() {
           }
           `}
       </style>
-      <div
-        className="bg-gray-900 text-gray-700 absolute top-0 right-0 h-[3rem]
-      w-[40vw] lg:w-[30vw] border-white border-[1px] z-40 pt-[.4rem] text-2xl 
-      pl-[1rem] "
-      >
-        !{}
-      </div>
       <div className="absolute rounded-xl h-[95vh] w-[80vw] lg:w-[40rem] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black z-30 ">
         <div className="grid place-items-center h-full gap-[1.5rem] ">
           {loading && (
@@ -69,24 +65,35 @@ function CreateAccount() {
           {!loading && (
             <form
               onSubmit={handleSubmit(create)}
-              className="max-w-[70%] grid  justify-items-center gap-[1rem] "
+              className="relative max-w-[70%] grid  justify-items-center gap-[1rem] "
             >
+              <button
+                className="absolute left-[-4rem] top-[-5.2rem]"
+                onClick={() => {
+                  dispatch(setTogglingAuthPageStatus(false));
+                }}
+              >
+                <FontAwesomeIcon
+                  icon={faXmark}
+                  size="lg"
+                  style={{ color: "white" }}
+                />
+              </button>
               <section className="w-full">
-                <div>
-                  <Button calledBy="NextInCreateAccount" />
-                </div>
                 <div className="grid gap-[1rem]">
                   <h1 className="text-gray-200 text-3xl font-bold mb-[.5rem]">
                     Create your account
                   </h1>
-                  <Input
-                    type="text"
-                    placeholder="User Name"
-                    minLength={3}
-                    {...register("name", {
-                      required: true,
-                    })}
-                  />
+                  {
+                    <Input
+                      type="text"
+                      placeholder="User Name"
+                      minLength={3}
+                      {...register("name", {
+                        required: true,
+                      })}
+                    />
+                  }
                   <Input
                     type="email"
                     placeholder="@gmail.com"
@@ -119,9 +126,30 @@ function CreateAccount() {
                   this account is for a business, a pet, or something else.
                 </p>
                 <div className="grid grid-cols-[45%_20%_30%] justify-between ">
-                  <Input type="text" by="dates" placeholder="Month Name" />
-                  <Input type="number" by="dates" placeholder="Date" />
-                  <Input type="text" by="dates" placeholder="Year" />
+                  <Input
+                    type="text"
+                    by="dates"
+                    required
+                    minLength={3}
+                    maxLength={8}
+                    placeholder="Month Name"
+                  />
+                  <Input
+                    type="number"
+                    by="dates"
+                    required
+                    min={0}
+                    max={31}
+                    placeholder="Date"
+                  />
+                  <Input
+                    type="number"
+                    by="dates"
+                    required
+                    min={1910}
+                    max={2025}
+                    placeholder="Year"
+                  />
                 </div>
               </article>
               <footer className=" w-full h-[9rem] grid place-items-center">
@@ -129,6 +157,9 @@ function CreateAccount() {
                   className="grid rounded-full place-items-center 
               hover:cursor-pointer h-[3rem] w-full bg-gray-600"
                   type="submit"
+                  onClick={() => {
+                    navigate("../../Home");
+                  }}
                 >
                   <div className="font-semibold text-black ">
                     Create account

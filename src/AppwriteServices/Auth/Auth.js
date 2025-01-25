@@ -30,15 +30,11 @@ class AuthService {
       return { error };
     }
   }
-
   async login({ email, password }) {
     try {
-      return await this.createEmailPasswordSession(email, password);
+      return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.log(
-        "error || appwriteService/Auth || login  error",
-        error.message
-      );
+      console.log("error || appwriteService/Auth || login  error", error);
     }
   }
 
