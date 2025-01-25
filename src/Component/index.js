@@ -32,6 +32,7 @@ import SignUpGoogle from "./Elements/SignUpGoogle";
 import SignUpApple from "./Elements/SignUpApple";
 import App from "../App";
 import SignIn from "./Elements/SignIn";
+import PagesContainer from "./AppNavigation/Pages/PagesContainer";
 //loader
 import Loader from "./Loader/Loader";
 
@@ -65,4 +66,5 @@ export {
   App,
   SignIn,
   AllPost,
+  PagesContainer,
 };

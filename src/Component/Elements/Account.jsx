@@ -7,7 +7,7 @@ function Account({ screenStatus }) {
   return (
     <>
       <div
-        className="mb-[1rem]
+        className="
       "
       >
         <button

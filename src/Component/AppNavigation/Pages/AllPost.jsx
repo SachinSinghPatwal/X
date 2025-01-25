@@ -1,8 +1,15 @@
-import React from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useMediaQuery } from "react-responsive";
+import databaseService from "../../../AppwriteServices/DBService/DBService";
+
 function AllPost({ styles = "h-full text-[18px] text-center ml-[-2rem]" }) {
   const screenStatus = useMediaQuery({ query: "(max-width:625px)" });
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    databaseService
+      .getAllPost([])
+      .then((posts) => posts && setPosts(posts.documents));
+  }, []);
   return (
     <div className="border-x-[1px] border-gray-700 ">
       <header
@@ -28,7 +35,11 @@ function AllPost({ styles = "h-full text-[18px] text-center ml-[-2rem]" }) {
       </header>
       <main className="h-[300vh] pt-[3.5rem]">
         ost
-        <Outlet />
+        {posts.map((post) => (
+          <div key={post.$id} className="p-2 w-1/4">
+            <PostCard {...post} />
+          </div>
+        ))}
       </main>
     </div>
   );

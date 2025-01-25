@@ -114,7 +114,7 @@ function NavContainer() {
           sm:justify-items-end
           sm:mr-[1.5rem]
           xl:justify-items-start
-          top-[0rem] sticky`}
+          top-0 sticky`}
       >
         <NavLink
           to="/Home"
@@ -122,7 +122,7 @@ function NavContainer() {
             dispatch(setPageNavIconStatus("home"));
           }}
         >
-          <Logo classname="" />
+          <Logo classname="mt-[1rem]" />
         </NavLink>
         {pageNavItems.map((navItems) => (
           <div
@@ -210,7 +210,7 @@ function NavContainer() {
             />
           )}
         </button>
-        <div className="mt-[4rem] xl:mt-[3rem] ">
+        <div className="mt-[3rem] ">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>

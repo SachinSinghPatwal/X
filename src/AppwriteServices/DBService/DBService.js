@@ -6,9 +6,9 @@ class DatabaseServices {
   database;
   constructor() {
     this.client
-      .setEndpoint(conf.appwriteURL)
+      .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectId);
-    database = new Databases(client);
+    this.database = new Databases(this.client);
   }
 
   async createDocument({
@@ -90,7 +90,7 @@ class DatabaseServices {
         queries
       );
     } catch (error) {
-      console.log("appwrite service :: getposts ::error");
+      console.log("appwrite service :: getAllPosts ::error");
       return false;
     }
   }
