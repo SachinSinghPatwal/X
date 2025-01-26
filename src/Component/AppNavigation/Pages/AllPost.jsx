@@ -26,12 +26,12 @@ function AllPost({
         `}
         >
           <NavLink
-            to="foryou"
+            to=""
             onClick={() => {
               setBeforeStatus(true);
             }}
             className={({ isActive }) => `${styles}
-          ${isActive || beforeStatus ? `before:bg-blue-600` : ""}`}
+          ${isActive && beforeStatus ? `before:bg-blue-600` : ""}`}
           >
             For you
           </NavLink>
@@ -57,7 +57,7 @@ function AllPost({
           </NavLink>
         </nav>
       </header>
-      <main className="h-[300vh] pt-[3.5rem]">
+      <main className="h-[300vh] pt-[3rem]">
         <Outlet />
       </main>
     </div>

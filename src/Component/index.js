@@ -36,6 +36,7 @@ import Header from "./Elements/Header";
 import Footer from "./Elements/footer";
 import SignIn from "./AppNavigation/Pages/SignIn";
 import PagesContainer from "./AppNavigation/Pages/PagesContainer";
+import RTE from "./AppNavigation/Pages/RTE";
 
 //loader
 import Loader from "./Loader/Loader";
@@ -72,4 +73,5 @@ export {
   Preference,
   ForYou,
   App,
+  RTE,
 };

@@ -20,9 +20,6 @@ function Account({ screenStatus }) {
           before:left-[-.8rem] before:tracking-[1px] before:top-[-2rem]
           before:border- before:opacity-0 before:transition-opacity 
           hover:before:opacity-100  before:border-none
-          
-          
-          
           xl:w-fit 
           xl:bg-transparent
           "

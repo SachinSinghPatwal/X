@@ -4,19 +4,14 @@ import { useMediaQuery } from "react-responsive";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   faHouse,
-  faMagnifyingGlass,
   faEnvelope,
   faMicrochip,
-  faBell,
   faUser,
   faEllipsis,
   faHouseChimney,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faBell as bellonclick,
-  faEnvelope as enveloponclick,
-} from "@fortawesome/free-regular-svg-icons";
+import { faEnvelope as enveloponclick } from "@fortawesome/free-regular-svg-icons";
 import { faXing } from "@fortawesome/free-brands-svg-icons";
 import { Logo, Account } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
@@ -130,7 +125,10 @@ function NavContainer() {
               "--centring": `${navItems.centring}%`,
             }}
           >
-            <div className="h-full grid grid-flow-col gap-[1rem] items-center text-[18.5px] ">
+            <div
+              className="h-full grid grid-flow-col gap-[1rem] items-center 
+            text-[18.5px] "
+            >
               <FontAwesomeIcon
                 icon={
                   pageNavIconStatus == navItems.name && navItems.logoOnClicked
@@ -164,41 +162,7 @@ function NavContainer() {
             </div>
           </div>
         ))}
-        <button
-          className="before:content-['Post'] before:h-[17.9px] 
-            before:p-[2px] before:w-fit before:text-white before:absolute 
-            before:text-[10px] before:font-['Gill Sans sans-serif']
-            before:left-[-2.8px] before:mt-[28px] before:tracking-[1px]
-            before:opacity-0 before:transition-opacity 
-            hover:before:opacity-100 before:delay-[.6s] before:duration-[.
-            1s] before:ease-in-out relative before:border-none xl:h-
-            [3rem] w-full xl:bg-gray-800 font-bold rounded-[2rem] 
-            text-[18px] tracking-wider
-            h-[3rem]
-            grid 
-            justify-items-center 
-            sm:justify-items-end
-            sm:mr-[.3rem]
-            xl:justify-items-center
-            xl:content-center
-            "
-          onClick={() => {
-            dispatch(changeVisibility(!status));
-          }}
-        >
-          {BigScreenStatus ? (
-            "Post"
-          ) : (
-            <FontAwesomeIcon
-              icon={faPlus}
-              size="xl"
-              style={{
-                color: `${status ? "#7b3bd4" : "#f7f5f5"}`,
-              }}
-            />
-          )}
-        </button>
-        <div className="mt-[8rem] xl:mb-[1rem]">
+        <div className="mt-[12rem] xl:mb-[1rem]">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>

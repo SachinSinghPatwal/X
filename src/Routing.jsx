@@ -50,7 +50,7 @@ function Routing() {
         >
           {/* Nested Routes under Home */}
           <Route path="allpost" element={<AllPost />}>
-            <Route index path="foryou" element={<ForYou />} />
+            <Route index element={<ForYou />} />
             <Route path="following" element={<Following />} />
             <Route path="preferences" element={<Preference />} />
           </Route>

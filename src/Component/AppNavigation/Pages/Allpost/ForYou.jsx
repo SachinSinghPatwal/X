@@ -1,18 +1,39 @@
-import React, { useState } from "react";
-import authService from "../../../../AppwriteServices/Auth/Auth";
-import { Databases } from "appwrite";
+import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import databaseService from "../../../../AppwriteServices/DBService/DBService";
+import filePreview from "../../../../AppwriteServices/FileService/FileService";
+import Google from "../../../../Public/google.svg";
 function ForYou() {
   const [posts, setPosts] = useState([]);
-
-  return (
-    <div>
-      {/* {posts.map((post) => (
-        <div key={post.$id} className="p-2 w-1/4">
-          <PostCard {...post} />
+  useEffect(() => {
+    databaseService.getAllPost([]).then((posts) => {
+      if (posts) {
+        setPosts(posts.documents);
+      }
+    });
+  }, []);
+  posts.map((post) => (
+    <NavLink to={`/post/${post.$id}`}>
+      <div className="border-b-[1px] max-h-[600px]  w-full border-red-600 text-white py-[10px] px-[1rem]">
+        <div className="grid grid-cols-[40px_auto] gap-[.8rem]">
+          <div className="h-[40px]">
+            <img src={Google} alt="" />
+          </div>
+          <div className="grid grid-rows-[20px_auto_auto] gap-[.5rem]">
+            <div className="w-full">{post.$id}</div>
+            <div className="w-full">{post.title}</div>
+            <div className="bg-blue text-white w-full mt-[.5rem]">
+              <img
+                src={filePreview.getFilePreview(posts.featuredImage)}
+                alt={post.title}
+                className="rounded-xl"
+              />
+            </div>
+          </div>
         </div>
-      ))} */}
-    </div>
-  );
+      </div>
+    </NavLink>
+  ));
 }
 
 export default ForYou;
