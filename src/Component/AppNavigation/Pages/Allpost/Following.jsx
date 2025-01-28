@@ -11,7 +11,6 @@ function Following() {
         <h1 className="mb-[1rem] mt-[1rem]">
           Actually im currently working on this
         </h1>
-        <img src={Wolf} className="w-[50%]" />
       </div>
     </>
   );

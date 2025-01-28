@@ -11,7 +11,6 @@ import {
   faHouseChimney,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope as enveloponclick } from "@fortawesome/free-regular-svg-icons";
 import { faXing } from "@fortawesome/free-brands-svg-icons";
 import { Logo, Account } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
@@ -35,28 +34,10 @@ function NavContainer() {
       centring: -10,
     },
     {
-      name: "ai",
-      logoUnClicked: faMicrochip,
-      logoOnClicked: null,
-      centring: 25,
-    },
-    {
       name: "premium",
       logoUnClicked: faXing,
       logoOnClicked: null,
       centring: -80,
-    },
-    {
-      name: "profile",
-      logoUnClicked: faUser,
-      logoOnClicked: null,
-      centring: -40,
-    },
-    {
-      name: "more",
-      logoUnClicked: faEllipsis,
-      logoOnClicked: null,
-      centring: -16,
     },
   ];
   const status = useSelector((state) => state.auth.composePostVisibility);
@@ -188,7 +169,7 @@ function NavContainer() {
             />
           )}
         </button>
-        <div className="mt-[13rem] xl:mb-[1rem]">
+        <div className="mt-[22rem] xl:mb-[1rem]">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>
