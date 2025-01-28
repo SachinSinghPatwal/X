@@ -5,15 +5,11 @@ import Logo from "./Elements/Logo";
 
 // app navigation
 import Profile from "./Elements/Profile";
-import AddExistingAccount from "./AppNavigation/AddExistingAccount/AddExistingAccount";
 import LogOutBtn from "./AppNavigation/LogOutBtn/logOutBtn";
 import NavContainer from "./AppNavigation/NavContainer/NavContainer";
 
 // pages
-import AIPage from "./AppNavigation/Pages/AIPage";
 import Message from "./AppNavigation/Pages/Message";
-import Notification from "./AppNavigation/Pages/Notification";
-import SearchonNav from "./AppNavigation/Pages/SearchonNav";
 import Subscription from "./AppNavigation/Pages/Subscription";
 import More from "./Elements/More";
 import ComposePost from "./AppNavigation/Pages/ComposePost";
@@ -32,7 +28,6 @@ import ForYou from "./AppNavigation/Pages/Allpost/ForYou";
 import Account from "./Elements/Account";
 
 // elements
-import Header from "./Elements/Header";
 import Footer from "./Elements/footer";
 import SignIn from "./AppNavigation/Pages/SignIn";
 import PagesContainer from "./AppNavigation/Pages/PagesContainer";
@@ -47,15 +42,10 @@ export {
   Button,
   Logo,
   Profile,
-  AddExistingAccount,
   LogOutBtn,
   NavContainer,
-  AIPage,
   Message,
-  Notification,
-  SearchonNav,
   Subscription,
-  Header,
   More,
   Account,
   Loader,

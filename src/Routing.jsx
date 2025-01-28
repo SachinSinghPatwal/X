@@ -1,13 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import {
-  AIPage,
-  Message,
-  Notification,
-  SearchonNav,
-  Subscription,
   Profile,
-  More,
   AuthenticatingPage,
   CreateAccount,
   Protected,
@@ -54,13 +48,7 @@ function Routing() {
             <Route path="following" element={<Following />} />
             <Route path="preferences" element={<Preference />} />
           </Route>
-          <Route path="Search" element={<SearchonNav />} />
-          <Route path="Messages" element={<Message />} />
-          <Route path="AI" element={<AIPage />} />
-          <Route path="Premium" element={<Subscription />} />
           <Route path="Profile" element={<Profile />} />
-          <Route path="More" element={<More />} />
-          <Route path="Notification" element={<Notification />} />
         </Route>
       </Route>
     </Routes>
