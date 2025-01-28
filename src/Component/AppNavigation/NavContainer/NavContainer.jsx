@@ -35,12 +35,6 @@ function NavContainer() {
       centring: -10,
     },
     {
-      name: "messages",
-      logoUnClicked: enveloponclick,
-      logoOnClicked: faEnvelope,
-      centring: -56,
-    },
-    {
       name: "ai",
       logoUnClicked: faMicrochip,
       logoOnClicked: null,
@@ -112,7 +106,10 @@ function NavContainer() {
             key={navItems.name}
             onClick={() => {
               navItems.name !== "home"
-                ? navigate(`${navItems.name}`)
+                ? navigate(
+                    `${navItems.name}`,
+                    dispatch(changeVisibility(false))
+                  )
                 : navigate("../Home/allpost");
               dispatch(setPageNavIconStatus(navItems.name));
             }}
@@ -162,7 +159,36 @@ function NavContainer() {
             </div>
           </div>
         ))}
-        <div className="mt-[12rem] xl:mb-[1rem]">
+        <button
+          className="before:content-['Post'] before:h-[17.9px] 
+            before:p-[2px] before:w-fit before:text-white before:absolute 
+            before:text-[10px] before:font-['Gill Sans sans-serif']
+            before:left-[-2.8px] before:mt-[28px] before:tracking-[1px]
+            before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none xl:h-[3rem]  w-full xl:bg-gray-800 font-bold rounded-[2rem] text-[18px] tracking-wider
+            grid 
+            justify-items-center 
+            sm:justify-items-end
+            sm:mr-[.3rem]
+            xl:justify-items-center
+            xl:content-center
+            "
+          onClick={() => {
+            dispatch(changeVisibility(!status));
+          }}
+        >
+          {BigScreenStatus ? (
+            "Post"
+          ) : (
+            <FontAwesomeIcon
+              icon={faPlus}
+              size="xl"
+              style={{
+                color: `${status ? "#7b3bd4" : "#f7f5f5"}`,
+              }}
+            />
+          )}
+        </button>
+        <div className="mt-[13rem] xl:mb-[1rem]">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>

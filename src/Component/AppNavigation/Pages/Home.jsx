@@ -1,8 +1,7 @@
-import React from "react";
-import { NavContainer, ComposePost, More } from "../../index";
+import React, { memo } from "react";
+import { NavContainer, More, Message, ComposePost } from "../../index";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useMediaQuery } from "react-responsive";
 function Home() {
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
@@ -28,4 +27,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default memo(Home);

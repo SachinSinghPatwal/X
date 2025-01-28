@@ -77,40 +77,19 @@ function Message({ post }) {
   const screenStatus = useMediaQuery({ query: "(max-width:625px)" });
   return (
     <form onSubmit={handleSubmit(submit)}>
-      <div className="border-x-[1px] border-gray-700 text-white h-screen">
-        <header
-          className={`h-[3rem] grid place-items-center 
-      border-gray-700 border-b-[1px]
-        sm:w-[79.7vw] 
-        md:w-[598px] 
-        lg:w-[598px]
-        backdrop-blur-sm
-        w-[79.6vw]
-        ${screenStatus && "w-[79.6vw]"}
-      `}
-        >
-          <div
-            className={`h-fit w-[70vw] md:w-[523px]
-            grid grid-cols-[auto_.1%] items-center
-        `}
-          >
-            <h1 className="text-[20px]">Create Post</h1>
-            <div>
-              <FontAwesomeIcon icon={faGear} style={{ color: "white" }} />
-            </div>
-          </div>
-        </header>
+      <div className="text-white ">
         <main>
           <Input
-            placeholder="title"
-            className="mb-[1rem]"
+            placeholder="Title is required and visible to others above post."
+            className="pl-[.2rem] h-[2rem] absolute z-[10000] left-[10%] top-[9%] my-[.2rem] rounded-sm bg-[#212426] border-[2px] border-[#7F48CD] 
+            w-[68%] placeholder:text-gray-100 "
             {...register("title", {
               required: true,
             })}
           />
           <Input
             placeholder="slug"
-            className="mb-[1rem]"
+            className="invisible"
             {...register("slug", {
               required: true,
             })}
@@ -126,16 +105,17 @@ function Message({ post }) {
             control={control}
             defaultValues={getValues("content")}
           />
-          <Input
+          <input
             type="file"
-            className="mb-[1rem]"
+            className="absolute top-[10%] right-2 z-[10000000]
+            w-[6rem] rounded-[5px]"
             accept="image/png , image/jpg , image/jpeg , image/gif"
             {...register("image", {
               required: !post,
             })}
           />
           {post && (
-            <div>
+            <div className="w-[500px]">
               <img
                 src={fileService.getFilePreview(post.featuredImage)}
                 alt={post.title}
@@ -143,13 +123,15 @@ function Message({ post }) {
               />
             </div>
           )}
+          <button
+            type="submit"
+            className={`${
+              post ? "bg-green-500" : "bg-[#7F48CD]"
+            } w-[4rem] h-[2rem] rounded-md absolute bottom-3 right-3`}
+          >
+            {post ? "Update" : "Post"}
+          </button>
         </main>
-        <Button
-          type="submit"
-          bgColor={post ? "bg-green-500" : undefined}
-          className="w-full"
-          Children={post ? "Update" : "Submit"}
-        ></Button>
       </div>
     </form>
   );

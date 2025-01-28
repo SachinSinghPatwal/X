@@ -31,7 +31,7 @@ function AllPost({
               setBeforeStatus(true);
             }}
             className={({ isActive }) => `${styles}
-          ${isActive && beforeStatus ? `before:bg-blue-600` : ""}`}
+          ${isActive && beforeStatus ? `before:bg-[#7F48CD]` : ""}`}
           >
             For you
           </NavLink>
@@ -41,7 +41,7 @@ function AllPost({
             }}
             to="following"
             className={({ isActive }) => `${styles}
-          ${isActive ? `before:bg-blue-600` : ""}`}
+          ${isActive ? `before:bg-[#7F48CD]` : ""}`}
           >
             Following
           </NavLink>
@@ -51,13 +51,13 @@ function AllPost({
             }}
             to="preferences"
             className={({ isActive }) => `${styles}
-          ${isActive ? `before:bg-blue-600` : ""}`}
+          ${isActive ? `before:bg-[#7F48CD]` : ""}`}
           >
             Preferences
           </NavLink>
         </nav>
       </header>
-      <main className="h-[300vh] pt-[3rem]">
+      <main className="pt-[3rem]">
         <Outlet />
       </main>
     </div>
