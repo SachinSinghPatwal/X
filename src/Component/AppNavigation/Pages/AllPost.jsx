@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { NavLink, Outlet } from "react-router-dom";
 
 function AllPost({
-  styles = "h-full text-white text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[5.5rem]",
+  styles = "h-full text-white text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[1rem]",
 }) {
   const [beforeStatus, setBeforeStatus] = useState(true);
   const screenStatus = useMediaQuery({ query: "(max-width:625px)" });
@@ -22,7 +22,7 @@ function AllPost({
       >
         <nav
           className={`h-fit w-[70vw] md:w-[523px]
-            grid grid-cols-3
+            text-center
         `}
         >
           <NavLink
@@ -34,26 +34,6 @@ function AllPost({
           ${isActive && beforeStatus ? `before:bg-[#7F48CD]` : ""}`}
           >
             For you
-          </NavLink>
-          <NavLink
-            onClick={() => {
-              setBeforeStatus(false);
-            }}
-            to="following"
-            className={({ isActive }) => `${styles}
-          ${isActive ? `before:bg-[#7F48CD]` : ""}`}
-          >
-            Following
-          </NavLink>
-          <NavLink
-            onClick={() => {
-              setBeforeStatus(false);
-            }}
-            to="preferences"
-            className={({ isActive }) => `${styles}
-          ${isActive ? `before:bg-[#7F48CD]` : ""}`}
-          >
-            Preferences
           </NavLink>
         </nav>
       </header>

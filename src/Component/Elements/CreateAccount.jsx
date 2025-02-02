@@ -27,7 +27,7 @@ function CreateAccount() {
       if (userData) {
         const userData = await authService.getCurrentUser();
         userData && dispatch(login(userData));
-        navigate("Home/allpost");
+        navigate("../../Home/allpost");
       }
     } catch (error) {
       console.log("error in create account", error);

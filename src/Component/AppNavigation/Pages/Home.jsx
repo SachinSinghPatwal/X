@@ -1,5 +1,5 @@
 import React, { memo } from "react";
-import { NavContainer, More, Message, ComposePost } from "../../index";
+import { NavContainer, ComposePost } from "../../index";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 function Home() {
@@ -19,9 +19,7 @@ function Home() {
       >
         {status ? <ComposePost /> : null}
         <Outlet />
-        <aside className=" invisible xl:visible ">
-          <More />
-        </aside>
+        <aside className=" invisible xl:visible xl:w-[320px] "></aside>
       </main>
     </div>
   );

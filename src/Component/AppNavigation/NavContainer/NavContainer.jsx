@@ -4,16 +4,12 @@ import { useMediaQuery } from "react-responsive";
 import { NavLink, useNavigate } from "react-router-dom";
 import {
   faHouse,
-  faEnvelope,
-  faMicrochip,
-  faUser,
-  faEllipsis,
   faHouseChimney,
   faPlus,
 } from "@fortawesome/free-solid-svg-icons";
-import { faXing } from "@fortawesome/free-brands-svg-icons";
 import { Logo, Account } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
+
 import {
   changeVisibility,
   setPageNavIconStatus,
@@ -33,46 +29,21 @@ function NavContainer() {
       logoOnClicked: faHouse,
       centring: -10,
     },
-    {
-      name: "premium",
-      logoUnClicked: faXing,
-      logoOnClicked: null,
-      centring: -80,
-    },
   ];
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
     <>
-      <style>
-        {`
-          .prefix::before{content:var(--prefix);
-            height:17.9px;
-            padding:2px;
-            width:fit-content;
-            color:white;
-            position:absolute;
-            font-size:10px;
-            font-family:"Gill Sans", sans-serif;
-            left:var(--centring);
-            margin-top:28px;
-            letter-spacing:1px;
-            border-radius:2px;
-            opacity:0;
-            transition:opacity .1s .6s ease-in-out;
-            text-align:center
-          }
-          .prefix:hover::before{
-            opacity:1;
-          }
-          `}
-      </style>
       <div
         className={`grid place-cols-9 gap-[2rem] overflow-x-hidden
           justify-items-center 
           sm:justify-items-end
           sm:mr-[1.5rem]
           xl:justify-items-start
-          top-0 sticky`}
+          top-0 sticky
+          align-center
+          content-center
+          h-screen
+          `}
       >
         <NavLink
           to="/Home/allpost"
@@ -98,10 +69,6 @@ function NavContainer() {
               !BigScreenStatus && "prefix"
             }
               `}
-            style={{
-              "--prefix": `'${navItems.name}'`,
-              "--centring": `${navItems.centring}%`,
-            }}
           >
             <div
               className="h-full grid grid-flow-col gap-[1rem] items-center 
@@ -141,15 +108,10 @@ function NavContainer() {
           </div>
         ))}
         <button
-          className="before:content-['Post'] before:h-[17.9px] 
-            before:p-[2px] before:w-fit before:text-white before:absolute 
-            before:text-[10px] before:font-['Gill Sans sans-serif']
-            before:left-[-2.8px] before:mt-[28px] before:tracking-[1px]
-            before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none xl:h-[3rem]  w-full xl:bg-gray-800 font-bold rounded-[2rem] text-[18px] tracking-wider
+          className="xl:h-[3rem] text-white w-full xl:bg-gray-800  rounded-[2rem] text-[18px] tracking-wider
             grid 
             justify-items-center 
             sm:justify-items-end
-            sm:mr-[.3rem]
             xl:justify-items-center
             xl:content-center
             "

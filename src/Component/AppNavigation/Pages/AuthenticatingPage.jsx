@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Footer } from "../../index";
 import Logo from "../../../Public/Logo.svg";
 import { useMediaQuery } from "react-responsive";
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { setTogglingAuthPageStatus } from "../../../store/authSlice";
 function AuthenticatingPage({
   styles = "text-white font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]",
 }) {
@@ -12,7 +14,10 @@ function AuthenticatingPage({
   const createLoginUserPageStatus = useSelector(
     (state) => state.auth.togglingAuthPageStatus
   );
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(setTogglingAuthPageStatus(false));
+  }, []);
   return (
     <>
       {createLoginUserPageStatus ? <Outlet /> : ""}

@@ -27,7 +27,7 @@ export default function SignIn() {
       if (session) {
         const userData = await authService.getCurrentUser();
         userData && dispatch(authLogin(userData));
-        navigate("Home/allpost");
+        navigate("../../Home/allpost");
       }
     } catch (error) {
       console.log("error in create account", error);
@@ -116,7 +116,7 @@ export default function SignIn() {
               hover:cursor-pointer h-[3rem] w-full bg-gray-600"
                   type="submit"
                   onClick={() => {
-                    navigate("../../Home");
+                    navigate("../../");
                   }}
                 >
                   <div className="font-semibold text-black ">Login</div>

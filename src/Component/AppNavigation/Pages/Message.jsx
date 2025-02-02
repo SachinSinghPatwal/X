@@ -1,10 +1,8 @@
-import { faGear } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-import { Button, Input, RTE } from "../../index";
+import { Input, RTE } from "../../index";
 import fileService from "../../../AppwriteServices/FileService/FileService";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -82,7 +80,7 @@ function Message({ post }) {
           <Input
             placeholder="Title is required and visible to others above post."
             className="pl-[.2rem] h-[2rem] absolute z-[10000] left-[10%] top-[9%] my-[.2rem] rounded-sm bg-[#212426] border-[2px] border-[#7F48CD] 
-            w-[68%] placeholder:text-gray-100 "
+            w-[68%] placeholder:text-gray-600 "
             {...register("title", {
               required: true,
             })}

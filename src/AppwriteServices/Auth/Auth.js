@@ -42,21 +42,15 @@ class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log(
-        "error || appwriteService/Auth || could'nt get getCurrentUSer error",
-        error.message
-      );
+      return;
     }
   }
 
   async logOut() {
     try {
-      return await this.account.deleteSession();
+      return await this.account.deleteSessions();
     } catch (error) {
-      console.log(
-        "error || appwriteService/Auth || logOut error",
-        error.message
-      );
+      console.log("error || appwriteService/Auth || logOut error", error);
     }
   }
 }

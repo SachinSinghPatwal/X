@@ -14,12 +14,10 @@ function App() {
       .then((userData) => {
         if (userData) {
           dispatch(login({ userData }));
-          navigate("/Home/allpost");
-          console.log("app called true");
+          navigate("../../Home/allpost");
         } else {
           dispatch(logout());
           navigate("/AuthenticatingPage");
-          console.log("app called false");
         }
       })
       .finally(() => {

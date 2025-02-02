@@ -2,6 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserNinja } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import { LogOutBtn } from "../index";
 function Account({ screenStatus }) {
   const [hoverStatus, steHoverStatus] = useState(false);
   return (
@@ -40,7 +41,9 @@ function Account({ screenStatus }) {
           />
         </button>
         {screenStatus ? (
-          <span className="text-white ml-[1.5rem]">HI User</span>
+          <span className="text-white ml-[1.5rem]">
+            <LogOutBtn />
+          </span>
         ) : null}
       </div>
     </>
