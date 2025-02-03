@@ -19,7 +19,7 @@ export class FileService {
         file
       );
     } catch (error) {
-      console.log("appwrite service :: uploadFile ::error");
+      console.log("appwrite service :: uploadFile ::error", error);
       return false;
     }
   }

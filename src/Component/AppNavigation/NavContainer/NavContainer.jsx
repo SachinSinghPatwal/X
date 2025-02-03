@@ -34,7 +34,7 @@ function NavContainer() {
   return (
     <>
       <div
-        className={`grid place-cols-9 gap-[2rem] overflow-x-hidden
+        className={`grid gap-[4rem] overflow-x-hidden
           justify-items-center 
           sm:justify-items-end
           sm:mr-[1.5rem]
@@ -45,14 +45,6 @@ function NavContainer() {
           h-screen
           `}
       >
-        <NavLink
-          to="/Home/allpost"
-          onClick={() => {
-            dispatch(setPageNavIconStatus("home"));
-          }}
-        >
-          <Logo classname="mt-[1rem]" />
-        </NavLink>
         {pageNavItems.map((navItems) => (
           <div
             key={navItems.name}
@@ -82,9 +74,7 @@ function NavContainer() {
                 }
                 size="lg"
                 style={{
-                  color: `${
-                    pageNavIconStatus == navItems.name ? "#7b3bd4 " : "#f7f5f5 "
-                  }`,
+                  color: "white",
                   cursor: "pointer",
                   minWidth: "31.21px",
                 }}

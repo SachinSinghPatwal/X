@@ -21,7 +21,7 @@ function Message({ post }) {
   const userData = useSelector((state) => state.auth.userData);
   const submit = async (data) => {
     if (post) {
-      data.image[0] ? fileService.uploadFile(data.image[0]) : null;
+      const file = data.image[0] ? fileService.uploadFile(data.image[0]) : null;
       if (file) {
         fileService.deleteFile(post.featuredImage);
       }
@@ -30,7 +30,7 @@ function Message({ post }) {
         featuredImage: file ? file.$id : undefined,
       });
       if (DbPost) {
-        navigate("/Home/allpost");
+        navigate("");
       }
     } else {
       const file = await fileService.uploadFile(data.image[0]);
@@ -42,7 +42,7 @@ function Message({ post }) {
           userId: userData.$id,
         });
         if (dbPost) {
-          navigate("/Home/allpost");
+          navigate("../home");
         }
       }
     }
@@ -58,7 +58,7 @@ function Message({ post }) {
   }, []);
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
-      if ((name = "title")) {
+      if (name == "title") {
         setValue(
           "slug",
           slugTransform(value.title, {
@@ -98,7 +98,6 @@ function Message({ post }) {
             }}
           />
           <RTE
-            label="Content: "
             name="content"
             control={control}
             defaultValues={getValues("content")}
