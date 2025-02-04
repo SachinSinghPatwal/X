@@ -87,7 +87,7 @@ function CreateAccount() {
                   {
                     <Input
                       type="text"
-                      placeholder="User Name"
+                      placeholder="Name"
                       minLength={3}
                       {...register("name", {
                         required: true,
@@ -109,7 +109,8 @@ function CreateAccount() {
                   />
                   <Input
                     type="password"
-                    placeholder="+8 words"
+                    placeholder="Password must contain 8 letters 
+                    "
                     minLength={8}
                     {...register("password", {
                       required: true,
@@ -155,7 +156,7 @@ function CreateAccount() {
               <footer className=" w-full h-[9rem] grid place-items-center">
                 <button
                   className="grid rounded-full place-items-center 
-              hover:cursor-pointer h-[3rem] w-full bg-gray-600"
+              hover:cursor-pointer h-[3rem] w-full bg-gray-100"
                   type="submit"
                   onClick={() => {
                     navigate("../../Home");

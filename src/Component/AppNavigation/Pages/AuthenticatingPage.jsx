@@ -80,7 +80,7 @@ function AuthenticatingPage({
             <Button calledBy="signIn">Sign in</Button>
           </main>
         </div>
-        <div className="grid place-items-center ">
+        <div className="sm:grid sm:place-items-center ">
           <Footer styles=" font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]" />
         </div>
       </div>
