@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import authService from "../../../AppwriteServices/Auth/Auth";
 import { login as authLogin } from "../../../store/authSlice";
 import { useDispatch } from "react-redux";
-import Logo from "../../../Public/logo.svg";
+import Logo from "../../../Public/Logo.svg";
 import { Loader } from "../../index";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
