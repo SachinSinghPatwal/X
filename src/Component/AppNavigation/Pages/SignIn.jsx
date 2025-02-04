@@ -100,7 +100,7 @@ export default function SignIn() {
                   />
                   <Input
                     type="password"
-                    placeholder="password"
+                    placeholder="Password"
                     required
                     minLength={8}
                     {...register("password", {
