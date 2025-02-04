@@ -11,7 +11,7 @@ class DatabaseServices {
     this.database = new Databases(this.client);
   }
 
-  async createPost({ title, slug, content, featuredImage, status, userId }) {
+  async createPost({ slug, title, content, featuredImage, status, userId }) {
     try {
       return await this.database.createDocument(
         conf.appwriteDatabaseId,
@@ -21,7 +21,6 @@ class DatabaseServices {
           title,
           content,
           featuredImage,
-          status,
           userId,
         }
       );

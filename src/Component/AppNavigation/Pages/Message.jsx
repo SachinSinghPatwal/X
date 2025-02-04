@@ -17,8 +17,10 @@ function Message({ post }) {
         status: post?.status || "active",
       },
     });
+
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
+
   const submit = async (data) => {
     if (post) {
       const file = data.image[0] ? fileService.uploadFile(data.image[0]) : null;
@@ -28,10 +30,10 @@ function Message({ post }) {
       const DbPost = await databaseService.updatePost(post.$id, {
         ...data,
         featuredImage: file ? file.$id : undefined,
+        if(DbPost) {
+          navigate("");
+        },
       });
-      if (DbPost) {
-        navigate("");
-      }
     } else {
       const file = await fileService.uploadFile(data.image[0]);
       if (file) {
@@ -42,20 +44,22 @@ function Message({ post }) {
           userId: userData.$id,
         });
         if (dbPost) {
-          navigate("../home");
+          navigate("");
         }
       }
     }
   };
+
   const slugTransform = useCallback((value) => {
     if (value && typeof value == "string")
       return value
         .trim()
         .toLowerCase()
-        .replace(/^[a-zA-Z\d\s]+/g, "-")
+        .replace(/[^a-zA-Z\d\s]+/g, "-")
         .replace(/\s/g, "-");
     return "";
   }, []);
+
   React.useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name == "title") {
@@ -112,7 +116,7 @@ function Message({ post }) {
             })}
           />
           {post && (
-            <div className="w-[500px]">
+            <div className="w-full">
               <img
                 src={fileService.getFilePreview(post.featuredImage)}
                 alt={post.title}

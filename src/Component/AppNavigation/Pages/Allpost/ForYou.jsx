@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import databaseService from "../../../../AppwriteServices/DBService/DBService";
-import filePreview from "../../../../AppwriteServices/FileService/FileService";
 import Google from "../../../../Public/google.svg";
+import fileService from "../../../../AppwriteServices/FileService/FileService";
 function ForYou() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
@@ -11,6 +11,7 @@ function ForYou() {
         setPosts(posts.documents);
       }
     });
+    console.log(posts);
   }, []);
   posts.map((post) => (
     <NavLink to={`/post/${post.$id}`}>
@@ -24,7 +25,7 @@ function ForYou() {
             <div className="w-full">{post.title}</div>
             <div className="bg-blue text-white w-full mt-[.5rem]">
               <img
-                src={filePreview.getFilePreview(posts.featuredImage)}
+                src={fileService.getFilePreview(posts.featuredImage)}
                 alt={post.title}
                 className="rounded-xl"
               />
