@@ -3,7 +3,6 @@ import { useMediaQuery } from "react-responsive";
 function Footer({ styles }) {
   const screenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
   const betweenScreenStatus = useMediaQuery({ query: "(max-width : 1275px)" });
-  const smallestScreenStatus = useMediaQuery({ query: "(max-width : 510px)" });
   let currentYear = new Date();
   currentYear = currentYear.getFullYear();
   const values = [

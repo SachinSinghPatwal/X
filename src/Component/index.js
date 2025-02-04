@@ -23,7 +23,7 @@ import ForYou from "./AppNavigation/Pages/Allpost/ForYou";
 import Account from "./Elements/Account";
 
 // elements
-import Footer from "./Elements/footer";
+import Footer from "./Elements/Footer";
 import SignIn from "./AppNavigation/Pages/SignIn";
 import PagesContainer from "./AppNavigation/Pages/PagesContainer";
 import RTE from "./AppNavigation/Pages/RTE";
