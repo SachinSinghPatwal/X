@@ -1,14 +1,21 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useMediaQuery } from "react-responsive";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   faHouse,
   faHouseChimney,
   faPlus,
+  faEnvelope,
+  faMicrochip,
+  faUser,
+  faEllipsis,
 } from "@fortawesome/free-solid-svg-icons";
-import { Logo, Account } from "../../index";
+import { faXing } from "@fortawesome/free-brands-svg-icons";
+import { faEnvelope as enveloponclick } from "@fortawesome/free-regular-svg-icons";
+import { Account } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
+import { Logo } from "../../index";
 
 import {
   changeVisibility,
@@ -29,12 +36,42 @@ function NavContainer() {
       logoOnClicked: faHouse,
       centring: -10,
     },
+    {
+      name: "messages",
+      logoUnClicked: enveloponclick,
+      logoOnClicked: faEnvelope,
+      centring: -56,
+    },
+    {
+      name: "ai",
+      logoUnClicked: faMicrochip,
+      logoOnClicked: null,
+      centring: 25,
+    },
+    {
+      name: "premium",
+      logoUnClicked: faXing,
+      logoOnClicked: null,
+      centring: -80,
+    },
+    {
+      name: "profile",
+      logoUnClicked: faUser,
+      logoOnClicked: null,
+      centring: -40,
+    },
+    {
+      name: "more",
+      logoUnClicked: faEllipsis,
+      logoOnClicked: null,
+      centring: -16,
+    },
   ];
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
     <>
       <div
-        className={`grid gap-[4rem] overflow-x-hidden
+        className={`grid gap-[2rem] overflow-x-hidden
           justify-items-center 
           sm:justify-items-end
           sm:mr-[1.5rem]
@@ -45,16 +82,17 @@ function NavContainer() {
           h-screen
           `}
       >
+        <Logo classname="mt-[1rem]" />
         {pageNavItems.map((navItems) => (
           <div
             key={navItems.name}
             onClick={() => {
-              navItems.name !== "home"
-                ? navigate(
-                    `${navItems.name}`,
-                    dispatch(changeVisibility(false))
-                  )
-                : navigate("../Home/allpost");
+              // navItems.name !== "home"
+              //   ? navigate(
+              //       `${navItems.name}`,
+              //       dispatch(changeVisibility(false))
+              //     )
+              //   : navigate("../Home/allpost");
               dispatch(setPageNavIconStatus(navItems.name));
             }}
             className={`relative min-h-[28px] hover:cursor-pointer  ${
@@ -64,7 +102,7 @@ function NavContainer() {
           >
             <div
               className="h-full grid grid-flow-col gap-[1rem] items-center 
-            text-[18.5px] "
+            text-[18.5px] mr-[.2rem]"
             >
               <FontAwesomeIcon
                 icon={
@@ -74,7 +112,9 @@ function NavContainer() {
                 }
                 size="lg"
                 style={{
-                  color: "white",
+                  color: `${
+                    pageNavIconStatus == navItems.name ? "#7b3bd4 " : "#f7f5f5 "
+                  }`,
                   cursor: "pointer",
                   minWidth: "31.21px",
                 }}
@@ -117,11 +157,13 @@ function NavContainer() {
               size="xl"
               style={{
                 color: `${status ? "#7b3bd4" : "#f7f5f5"}`,
+                width: "31.2px",
+                marginRight: ".2rem",
               }}
             />
           )}
         </button>
-        <div className="mt-[22rem] xl:mb-[1rem]">
+        <div className="mt-[6rem] xl:mb-[1rem]">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>

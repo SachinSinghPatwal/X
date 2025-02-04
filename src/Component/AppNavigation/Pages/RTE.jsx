@@ -4,7 +4,11 @@ import { Controller } from "react-hook-form";
 
 function RTE({ name, control, defaultValue = "" }) {
   return (
-    <div className="w-full border-[1px] border-gray-600 rounded-[10px]">
+    <div
+      className="w-full border-[1px] border-gray-600 rounded-[10px]
+    
+    "
+    >
       <Controller
         name={name || "content"}
         control={control}

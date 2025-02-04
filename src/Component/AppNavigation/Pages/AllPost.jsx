@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { useMediaQuery } from "react-responsive";
-import { NavLink, Outlet } from "react-router-dom";
+import { ForYou } from "../../index";
 
 function AllPost({
-  styles = "h-full text-white text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[1rem]",
+  styles = "h-full text-white text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[1rem] bg",
 }) {
-  const [beforeStatus, setBeforeStatus] = useState(true);
   const screenStatus = useMediaQuery({ query: "(max-width:625px)" });
   return (
     <div className="border-x-[1px] border-gray-700 ">
@@ -25,20 +24,13 @@ function AllPost({
             text-center
         `}
         >
-          <NavLink
-            to=""
-            onClick={() => {
-              setBeforeStatus(true);
-            }}
-            className={({ isActive }) => `${styles}
-          ${isActive && beforeStatus ? `before:bg-[#7F48CD]` : ""}`}
-          >
+          <div onClick={() => {}} className={`${styles}`}>
             For you
-          </NavLink>
+          </div>
         </nav>
       </header>
       <main className="pt-[3rem]">
-        <Outlet />
+        <ForYou />
       </main>
     </div>
   );

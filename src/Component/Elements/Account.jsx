@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserNinja } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { LogOutBtn } from "../index";
+
 function Account({ screenStatus }) {
   const [hoverStatus, steHoverStatus] = useState(false);
   return (
@@ -14,13 +15,6 @@ function Account({ screenStatus }) {
         <button
           className="bg-[#303235] rounded-full aspect-square 
           w-[43px] mb-[.5rem] relative
-          
-          before:content-['Account'] before:h-[17.9px] 
-          before:p-[2px] before:w-fit before:text-white before:absolute 
-          before:text-[14px] before:font-['Gill Sans sans-serif']
-          before:left-[-.8rem] before:tracking-[1px] before:top-[-2rem]
-          before:border- before:opacity-0 before:transition-opacity 
-          hover:before:opacity-100  before:border-none
           xl:w-fit 
           xl:bg-transparent
           "

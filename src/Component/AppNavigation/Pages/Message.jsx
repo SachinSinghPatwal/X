@@ -5,9 +5,14 @@ import { useForm } from "react-hook-form";
 import { Input, RTE } from "../../index";
 import fileService from "../../../AppwriteServices/FileService/FileService";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import databaseService from "../../../AppwriteServices/DBService/DBService";
+import { changeVisibility } from "../../../store/authSlice";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 function Message({ post }) {
+  const status = useSelector((state) => state.auth.composePostVisibility);
+  const dispatch = useDispatch();
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -17,7 +22,6 @@ function Message({ post }) {
         status: post?.status || "active",
       },
     });
-
   const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
 
@@ -27,11 +31,11 @@ function Message({ post }) {
       if (file) {
         fileService.deleteFile(post.featuredImage);
       }
-      const DbPost = await databaseService.updatePost(post.$id, {
+      const dbPost = await databaseService.updatePost(post.$id, {
         ...data,
         featuredImage: file ? file.$id : undefined,
-        if(DbPost) {
-          navigate("");
+        if(dbPost) {
+          dispatch(changeVisibility(!status));
         },
       });
     } else {
@@ -44,7 +48,7 @@ function Message({ post }) {
           userId: userData.$id,
         });
         if (dbPost) {
-          navigate("");
+          dispatch(changeVisibility(!status));
         }
       }
     }
@@ -124,6 +128,15 @@ function Message({ post }) {
               />
             </div>
           )}
+          <button
+            className="absolute bottom-2 left-2 hover:bg-gray-800
+          w-[30px] aspect-square hover:rounded-full transition-all "
+            onClick={() => {
+              dispatch(changeVisibility(!status));
+            }}
+          >
+            <FontAwesomeIcon icon={faXmark} size="lg" />
+          </button>
           <button
             type="submit"
             className={`${
