@@ -113,7 +113,8 @@ export default function SignIn() {
               <footer className=" w-full h-[9rem] grid place-items-center">
                 <button
                   className="grid rounded-full place-items-center 
-              hover:cursor-pointer h-[3rem] w-full bg-gray-600"
+              hover:cursor-pointer h-[3rem] w-full bg-[#2e85d7] 
+              hover:bg-[#2675ba]"
                   type="submit"
                   onClick={() => {
                     navigate("../../");

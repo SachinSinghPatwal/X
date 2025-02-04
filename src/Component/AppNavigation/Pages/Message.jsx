@@ -112,7 +112,7 @@ function Message({ post }) {
           />
           <input
             type="file"
-            className="absolute top-[10%] right-2 z-[10000000]
+            className="absolute top-[10%] right-2 z-[100]
             w-[6rem] rounded-[5px]"
             accept="image/png , image/jpg , image/jpeg , image/gif"
             {...register("image", {
