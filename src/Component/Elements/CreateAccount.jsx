@@ -27,7 +27,7 @@ function CreateAccount() {
       if (userData) {
         const userData = await authService.getCurrentUser();
         userData && dispatch(login(userData));
-        navigate("../../Home/allpost");
+        navigate("../");
       }
     } catch (error) {
       console.log("error in create account", error);
@@ -88,6 +88,7 @@ function CreateAccount() {
                     <Input
                       type="text"
                       placeholder="Name"
+                      required
                       minLength={3}
                       {...register("name", {
                         required: true,
@@ -97,6 +98,7 @@ function CreateAccount() {
                   <Input
                     type="email"
                     placeholder="@gmail.com"
+                    required
                     {...register("email", {
                       required: true,
                       validate: {
@@ -111,6 +113,7 @@ function CreateAccount() {
                     type="password"
                     placeholder="Password must contain 8 letters 
                     "
+                    required
                     minLength={8}
                     {...register("password", {
                       required: true,

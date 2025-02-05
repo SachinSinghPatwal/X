@@ -87,12 +87,6 @@ function NavContainer() {
           <div
             key={navItems.name}
             onClick={() => {
-              // navItems.name !== "home"
-              //   ? navigate(
-              //       `${navItems.name}`,
-              //       dispatch(changeVisibility(false))
-              //     )
-              //   : navigate("../Home/allpost");
               dispatch(setPageNavIconStatus(navItems.name));
             }}
             className={`relative min-h-[28px] hover:cursor-pointer  ${

@@ -19,7 +19,11 @@ function Home() {
       lg:grid-cols-[600px_auto] "
         >
           {status ? (
-            <div className="fixed">
+            <div
+              className="fixed z-[1000] lg:left-[13vw] xl:left-[28.2vw] 
+              md:left-[13vw] sm:left-[12vw] 
+            left-[9.8vw]"
+            >
               <ComposePost />
             </div>
           ) : null}

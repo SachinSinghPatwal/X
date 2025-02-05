@@ -27,7 +27,7 @@ export default function SignIn() {
       if (session) {
         const userData = await authService.getCurrentUser();
         userData && dispatch(authLogin(userData));
-        navigate("../../Home/allpost");
+        navigate("../");
       }
     } catch (error) {
       console.log("error in create account", error);

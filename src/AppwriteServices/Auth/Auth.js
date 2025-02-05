@@ -37,7 +37,6 @@ class AuthService {
       console.log("error || appwriteService/Auth || login  error", error);
     }
   }
-
   async getCurrentUser() {
     try {
       return await this.account.get();

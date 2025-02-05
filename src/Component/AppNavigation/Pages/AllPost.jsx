@@ -9,11 +9,12 @@ function AllPost({
   return (
     <div className="border-x-[1px] border-gray-700 ">
       <header
-        className={` fixed h-[3rem] grid place-items-center 
+        className={`fixed h-[3rem] grid place-items-center 
       border-gray-700 border-b-[1px]
-        sm:w-[79.7vw] 
+        sm:w-[79.7vw]
+        z-[10000] 
         md:w-[598px] 
-        lg:w-[598px]
+        lg:w-[598.7px]
         backdrop-blur-sm
         w-[79.6vw]
         ${screenStatus && "w-[79.6vw]"}
@@ -24,9 +25,7 @@ function AllPost({
             text-center
         `}
         >
-          <div onClick={() => {}} className={`${styles}`}>
-            For you
-          </div>
+          <div className={`${styles}`}>For you</div>
         </nav>
       </header>
       <main className="pt-[3rem]">

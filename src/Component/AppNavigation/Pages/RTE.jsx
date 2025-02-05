@@ -46,7 +46,7 @@ function RTE({ name, control, defaultValue = "" }) {
                   font-family: Helvetica, Arial, sans-serif;
                   font-size: 14px;
                   background-color: black;
-                  color: gray;
+                  color: white;
                 }
                 .tox-tinymce {
                   border:none !important;
