@@ -1,0 +1,43 @@
+import React, { useCallback, useEffect, useState } from "react";
+import Google from "../../../../Public/google.svg";
+import parse from "html-react-parser";
+import { NavLink, useNavigate } from "react-router-dom";
+import fileService from "../../../../AppwriteServices/FileService/FileService";
+function EachPost({ post }) {
+  const navigate = useNavigate();
+  return (
+    <div className="grid grid-cols-[40px_auto] gap-[.8rem]">
+      <div className="h-[40px]">
+        <img src={Google} alt="" />
+      </div>
+      <div className="grid grid-rows-[20px_auto_auto] gap-[.5rem]">
+        <div className="w-full text-[18px] text-[#7F48CD] font-bold">
+          {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
+        </div>
+        <div className="w-full text-[14px]">{parse(post.content)}</div>
+        <div className="bg-blue text-white w-full mt-[.5rem]">
+          <div
+            onClick={() => {
+              navigate(post.$id);
+            }}
+            className="hover:cursor-pointer"
+          >
+            {post.featuredImage && (
+              <img
+                src={fileService.getFilePreview(post.featuredImage)}
+                alt={post.title}
+                style={{
+                  outline: ".05rem solid #7B3BD4",
+                  outlineOffset: "-1px",
+                  borderRadius: ".2rem",
+                }}
+              />
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default EachPost;

@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import databaseService from "../../../../AppwriteServices/DBService/DBService";
-import Google from "../../../../Public/google.svg";
 import fileService from "../../../../AppwriteServices/FileService/FileService";
 import Loader from "../../../Loader/Loader";
-import parse from "html-react-parser";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { changeVisibility } from "../../../../store/authSlice";
 import {
@@ -13,25 +11,38 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import ComposePost from "../ComposePost";
+import Button from "../../../Elements/Button";
+import EachPost from "./EachPost";
+import { Outlet } from "react-router-dom";
 
 function ForYou() {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [activePostId, setActivePostId] = useState(null); // Track the toggled post
+  const [activePostId, setActivePostId] = useState(null);
   const [isAuthor, setAuthor] = useState(null);
+  const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth.userData);
+
   useEffect(() => {
+    console.log("✅ ForYou Mounted!");
+    return () => {
+      console.log("❌ ForYou Unmounted!");
+    };
+  }, []);
+  useEffect(() => {
+    console.log("🔄 Fetching posts...");
     databaseService.getAllPost([]).then((allPosts) => {
+      console.log("📩 Posts fetched:", allPosts);
       if (allPosts) {
         setPosts(allPosts.documents);
       }
       setLoading(false);
     });
   }, []);
-  const dispatch = useDispatch();
-  const userData = useSelector((state) => state.auth.userData);
+
   return (
     <>
+      {}
       {loading ? (
         <Loader bg="black" className="w-full" />
       ) : (
@@ -43,8 +54,8 @@ function ForYou() {
               {activePostId === post.$id && (
                 <div
                   className="absolute text-white bg-gray-800 p-2 rounded 
-                right-1 grid top-1 h-fit w-[10rem] z-[1000] 
-                grid-rows-[2rem_2rem] gap-[.2rem] grid-cols-[6rem] px-[.8rem] justify-items-start
+                right-1 grid top-1 h-fit w-[15.5rem] z-[1000] 
+                grid-rows-auto gap-[.8rem] px-[1rem] py-[1rem] justify-items-start 
                 "
                 >
                   <button
@@ -57,7 +68,7 @@ function ForYou() {
                   </button>
                   {isAuthor ? (
                     <>
-                      <div className="p-[.2rem] ">
+                      <div>
                         <button
                           onClick={() => {
                             databaseService
@@ -69,16 +80,17 @@ function ForYou() {
                                 }
                               });
                           }}
+                          className="w-full"
                         >
                           <FontAwesomeIcon
                             icon={faTrash}
                             style={{ color: "red" }}
-                            className="mr-[.5rem]"
+                            className="w-[23px] mr-[.5rem]"
                           />
                           Delete
                         </button>
                       </div>
-                      <div className="p-[.2rem] ">
+                      <div>
                         <button
                           onClick={() => {
                             dispatch(changeVisibility(true));
@@ -87,19 +99,14 @@ function ForYou() {
                           <FontAwesomeIcon
                             icon={faPen}
                             style={{ color: "white" }}
-                            className="mr-[.5rem]"
+                            className="w-[23px] mr-[.5rem]"
                           />
                           Update
                         </button>
                       </div>
                     </>
                   ) : (
-                    <>
-                      <button className="p-[.2rem] text-red-600">
-                        Report !
-                      </button>
-                      <button className="p-[.2rem]">Pin</button>
-                    </>
+                    <Button calledBy={"optionsInForYouMoreButton"} />
                   )}
                 </div>
               )}
@@ -123,30 +130,8 @@ function ForYou() {
                     style={{ color: "white" }}
                   />
                 </div>
-                <div className="grid grid-cols-[40px_auto] gap-[.8rem]">
-                  <div className="h-[40px]">
-                    <img src={Google} alt="" />
-                  </div>
-                  <div className="grid grid-rows-[20px_auto_auto] gap-[.5rem]">
-                    <div className="w-full text-[18px] text-[#7F48CD] font-bold">
-                      {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
-                    </div>
-                    <div className="w-full text-[14px]">
-                      {parse(post.content)}
-                    </div>
-                    <div className="bg-blue text-white w-full mt-[.5rem]">
-                      <img
-                        src={fileService.getFilePreview(post.featuredImage)}
-                        alt={post.title}
-                        style={{
-                          outline: ".05rem solid #7B3BD4",
-                          outlineOffset: "-1px",
-                          borderRadius: ".2rem",
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
+                {/* main content */}
+                <EachPost post={post} />
               </div>
             </div>
           ))

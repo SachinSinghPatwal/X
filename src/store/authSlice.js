@@ -6,6 +6,7 @@ const initialState = {
   composePostVisibility: false,
   pageNavIconStatus: "home",
   togglingAuthPageStatus: false,
+  overFlowStatus: "",
 };
 const authSlice = createSlice({
   name: "auth",
@@ -28,6 +29,9 @@ const authSlice = createSlice({
     setTogglingAuthPageStatus: (state, action) => {
       state.togglingAuthPageStatus = action.payload;
     },
+    setOverFlowStatus: (state, action) => {
+      state.overFlowStatus = action.payload;
+    },
   },
 });
 
@@ -38,4 +42,5 @@ export const {
   changeVisibility,
   setPageNavIconStatus,
   setTogglingAuthPageStatus,
+  setOverFlowStatus,
 } = authSlice.actions;

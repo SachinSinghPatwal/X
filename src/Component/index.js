@@ -16,8 +16,8 @@ import Home from "./AppNavigation/Pages/Home";
 import AllPost from "./AppNavigation/Pages/AllPost";
 import App from "../App";
 import LogOutBtn from "./AppNavigation/LogOutBtn/logOutBtn";
-
 import ForYou from "./AppNavigation/Pages/Allpost/ForYou";
+import IndividualPost from "./AppNavigation/Pages/Allpost/IndividualPost";
 
 // logout and add account
 import Account from "./Elements/Account";
@@ -33,6 +33,7 @@ import Loader from "./Loader/Loader";
 
 // protected
 import Protected from "./AuthLayout/Protected";
+
 export {
   Button,
   Logo,
@@ -55,4 +56,5 @@ export {
   App,
   RTE,
   LogOutBtn,
+  IndividualPost,
 };

@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useMediaQuery } from "react-responsive";
-import { ForYou, Loader } from "../../index";
+import { ForYou } from "../../index";
 
 function AllPost({
   styles = "h-full text-white text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[1rem] bg",

@@ -1,10 +1,8 @@
 import React from "react";
-import { useMediaQuery } from "react-responsive";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { Input, RTE } from "../../index";
 import fileService from "../../../AppwriteServices/FileService/FileService";
-import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import databaseService from "../../../AppwriteServices/DBService/DBService";
 import { changeVisibility } from "../../../store/authSlice";
@@ -13,6 +11,8 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 function Message({ post }) {
   const status = useSelector((state) => state.auth.composePostVisibility);
   const dispatch = useDispatch();
+  const userData = useSelector((state) => state.auth.userData);
+
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -22,7 +22,6 @@ function Message({ post }) {
         status: post?.status || "active",
       },
     });
-  const userData = useSelector((state) => state.auth.userData);
 
   const submit = async (data) => {
     if (post) {
@@ -78,6 +77,7 @@ function Message({ post }) {
       subscription.unsubscribe();
     };
   }, [watch, slugTransform, setValue]);
+
   return (
     <form onSubmit={handleSubmit(submit)} className="h-fit">
       <div className="text-white outline outline-offset-[-1px] outline-[#7F48CD] rounded-[10px]">

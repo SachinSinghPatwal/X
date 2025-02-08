@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import store from "./store/store.js";
 import Routing from "./Routing.jsx";
 import { BrowserRouter } from "react-router-dom";
-import { SignIn } from "./Component/index.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

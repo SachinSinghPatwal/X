@@ -61,7 +61,8 @@ class DatabaseServices {
     }
   }
 
-  async getPost({ slug }) {
+  async getPost(slug) {
+    console.log(slug);
     try {
       return await this.database.getDocument(
         conf.appwriteDatabaseId,
@@ -69,7 +70,7 @@ class DatabaseServices {
         slug
       );
     } catch (error) {
-      console.log("appwrite service :: getPost ::error");
+      console.log("appwrite service :: getPost ::", error);
       return false;
     }
   }

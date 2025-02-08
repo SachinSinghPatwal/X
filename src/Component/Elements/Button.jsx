@@ -2,7 +2,14 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setTogglingAuthPageStatus } from "../../store/authSlice";
-function Button({ children, calledBy, type }) {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFlag,
+  faThumbTack,
+  faVolumeXmark,
+} from "@fortawesome/free-solid-svg-icons";
+import { faFaceFrownOpen } from "@fortawesome/free-regular-svg-icons";
+function Button({ children, calledBy }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   if (calledBy == "signIn") {
@@ -30,8 +37,47 @@ function Button({ children, calledBy, type }) {
         <button className="font-semibold text-white">Create account</button>
       </div>
     );
-  } else if ((calledBy = "NextInCreateAccount")) {
-    return;
+  } else if (calledBy == "optionsInForYouMoreButton") {
+    return (
+      <>
+        <button>
+          <FontAwesomeIcon
+            icon={faFlag}
+            style={{ color: "red" }}
+            size="lg"
+            className="w-[23px] mr-[.5rem]"
+          />
+          Report
+        </button>
+        <button>
+          <FontAwesomeIcon
+            icon={faThumbTack}
+            style={{ color: "white" }}
+            size="lg"
+            className="w-[23px] mr-[.5rem]"
+          />
+          Pin
+        </button>
+        <button>
+          <FontAwesomeIcon
+            icon={faFaceFrownOpen}
+            style={{ color: "white" }}
+            size="lg"
+            className="w-[23px] mr-[.5rem]"
+          />
+          Not interested in this post
+        </button>
+        <button>
+          <FontAwesomeIcon
+            icon={faVolumeXmark}
+            style={{ color: "white" }}
+            size="lg"
+            className="w-[23px] mr-[.5rem]"
+          />
+          Mute
+        </button>
+      </>
+    );
   }
 }
 export default Button;

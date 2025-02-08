@@ -9,6 +9,7 @@ import {
   ForYou,
   SignIn,
   App,
+  IndividualPost,
 } from "./Component/index.js";
 
 function Routing() {
@@ -35,7 +36,8 @@ function Routing() {
           }
         >
           <Route path="allpost" element={<AllPost />}>
-            <Route index element={<ForYou />} />
+            <Route index element={<ForYou key={"forYou"} />} />
+            <Route path=":slug" element={<IndividualPost />} />
           </Route>
         </Route>
       </Route>
