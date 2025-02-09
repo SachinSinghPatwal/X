@@ -36,10 +36,10 @@ function Routing() {
           }
         >
           <Route path="allpost" element={<AllPost />}>
-            <Route index element={<ForYou key={"forYou"} />} />
-            <Route path=":slug" element={<IndividualPost />} />
+            <Route index element={<ForYou />} />
           </Route>
         </Route>
+        <Route path=":slug" element={<IndividualPost />} />
       </Route>
     </Routes>
   );

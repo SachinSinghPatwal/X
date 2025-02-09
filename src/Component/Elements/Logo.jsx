@@ -10,7 +10,7 @@ function Logo({ classname = "" }) {
             before:p-[2px] before:w-fit before:text-white before:absolute 
             before:text-[10px] before:font-['Gill Sans sans-serif']
             before:left-[-2px] before:mt-[2rem] before:tracking-[1px]
-            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none`}
+            before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none `}
       >
         <FontAwesomeIcon
           onMouseEnter={() => {
@@ -20,12 +20,12 @@ function Logo({ classname = "" }) {
             steHoverStatus(false);
           }}
           icon={faNfcSymbol}
-          size="2xl"
           style={{
             color: `${hoverStatus ? "#7b3bd4" : "#f7f5f5"}`,
             transition: "color .2s linear",
             cursor: "pointer",
           }}
+          className="h-[2.5rem]"
         />
       </div>
     </>

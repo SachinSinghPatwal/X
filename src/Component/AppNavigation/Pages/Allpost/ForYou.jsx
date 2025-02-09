@@ -13,7 +13,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../Elements/Button";
 import EachPost from "./EachPost";
-import { Outlet } from "react-router-dom";
 
 function ForYou() {
   const [posts, setPosts] = useState([]);
@@ -22,27 +21,19 @@ function ForYou() {
   const [isAuthor, setAuthor] = useState(null);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.userData);
-
+  const composePostVisibility = useSelector(
+    (state) => state.auth.composePostVisibility
+  );
   useEffect(() => {
-    console.log("✅ ForYou Mounted!");
-    return () => {
-      console.log("❌ ForYou Unmounted!");
-    };
-  }, []);
-  useEffect(() => {
-    console.log("🔄 Fetching posts...");
     databaseService.getAllPost([]).then((allPosts) => {
-      console.log("📩 Posts fetched:", allPosts);
       if (allPosts) {
         setPosts(allPosts.documents);
       }
       setLoading(false);
     });
   }, []);
-
   return (
     <>
-      {}
       {loading ? (
         <Loader bg="black" className="w-full" />
       ) : (
@@ -55,7 +46,8 @@ function ForYou() {
                 <div
                   className="absolute text-white bg-gray-800 p-2 rounded 
                 right-1 grid top-1 h-fit w-[15.5rem] z-[1000] 
-                grid-rows-auto gap-[.8rem] px-[1rem] py-[1rem] justify-items-start 
+                grid-rows-auto gap-[.8rem] px-[1rem] py-[1rem] 
+                justify-items-start 
                 "
                 >
                   <button
@@ -64,7 +56,7 @@ function ForYou() {
                     }
                     className="absolute right-[.8rem] top-[.3rem] w-fit"
                   >
-                    <FontAwesomeIcon icon={faXmark} />
+                    <FontAwesomeIcon icon={faXmark} size="lg" />
                   </button>
                   {isAuthor ? (
                     <>
@@ -79,6 +71,8 @@ function ForYou() {
                                   navigate("../Home/allpost");
                                 }
                               });
+                            dispatch(changeVisibility(!composePostVisibility));
+                            setActivePostId(activePostId === post.$id && null);
                           }}
                           className="w-full"
                         >
@@ -93,7 +87,8 @@ function ForYou() {
                       <div>
                         <button
                           onClick={() => {
-                            dispatch(changeVisibility(true));
+                            dispatch(changeVisibility(!composePostVisibility));
+                            setActivePostId(activePostId === post.$id && null);
                           }}
                         >
                           <FontAwesomeIcon
@@ -106,13 +101,16 @@ function ForYou() {
                       </div>
                     </>
                   ) : (
-                    <Button calledBy={"optionsInForYouMoreButton"} />
+                    <Button
+                      calledBy={"optionsInForYouMoreButton"}
+                      setActivePostId={setActivePostId}
+                    />
                   )}
                 </div>
               )}
               <div
                 className="relative border-b-[1px] max-h-[600px] 
-              border-gray-600 text-white py-[.6rem] px-[1rem]"
+              border-gray-600 text-white py-[.8rem] px-[1rem]"
               >
                 {/* Toggle button */}
                 <div

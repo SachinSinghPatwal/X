@@ -28,13 +28,31 @@ function Home() {
             </div>
           ) : null}
           <Outlet />
-          <aside className=" hidden xl:block xl:w-[320px] h-full ">
+          <aside className=" hidden xl:block xl:w-[320px] h-full">
+            <input
+              className="sticky top-[1rem] w-[90%] rounded-[4rem] placeholder:text-[17px] focus:outline focus:outline-[#9a57f8]  bg-transparent text-gray-400
+              placeholder:text-gray-500 h-[2.5rem] border-[1px] border-gray-500 
+              pl-[5%]
+              mx-[1rem]
+              "
+              placeholder="Search"
+            ></input>
             <div
-              className="border-[1px] border-gray-600 mx-[1.3rem] sticky
-          top-20  p-[.2rem] rounded-[5px] text-white
+              className="border-[1px] border-gray-600 mx-[1rem] sticky
+          top-20 p-[1rem] rounded-[1rem] text-white 
           "
             >
-              this project is still in progress of getting completed.
+              <h1 className="text-[20px] font-semibold">Get Premium now</h1>
+              <p className="mt-[.5rem]">
+                For a limited time get 10% off and Unlock the best
+              </p>
+              <button
+                className="rounded-[4rem]  mt-[1rem] border-[1px] 
+                border-gray-600 py-[.5rem] px-[1rem] w-[10rem] font-bold 
+              hover:bg-gray-500 transition-[background] duration-300"
+              >
+                Subscribe
+              </button>
             </div>
           </aside>
         </main>

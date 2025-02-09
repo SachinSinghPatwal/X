@@ -1,16 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import Google from "../../../../Public/google.svg";
 import parse from "html-react-parser";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import fileService from "../../../../AppwriteServices/FileService/FileService";
-function EachPost({ post }) {
+function EachPost({ post, gap, time }) {
   const navigate = useNavigate();
   return (
     <div className="grid grid-cols-[40px_auto] gap-[.8rem]">
       <div className="h-[40px]">
         <img src={Google} alt="" />
       </div>
-      <div className="grid grid-rows-[20px_auto_auto] gap-[.5rem]">
+      <div
+        className={`grid grid-rows-[20px_auto_auto]`}
+        style={{ gap: `${!gap ? ".5rem" : gap}` }}
+      >
         <div className="w-full text-[18px] text-[#7F48CD] font-bold">
           {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
         </div>
@@ -18,10 +21,11 @@ function EachPost({ post }) {
         <div className="bg-blue text-white w-full mt-[.5rem]">
           <div
             onClick={() => {
-              navigate(post.$id);
+              navigate(`../../${post.$id}`);
             }}
             className="hover:cursor-pointer"
           >
+            <div className="mt-[-.4rem] text-gray-400 text-[15x] ">{time}</div>
             {post.featuredImage && (
               <img
                 src={fileService.getFilePreview(post.featuredImage)}

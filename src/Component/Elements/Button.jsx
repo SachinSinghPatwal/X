@@ -1,7 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { setTogglingAuthPageStatus } from "../../store/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setTogglingAuthPageStatus,
+  changeVisibility,
+} from "../../store/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFlag,
@@ -9,10 +12,19 @@ import {
   faVolumeXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { faFaceFrownOpen } from "@fortawesome/free-regular-svg-icons";
-function Button({ children, calledBy }) {
+
+function Button({ children, calledBy, activePostId, setActivePostId, post }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  if (calledBy == "signIn") {
+
+  const iconArray = [
+    { icon: faFlag, color: "red", label: "Report" },
+    { icon: faThumbTack, color: "white", label: "Pin" },
+    { icon: faFaceFrownOpen, color: "white", label: "Sad" },
+    { icon: faVolumeXmark, color: "white", label: "Mute" },
+  ];
+
+  if (calledBy === "signIn") {
     return (
       <button
         className="text-[#1A8CD8] border-[#434e61] border-[1px] rounded-full w-[20rem] h-[44px] hover:cursor-pointer hover:bg-[#031018]"
@@ -24,7 +36,7 @@ function Button({ children, calledBy }) {
         {children}
       </button>
     );
-  } else if (calledBy == "createAccount") {
+  } else if (calledBy === "createAccount") {
     return (
       <div
         className="grid rounded-full h-full w-full bg-[#2e85d7] 
@@ -37,47 +49,30 @@ function Button({ children, calledBy }) {
         <button className="font-semibold text-white">Create account</button>
       </div>
     );
-  } else if (calledBy == "optionsInForYouMoreButton") {
+  } else if (calledBy === "optionsInForYouMoreButton") {
     return (
       <>
-        <button>
-          <FontAwesomeIcon
-            icon={faFlag}
-            style={{ color: "red" }}
-            size="lg"
-            className="w-[23px] mr-[.5rem]"
-          />
-          Report
-        </button>
-        <button>
-          <FontAwesomeIcon
-            icon={faThumbTack}
-            style={{ color: "white" }}
-            size="lg"
-            className="w-[23px] mr-[.5rem]"
-          />
-          Pin
-        </button>
-        <button>
-          <FontAwesomeIcon
-            icon={faFaceFrownOpen}
-            style={{ color: "white" }}
-            size="lg"
-            className="w-[23px] mr-[.5rem]"
-          />
-          Not interested in this post
-        </button>
-        <button>
-          <FontAwesomeIcon
-            icon={faVolumeXmark}
-            style={{ color: "white" }}
-            size="lg"
-            className="w-[23px] mr-[.5rem]"
-          />
-          Mute
-        </button>
+        {iconArray.map(({ icon, color, label }) => (
+          <button
+            key={label}
+            onClick={() => {
+              setActivePostId(activePostId === post?.$id ? null : post?.$id);
+              dispatch(changeVisibility(false));
+            }}
+            className="grid grid-flow-col gap-[1rem] justify-start items-start 
+            px-2 py-1 hover:bg-gray-800 rounded-md w-full"
+          >
+            <FontAwesomeIcon
+              icon={icon}
+              style={{ color, width: "22.5px" }}
+              size="lg"
+            />
+            {label}
+          </button>
+        ))}
       </>
     );
   }
 }
+
 export default Button;

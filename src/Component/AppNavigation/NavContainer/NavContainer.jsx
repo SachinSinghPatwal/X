@@ -82,7 +82,7 @@ function NavContainer() {
           h-screen
           `}
       >
-        <Logo classname="mt-[1rem]" />
+        <Logo classname="mb-[-.5rem]" />
         {pageNavItems.map((navItems) => (
           <div
             key={navItems.name}
@@ -157,7 +157,7 @@ function NavContainer() {
             />
           )}
         </button>
-        <div className="mt-[6rem] xl:mb-[1rem]">
+        <div className="mt-[8.5rem] ">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>
