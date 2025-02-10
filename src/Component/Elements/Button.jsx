@@ -46,7 +46,7 @@ function Button({ children, calledBy, activePostId, setActivePostId, post }) {
           dispatch(setTogglingAuthPageStatus(true));
         }}
       >
-        <button className="font-semibold text-white">Create account</button>
+        <button className="font-semibold text-gray-200">Create account</button>
       </div>
     );
   } else if (calledBy === "optionsInForYouMoreButton") {

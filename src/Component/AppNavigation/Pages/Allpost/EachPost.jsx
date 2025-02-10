@@ -18,7 +18,7 @@ function EachPost({ post, gap, time }) {
           {post.title.charAt(0).toUpperCase() + post.title.slice(1)}
         </div>
         <div className="w-full text-[14px]">{parse(post.content)}</div>
-        <div className="bg-blue text-white w-full mt-[.5rem]">
+        <div className="bg-blue text-gray-200 w-full mt-[.5rem]">
           <div
             onClick={() => {
               navigate(`../../${post.$id}`);

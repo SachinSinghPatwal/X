@@ -116,7 +116,7 @@ function NavContainer() {
               {BigScreenStatus ? (
                 <span
                   key={navItems.name}
-                  className={`text-white h-full ${
+                  className={`text-gray-200 h-full ${
                     pageNavIconStatus == navItems.name
                       ? "font-normal"
                       : "font-thin"
@@ -132,10 +132,10 @@ function NavContainer() {
           </div>
         ))}
         <button
-          className="xl:h-[3rem] text-white w-full xl:bg-gray-800  rounded-[2rem] text-[18px] tracking-wider
+          className="xl:h-[3rem] text-gray-200 w-full xl:bg-gray-900  rounded-[2rem] text-[18px] tracking-wider
             grid 
             justify-items-center 
-            sm:justify-items-end
+            // sm:justify-items-end
             xl:justify-items-center
             xl:content-center
             "
@@ -157,7 +157,7 @@ function NavContainer() {
             />
           )}
         </button>
-        <div className="mt-[8.5rem] ">
+        <div className="mt-[8.5rem]">
           <Account screenStatus={BigScreenStatus} />
         </div>
       </div>

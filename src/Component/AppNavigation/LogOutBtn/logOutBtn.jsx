@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import authService from "../../../AppwriteServices/Auth/Auth";
 import { logout } from "../../../store/authSlice";
 import { useNavigate } from "react-router-dom";
-function LogOutBtn() {
+function LogOutBtn({ children, className = "" }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleLogout = () => {
@@ -13,11 +13,8 @@ function LogOutBtn() {
     });
   };
   return (
-    <button
-      className="inline-bock px-6 py-2 duration-200 rounded-full text-white"
-      onClick={handleLogout}
-    >
-      Logout
+    <button className={` text-gray-200 ${className}`} onClick={handleLogout}>
+      {children}
     </button>
   );
 }

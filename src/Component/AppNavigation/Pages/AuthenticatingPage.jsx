@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { setTogglingAuthPageStatus } from "../../../store/authSlice";
 function AuthenticatingPage({
-  styles = "text-white font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]",
+  styles = "text-gray-200 font-['Chirp', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif]",
 }) {
   const screenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
   const smallestScreen = useMediaQuery({ query: "(max-width : 640px)" });

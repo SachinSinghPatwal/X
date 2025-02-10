@@ -8,17 +8,12 @@ function Account({ screenStatus }) {
   const [hoverStatus, steHoverStatus] = useState(false);
   return (
     <>
-      <div
-        className="
-      "
-      >
-        <button
-          className="bg-[#303235] rounded-full aspect-square 
-          w-[43px] mb-[.5rem] relative
-          xl:w-fit 
-          xl:bg-transparent
-          "
-        >
+      {screenStatus ? (
+        <LogOutBtn className="border-[1px] px-[3rem] rounded-full py-[.5rem] border-gray-600 w-full">
+          LogOut
+        </LogOutBtn>
+      ) : (
+        <LogOutBtn className="aspect-square w-[43px]">
           <FontAwesomeIcon
             onMouseEnter={() => {
               steHoverStatus(true);
@@ -33,13 +28,8 @@ function Account({ screenStatus }) {
               transition: "color .2s linear",
             }}
           />
-        </button>
-        {screenStatus ? (
-          <span className="text-white ml-[1.5rem]">
-            <LogOutBtn />
-          </span>
-        ) : null}
-      </div>
+        </LogOutBtn>
+      )}
     </>
   );
 }

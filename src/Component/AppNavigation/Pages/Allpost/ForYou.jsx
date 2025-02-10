@@ -44,7 +44,7 @@ function ForYou() {
             <div key={post.$id} className="relative">
               {activePostId === post.$id && (
                 <div
-                  className="absolute text-white bg-gray-800 p-2 rounded 
+                  className="absolute text-gray-200 bg-gray-800 p-2 rounded 
                 right-1 grid top-1 h-fit w-[15.5rem] z-[1000] 
                 grid-rows-auto gap-[.8rem] px-[1rem] py-[1rem] 
                 justify-items-start 
@@ -110,7 +110,7 @@ function ForYou() {
               )}
               <div
                 className="relative border-b-[1px] max-h-[600px] 
-              border-gray-600 text-white py-[.8rem] px-[1rem]"
+              border-gray-600 text-gray-200 py-[.8rem] px-[1rem]"
               >
                 {/* Toggle button */}
                 <div

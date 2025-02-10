@@ -7,7 +7,7 @@ function Logo({ classname = "" }) {
     <>
       <div
         className={`${classname} before:content-['Yapper'] before:h-[17.9px] 
-            before:p-[2px] before:w-fit before:text-white before:absolute 
+            before:p-[2px] before:w-fit before:text-gray-200 before:absolute 
             before:text-[10px] before:font-['Gill Sans sans-serif']
             before:left-[-2px] before:mt-[2rem] before:tracking-[1px]
             before:border- before:opacity-0 before:transition-opacity hover:before:opacity-100 before:delay-[.6s] before:duration-[.1s] before:ease-in-out relative before:border-none `}

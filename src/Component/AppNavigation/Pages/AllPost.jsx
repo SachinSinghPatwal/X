@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 import { ForYou } from "../../index";
 
 function AllPost({
-  styles = "h-full text-white text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[1rem] bg",
+  styles = "h-full text-gray-200 text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[1rem] bg",
 }) {
   const screenStatus = useMediaQuery({ query: "(max-width:625px)" });
   return (

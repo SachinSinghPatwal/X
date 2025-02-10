@@ -125,7 +125,7 @@ function CreateAccount() {
                 <h3 className="text-gray-50 mt-[1rem] mb-[.5rem]">
                   Date of birth
                 </h3>
-                <p className="text-gray-500 mb-[.7rem] text-sm font-sans">
+                <p className="text-gray-200 mb-[.7rem] text-sm font-sans">
                   This will not be shown publicly. Confirm your own age, even if
                   this account is for a business, a pet, or something else.
                 </p>

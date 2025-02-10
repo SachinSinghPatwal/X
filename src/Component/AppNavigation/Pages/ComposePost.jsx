@@ -12,7 +12,7 @@ function ComposePost() {
   }, [loading]);
   return (
     <div
-      className="text-white absolute top-[20vh] left-[3vw] h-[301px] 
+      className="text-gray-200 absolute top-[20vh] left-[3vw] h-[301px] 
       xl:left-[46.6%] 
     md:w-[550px] sm:w-[76vw] w-[80vw] "
     >

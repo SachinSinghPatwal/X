@@ -5,7 +5,7 @@ function Input({ type = "text", Classname = "", by, ...props }, ref) {
     <input
       type={type}
       className={`bg-transparent border-gray-700 border-[1px] 
-        rounded-[3px] text-white text-[18px] ${
+        rounded-[3px] text-gray-200 text-[18px] ${
           type == "password" ||
           type == "email" ||
           (type == "text" && "tracking-wide")

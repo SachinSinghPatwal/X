@@ -80,7 +80,7 @@ function Message({ post }) {
 
   return (
     <form onSubmit={handleSubmit(submit)} className="h-fit">
-      <div className="text-white outline outline-offset-[-1px] outline-[#7F48CD] rounded-[10px]">
+      <div className="text-gray-200 outline outline-offset-[-1px] outline-[#7F48CD] rounded-[10px]">
         <main>
           <Input
             placeholder="Title is required and visible to others above post."
