@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Input } from "../../index";
+import { Input, Protected } from "../../index";
 import { useForm } from "react-hook-form";
 import authService from "../../../AppwriteServices/Auth/Auth";
 import { login as authLogin } from "../../../store/authSlice";
@@ -17,9 +17,9 @@ export default function SignIn() {
   const [loading, setLoading] = useState(true);
   const { register, handleSubmit } = useForm();
   useEffect(() => {
-    authService.getCurrentUser().finally(() => {
+    setTimeout(() => {
       setLoading(false);
-    });
+    }, 400);
   }, []);
   const login = async (data) => {
     try {
@@ -109,7 +109,6 @@ export default function SignIn() {
                   />
                 </div>
               </section>
-
               <footer className=" w-full h-[9rem] grid place-items-center">
                 <button
                   className="grid rounded-full place-items-center 

@@ -8,6 +8,7 @@ const initialState = {
   togglingAuthPageStatus: false,
   overFlowStatus: "",
 };
+
 const authSlice = createSlice({
   name: "auth",
   initialState,

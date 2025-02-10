@@ -30,34 +30,40 @@ function IndividualPost() {
   const mediumScreenStatus = useMediaQuery({ query: "(min-width:880px)" });
   useEffect(() => {
     if (slug) {
-      databaseService.getPost(slug).then((post) => {
-        if (post) {
-          const date = new Date(post.$createdAt);
-          const time = date.toLocaleString("en-US", {
-            hour: "numeric",
-            minute: "2-digit",
-            hour12: true,
-            timeZone: "UTC",
-          });
-          const formattedDate = date.toLocaleString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-            timeZone: "UTC",
-          });
-          post.$createdAt = `${time} · ${formattedDate}`;
-          setPost(post);
-        }
-      });
+      databaseService
+        .getPost(slug)
+        .then((post) => {
+          if (post) {
+            const date = new Date(post.$createdAt);
+            const time = date.toLocaleString("en-US", {
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+              timeZone: "UTC",
+            });
+            const formattedDate = date.toLocaleString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              timeZone: "UTC",
+            });
+            post.$createdAt = `${time} · ${formattedDate}`;
+            setPost(post);
+          }
+        })
+        .finally(() => {
+          setLoading(false);
+        });
     }
-    setLoading(false);
   }, [slug]);
-  return post ? (
-    loading ? (
-      <div className="`h-full w-full fixed z-[1000000]">
+  if (loading) {
+    return (
+      <div className="`h-full w-full relative z-[10000000]">
         <Loader bg="black" />
       </div>
-    ) : (
+    );
+  } else {
+    return (
       <div
         className={`h-full w-full fixed xl:top-0 
     z-[1000001] grid grid-cols-1 ${
@@ -143,8 +149,8 @@ function IndividualPost() {
           </div>
         )}
       </div>
-    )
-  ) : null;
+    );
+  }
 }
 
 export default IndividualPost;

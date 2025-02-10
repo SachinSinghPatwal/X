@@ -15,9 +15,11 @@ function App() {
         if (userData) {
           dispatch(login({ userData }));
           navigate("../../Home/allpost");
-        } else {
+          console.log("app yes");
+        } else if (!userData) {
           dispatch(logout());
-          navigate("/AuthenticatingPage");
+          console.log("app no");
+          navigate("AuthenticatingPage");
         }
       })
       .finally(() => {

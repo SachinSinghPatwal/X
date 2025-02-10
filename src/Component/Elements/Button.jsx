@@ -39,14 +39,14 @@ function Button({ children, calledBy, activePostId, setActivePostId, post }) {
   } else if (calledBy === "createAccount") {
     return (
       <div
-        className="grid rounded-full h-full w-full bg-[#2e85d7] 
+        className="grid rounded-full h-full w-full  bg-[#2e85d7] 
         hover:bg-[#2675ba] place-items-center hover:cursor-pointer"
         onClick={() => {
           navigate("CreateAccount");
           dispatch(setTogglingAuthPageStatus(true));
         }}
       >
-        <button className="font-semibold text-gray-200">Create account</button>
+        <button className="font-semibold text-white">Create account</button>
       </div>
     );
   } else if (calledBy === "optionsInForYouMoreButton") {

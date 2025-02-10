@@ -54,6 +54,13 @@ function Home() {
                 Subscribe
               </button>
             </div>
+            <div
+              className="border-gray-600 border-[1px] px-[.3rem] py-[.5rem] 
+            sticky top-[50%] mx-[1rem] rounded-[1rem] text-center text-[20px] 
+            text-white"
+            >
+              ! Still in development
+            </div>
           </aside>
         </main>
       </div>

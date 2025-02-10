@@ -16,11 +16,12 @@ function CreateAccount() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { register, handleSubmit } = useForm();
+
   useEffect(() => {
-    authService.getCurrentUser().finally(() => {
+    setTimeout(() => {
       setLoading(false);
-    });
-  }, []);
+    }, 400);
+  });
   const create = async (data) => {
     try {
       const userData = await authService.createAccount(data);
