@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import databaseService from "../../../../AppwriteServices/DBService/DBService";
 import fileService from "../../../../AppwriteServices/FileService/FileService";
 import Loader from "../../../Loader/Loader";
@@ -13,28 +13,42 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../Elements/Button";
 import EachPost from "./EachPost";
-import { useNavigate } from "react-router-dom";
 
 function ForYou() {
   const [posts, setPosts] = useState([]);
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [activePostId, setActivePostId] = useState(null);
   const [isAuthor, setAuthor] = useState(null);
-  const [forcereload, setForceReload] = useState(false);
+  const forceReload = useSelector((state) => state.auth.forceReload);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.userData);
   const composePostVisibility = useSelector(
     (state) => state.auth.composePostVisibility
   );
-  useEffect(() => {
+
+  // Fetching Posts
+  const gettingData = () => {
+    setLoading(true);
     databaseService.getAllPost([]).then((allPosts) => {
       if (allPosts) {
         setPosts(allPosts.documents);
       }
       setLoading(false);
     });
-  }, [posts]);
+  };
+  useEffect(() => {
+    gettingData();
+  }, [forceReload]);
+
+  const deletePost = (postId, featuredImage) => {
+    databaseService.deletePost(postId).then((status) => {
+      if (status) {
+        fileService.deleteFile(featuredImage);
+        gettingData();
+      }
+    });
+  };
+
   return (
     <>
       {loading ? (
@@ -54,9 +68,7 @@ function ForYou() {
                 "
                 >
                   <button
-                    onClick={() =>
-                      setActivePostId(activePostId === post.$id && null)
-                    }
+                    onClick={() => setActivePostId(null)}
                     className="absolute right-[.8rem] top-[.3rem] w-fit"
                   >
                     <FontAwesomeIcon icon={faXmark} size="lg" />
@@ -66,15 +78,8 @@ function ForYou() {
                       <div>
                         <button
                           onClick={() => {
-                            console.log(post, post.$id);
-                            databaseService
-                              .deletePost(post.$id)
-                              .then((status) => {
-                                if (status) {
-                                  fileService.deleteFile(post.featuredImage);
-                                }
-                              });
-                            setActivePostId(activePostId === post.$id && null);
+                            deletePost(post.$id, post.featuredImage);
+                            setActivePostId(null);
                             dispatch(changeVisibility(false));
                           }}
                           className="w-full"
@@ -91,7 +96,7 @@ function ForYou() {
                         <button
                           onClick={() => {
                             dispatch(changeVisibility(!composePostVisibility));
-                            setActivePostId(activePostId === post.$id && null);
+                            setActivePostId(null);
                           }}
                         >
                           <FontAwesomeIcon
@@ -115,14 +120,15 @@ function ForYou() {
                 className="relative border-b-[1px] max-h-[600px] 
               border-gray-600 text-gray-200 py-[.8rem] px-[1rem]"
               >
-                {/* Toggle button */}
                 <div
                   className="absolute top-2 right-4 hover:cursor-pointer z-[1]"
                   onClick={() => {
                     setAuthor(
                       post && userData ? post.userId === userData.$id : false
                     );
-                    setActivePostId(activePostId !== post.$id && post.$id);
+                    setActivePostId(
+                      activePostId !== post.$id ? post.$id : null
+                    );
                   }}
                 >
                   <FontAwesomeIcon
@@ -131,7 +137,6 @@ function ForYou() {
                     style={{ color: "white" }}
                   />
                 </div>
-                {/* main content */}
                 <EachPost post={post} />
               </div>
             </div>

@@ -7,6 +7,7 @@ const initialState = {
   pageNavIconStatus: "home",
   togglingAuthPageStatus: false,
   overFlowStatus: "",
+  forceReload: false,
 };
 
 const authSlice = createSlice({
@@ -33,6 +34,9 @@ const authSlice = createSlice({
     setOverFlowStatus: (state, action) => {
       state.overFlowStatus = action.payload;
     },
+    setForceReload: (state, action) => {
+      state.forceReload = action.payload;
+    },
   },
 });
 
@@ -44,4 +48,5 @@ export const {
   setPageNavIconStatus,
   setTogglingAuthPageStatus,
   setOverFlowStatus,
+  setForceReload,
 } = authSlice.actions;
