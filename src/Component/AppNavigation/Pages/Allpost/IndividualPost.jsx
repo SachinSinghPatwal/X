@@ -83,7 +83,7 @@ function IndividualPost() {
               className="absolute left-[2vw] transition-all duration-300 top-3
               text-gray-200 hover:text-[#7F48CD] 
               "
-              onClick={() => navigate("../Home/allpost")}
+              onClick={() => navigate(-1)}
             >
               <FontAwesomeIcon
                 className="text-[30px]

@@ -127,6 +127,9 @@ function Message({ post }) {
             </div>
           )}
           <button
+            onClick={() => {
+              dispatch(changeVisibility(!status));
+            }}
             className="absolute bottom-2 left-2 hover:bg-gray-800
           w-[30px] aspect-square hover:rounded-full transition-all "
           >

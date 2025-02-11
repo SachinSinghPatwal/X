@@ -132,12 +132,14 @@ function NavContainer() {
           </div>
         ))}
         <button
-          className="xl:h-[3rem] text-gray-200 w-full xl:bg-gray-900  rounded-[2rem] text-[18px] tracking-wider
+          className="xl:h-[2.5rem] text-gray-200 w-full xl:bg-sky-600 hover:bg-sky-800 
+          rounded-full text-[18px] tracking-wider 
             grid 
             justify-items-center 
             // sm:justify-items-end
             xl:justify-items-center
             xl:content-center
+            transition-colors duration-300
             "
           onClick={() => {
             dispatch(changeVisibility(!status));

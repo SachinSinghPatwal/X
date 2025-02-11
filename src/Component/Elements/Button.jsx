@@ -19,9 +19,9 @@ function Button({ children, calledBy, activePostId, setActivePostId, post }) {
 
   const iconArray = [
     { icon: faFlag, color: "red", label: "Report" },
-    { icon: faThumbTack, color: "white", label: "Pin" },
-    { icon: faFaceFrownOpen, color: "white", label: "Sad" },
-    { icon: faVolumeXmark, color: "white", label: "Mute" },
+    { icon: faThumbTack, color: "white", label: "Pin Comment" },
+    { icon: faFaceFrownOpen, color: "white", label: "Not like this post" },
+    { icon: faVolumeXmark, color: "white", label: "Mute Post" },
   ];
 
   if (calledBy === "signIn") {
@@ -59,8 +59,8 @@ function Button({ children, calledBy, activePostId, setActivePostId, post }) {
               setActivePostId(activePostId === post?.$id ? null : post?.$id);
               dispatch(changeVisibility(false));
             }}
-            className="grid grid-flow-col gap-[1rem] justify-start items-start 
-            px-2 py-1 hover:bg-gray-800 rounded-md w-full"
+            className="grid grid-flow-col gap-[1rem] justify-start items-center
+            px-2 py-1 hover:bg-gray-800 rounded-md w-full "
           >
             <FontAwesomeIcon
               icon={icon}

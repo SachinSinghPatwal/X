@@ -151,8 +151,8 @@ function CreateAccount() {
                     type="number"
                     by="dates"
                     required
-                    min={1910}
-                    max={2025}
+                    min={1900}
+                    max={2014}
                     placeholder="Year"
                   />
                 </div>
@@ -163,7 +163,7 @@ function CreateAccount() {
               hover:cursor-pointer h-[3rem] w-full bg-gray-100"
                   type="submit"
                   onClick={() => {
-                    navigate("../../Home");
+                    navigate("../../Home", { replace: true });
                   }}
                 >
                   <div className="font-semibold text-black ">

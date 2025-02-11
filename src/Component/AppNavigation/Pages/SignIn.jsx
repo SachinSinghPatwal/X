@@ -6,7 +6,7 @@ import { login as authLogin } from "../../../store/authSlice";
 import { useDispatch } from "react-redux";
 import Logo from "../../../Public/Logo.svg";
 import { Loader } from "../../index";
-import { useNavigate } from "react-router-dom";
+import { replace, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { setTogglingAuthPageStatus } from "../../../store/authSlice";
@@ -27,7 +27,7 @@ export default function SignIn() {
       if (session) {
         const userData = await authService.getCurrentUser();
         userData && dispatch(authLogin(userData));
-        navigate("../");
+        navigate("../", { replace: true });
       }
     } catch (error) {
       console.log("error in create account", error);

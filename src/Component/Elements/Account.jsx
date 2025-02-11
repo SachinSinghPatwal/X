@@ -9,7 +9,7 @@ function Account({ screenStatus }) {
   return (
     <>
       {screenStatus ? (
-        <LogOutBtn className="border-[1px] px-[3rem] rounded-full py-[.5rem] border-gray-600 w-full">
+        <LogOutBtn className="border-[1px] px-[3rem] rounded-full py-[.5rem] border-gray-600 w-full hover:bg-[#111010] transition-colors duration-300">
           LogOut
         </LogOutBtn>
       ) : (
