@@ -8,11 +8,12 @@ import databaseService from "../../../AppwriteServices/DBService/DBService";
 import { changeVisibility } from "../../../store/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 function Message({ post }) {
   const status = useSelector((state) => state.auth.composePostVisibility);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const userData = useSelector((state) => state.auth.userData);
-
   const { register, handleSubmit, watch, setValue, control, getValues } =
     useForm({
       defaultValues: {
@@ -22,7 +23,6 @@ function Message({ post }) {
         status: post?.status || "active",
       },
     });
-
   const submit = async (data) => {
     if (post) {
       const file = data.image[0] ? fileService.uploadFile(data.image[0]) : null;
@@ -37,6 +37,7 @@ function Message({ post }) {
         dispatch(changeVisibility(!status));
       }
     } else {
+      dispatch(changeVisibility(!status));
       const file = await fileService.uploadFile(data.image[0]);
       if (file) {
         const fileId = file.$id;
@@ -45,9 +46,6 @@ function Message({ post }) {
           ...data,
           userId: userData.$id,
         });
-        if (dbPost) {
-          dispatch(changeVisibility(!status));
-        }
       }
     }
   };

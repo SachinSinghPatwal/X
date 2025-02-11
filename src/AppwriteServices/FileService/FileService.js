@@ -29,7 +29,7 @@ export class FileService {
       await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
-      console.log("appwrite service :: deleteFile ::error");
+      console.log("appwrite service :: deleteFile ", error);
       return false;
     }
   }

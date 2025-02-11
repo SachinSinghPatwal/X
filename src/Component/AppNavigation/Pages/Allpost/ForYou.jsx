@@ -13,12 +13,15 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../Elements/Button";
 import EachPost from "./EachPost";
+import { useNavigate } from "react-router-dom";
 
 function ForYou() {
   const [posts, setPosts] = useState([]);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [activePostId, setActivePostId] = useState(null);
   const [isAuthor, setAuthor] = useState(null);
+  const [forcereload, setForceReload] = useState(false);
   const dispatch = useDispatch();
   const userData = useSelector((state) => state.auth.userData);
   const composePostVisibility = useSelector(
@@ -31,7 +34,7 @@ function ForYou() {
       }
       setLoading(false);
     });
-  }, []);
+  }, [posts]);
   return (
     <>
       {loading ? (
@@ -63,16 +66,16 @@ function ForYou() {
                       <div>
                         <button
                           onClick={() => {
+                            console.log(post, post.$id);
                             databaseService
                               .deletePost(post.$id)
                               .then((status) => {
                                 if (status) {
                                   fileService.deleteFile(post.featuredImage);
-                                  navigate("../Home/allpost");
                                 }
                               });
-                            dispatch(changeVisibility(!composePostVisibility));
                             setActivePostId(activePostId === post.$id && null);
+                            dispatch(changeVisibility(false));
                           }}
                           className="w-full"
                         >

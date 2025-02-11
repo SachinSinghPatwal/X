@@ -1,4 +1,4 @@
-import { Client, Databases, Query } from "appwrite";
+import { Client, Databases, Query, ID } from "appwrite";
 import conf from "../../Conf/Conf";
 
 class DatabaseServices {
@@ -11,12 +11,12 @@ class DatabaseServices {
     this.database = new Databases(this.client);
   }
 
-  async createPost({ slug, title, content, featuredImage, status, userId }) {
+  async createPost({ slug, title, content, featuredImage, userId }) {
     try {
       return await this.database.createDocument(
         conf.appwriteDatabaseId,
         conf.appwriteCollectionId,
-        slug,
+        slug + ID.unique(),
         {
           title,
           content,
@@ -47,7 +47,7 @@ class DatabaseServices {
     }
   }
 
-  async deletePost({ slug }) {
+  async deletePost(slug) {
     try {
       await this.database.deleteDocument(
         conf.appwriteDatabaseId,

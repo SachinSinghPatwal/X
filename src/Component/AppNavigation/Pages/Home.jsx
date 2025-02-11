@@ -1,8 +1,9 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { NavContainer, ComposePost } from "../../index";
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 function Home() {
+  const navigate = useNavigate();
   const status = useSelector((state) => state.auth.composePostVisibility);
   return (
     <>
