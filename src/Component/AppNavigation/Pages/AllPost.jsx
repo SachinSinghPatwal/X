@@ -1,37 +1,17 @@
 import React from "react";
 import { useMediaQuery } from "react-responsive";
-import { ForYou } from "../../index";
+import { AllPostHeader, ForYou } from "../../index";
+import { AllPostContainer } from "../../index";
 
-function AllPost({
-  styles = "h-full text-gray-200 text-[18px] text-center ml-[-2rem] before:content-[''] before:absolute relative before:h-[3px] before:w-[2rem] before:bottom-[-.3rem] before:left-[1rem] bg",
-}) {
+function AllPost() {
   const screenStatus = useMediaQuery({ query: "(max-width:625px)" });
   return (
-    <div className="border-x-[1px] border-gray-700 ">
-      <header
-        className={`fixed h-[3rem] grid place-items-center 
-      border-gray-700 border-b-[1px]
-        sm:w-[79.7vw]
-        z-[10000] 
-        md:w-[598px] 
-        lg:w-[598.7px]
-        backdrop-blur-sm
-        w-[79.6vw]
-        ${screenStatus && "w-[79.6vw]"}
-      `}
-      >
-        <nav
-          className={`h-fit w-[70vw] md:w-[523px]
-            text-center
-        `}
-        >
-          <div className={`${styles}`}>For you</div>
-        </nav>
-      </header>
+    <AllPostContainer>
+      <AllPostHeader screenStatus={screenStatus} />
       <main className="pt-[3rem]">
         <ForYou />
       </main>
-    </div>
+    </AllPostContainer>
   );
 }
 

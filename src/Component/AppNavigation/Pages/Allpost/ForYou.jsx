@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import databaseService from "../../../../AppwriteServices/DBService/DBService";
 import fileService from "../../../../AppwriteServices/FileService/FileService";
 import Loader from "../../../Loader/Loader";
@@ -13,6 +13,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../../Elements/Button";
 import EachPost from "./EachPost";
+import conf from "../../../../Conf/Conf";
 
 function ForYou() {
   const [posts, setPosts] = useState([]);
@@ -26,25 +27,46 @@ function ForYou() {
     (state) => state.auth.composePostVisibility
   );
 
-  // Fetching Posts
-  const gettingData = () => {
+  // Function to fetch all posts
+  const fetchPosts = async () => {
     setLoading(true);
-    databaseService.getAllPost([]).then((allPosts) => {
-      if (allPosts) {
-        setPosts(allPosts.documents);
-      }
-      setLoading(false);
-    });
+    const allPosts = await databaseService.getAllPost([]);
+    if (allPosts) {
+      setPosts(allPosts.documents);
+    }
+    setLoading(false);
   };
+
   useEffect(() => {
-    gettingData();
+    fetchPosts();
+    const unsubscribe = databaseService.client.subscribe(
+      `databases.${conf.appwriteDatabaseId}.collections.${conf.appwriteCollectionId}.documents`,
+      (response) => {
+        const eventType = response.events[0];
+        setPosts((prevPosts) => {
+          if (eventType.includes("create")) {
+            return [...prevPosts, response.payload];
+          } else if (eventType.includes("update")) {
+            return prevPosts.map((post) =>
+              post.$id === response.payload.$id ? response.payload : post
+            );
+          } else if (eventType.includes("delete")) {
+            return prevPosts.filter(
+              (post) => post.$id !== response.payload.$id
+            );
+          }
+          return prevPosts;
+        });
+      }
+    );
+
+    return () => unsubscribe();
   }, [forceReload]);
 
   const deletePost = (postId, featuredImage) => {
     databaseService.deletePost(postId).then((status) => {
       if (status) {
         fileService.deleteFile(featuredImage);
-        gettingData();
       }
     });
   };
@@ -61,11 +83,10 @@ function ForYou() {
             <div key={post.$id} className="relative">
               {activePostId === post.$id && (
                 <div
-                  className="absolute text-gray-200 bg-gray-800 p-2 rounded 
-                right-1 grid top-1 h-fit w-[15.5rem] z-[1000] 
-                grid-rows-auto gap-[.8rem] px-[1rem] py-[1rem] 
-                justify-items-start 
-                "
+                  className="absolute text-gray-200 bg-transparent
+                  backdrop-blur-[10px] p-2 rounded 
+                right-1 grid top-1 h-fit w-[15.5rem] z-[1000] grid-rows-auto 
+                gap-[.8rem] px-[1rem] py-[1rem] justify-items-start"
                 >
                   <button
                     onClick={() => setActivePostId(null)}
@@ -82,12 +103,11 @@ function ForYou() {
                             setActivePostId(null);
                             dispatch(changeVisibility(false));
                           }}
-                          className="w-full"
                         >
                           <FontAwesomeIcon
                             icon={faTrash}
                             style={{ color: "red" }}
-                            className="w-[23px] mr-[.5rem]"
+                            className="w-[23px] mr-[.5rem] "
                           />
                           Delete
                         </button>
@@ -102,7 +122,7 @@ function ForYou() {
                           <FontAwesomeIcon
                             icon={faPen}
                             style={{ color: "white" }}
-                            className="w-[23px] mr-[.5rem]"
+                            className="w-[23px] mr-[.5rem] "
                           />
                           Update
                         </button>
@@ -121,7 +141,11 @@ function ForYou() {
               border-gray-600 text-gray-200 py-[.8rem] px-[1rem]"
               >
                 <div
-                  className="absolute top-2 right-4 hover:cursor-pointer z-[1]"
+                  className="absolute top-2 right-4 hover:cursor-pointer z-[1] 
+                  w-[27px] h-fit text-center rounded-full  border-gray-200 
+                  border-[2px]  hover:bg-gray-400 transition-colors 
+                  duration-300 text-white hover:text-black hover:border-black
+                  "
                   onClick={() => {
                     setAuthor(
                       post && userData ? post.userId === userData.$id : false
@@ -131,11 +155,7 @@ function ForYou() {
                     );
                   }}
                 >
-                  <FontAwesomeIcon
-                    icon={faEllipsis}
-                    size="lg"
-                    style={{ color: "white" }}
-                  />
+                  <FontAwesomeIcon icon={faEllipsis} size="lg" />
                 </div>
                 <EachPost post={post} />
               </div>

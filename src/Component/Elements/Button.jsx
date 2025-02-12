@@ -60,7 +60,7 @@ function Button({ children, calledBy, activePostId, setActivePostId, post }) {
               dispatch(changeVisibility(false));
             }}
             className="grid grid-flow-col gap-[1rem] justify-start items-center
-            px-2 py-1 hover:bg-gray-800 rounded-md w-full "
+            px-2 py-1 w-full "
           >
             <FontAwesomeIcon
               icon={icon}

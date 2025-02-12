@@ -29,7 +29,7 @@ function App() {
     return <Loader bg="black" />;
   }
   return (
-    <div className="">
+    <div>
       <Outlet />
     </div>
   );

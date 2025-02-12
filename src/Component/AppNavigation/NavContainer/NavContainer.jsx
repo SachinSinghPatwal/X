@@ -1,73 +1,16 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useMediaQuery } from "react-responsive";
-import { useNavigate } from "react-router-dom";
-import {
-  faHouse,
-  faHouseChimney,
-  faPlus,
-  faEnvelope,
-  faMicrochip,
-  faUser,
-  faEllipsis,
-} from "@fortawesome/free-solid-svg-icons";
-import { faXing } from "@fortawesome/free-brands-svg-icons";
-import { faEnvelope as enveloponclick } from "@fortawesome/free-regular-svg-icons";
 import { Account } from "../../index";
 import { useDispatch, useSelector } from "react-redux";
 import { Logo } from "../../index";
-
-import {
-  changeVisibility,
-  setPageNavIconStatus,
-} from "../../../store/authSlice";
-
+import { changeVisibility } from "../../../store/authSlice";
+import { NavItems } from "../../index";
+import { useMediaQuery } from "react-responsive";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 function NavContainer() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-  const pageNavIconStatus = useSelector(
-    (state) => state.auth.pageNavIconStatus
-  );
-  const BigScreenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
-  const pageNavItems = [
-    {
-      name: "home",
-      logoUnClicked: faHouseChimney,
-      logoOnClicked: faHouse,
-      centring: -10,
-    },
-    {
-      name: "messages",
-      logoUnClicked: enveloponclick,
-      logoOnClicked: faEnvelope,
-      centring: -56,
-    },
-    {
-      name: "ai",
-      logoUnClicked: faMicrochip,
-      logoOnClicked: null,
-      centring: 25,
-    },
-    {
-      name: "premium",
-      logoUnClicked: faXing,
-      logoOnClicked: null,
-      centring: -80,
-    },
-    {
-      name: "profile",
-      logoUnClicked: faUser,
-      logoOnClicked: null,
-      centring: -40,
-    },
-    {
-      name: "more",
-      logoUnClicked: faEllipsis,
-      logoOnClicked: null,
-      centring: -16,
-    },
-  ];
   const status = useSelector((state) => state.auth.composePostVisibility);
+  const BigScreenStatus = useMediaQuery({ query: "(min-width : 1280px)" });
   return (
     <>
       <div
@@ -83,56 +26,9 @@ function NavContainer() {
           `}
       >
         <Logo classname="mb-[-.5rem]" />
-        {pageNavItems.map((navItems) => (
-          <div
-            key={navItems.name}
-            onClick={() => {
-              dispatch(setPageNavIconStatus(navItems.name));
-            }}
-            className={`relative min-h-[28px] hover:cursor-pointer  ${
-              !BigScreenStatus && "prefix"
-            }
-              `}
-          >
-            <div
-              className="h-full grid grid-flow-col gap-[1rem] items-center 
-            text-[18.5px] mr-[.2rem]"
-            >
-              <FontAwesomeIcon
-                icon={
-                  pageNavIconStatus == navItems.name && navItems.logoOnClicked
-                    ? navItems.logoOnClicked
-                    : navItems.logoUnClicked
-                }
-                size="lg"
-                style={{
-                  color: `${
-                    pageNavIconStatus == navItems.name ? "#7b3bd4 " : "#f7f5f5 "
-                  }`,
-                  cursor: "pointer",
-                  minWidth: "31.21px",
-                }}
-              />
-              {BigScreenStatus ? (
-                <span
-                  key={navItems.name}
-                  className={`text-gray-200 h-full ${
-                    pageNavIconStatus == navItems.name
-                      ? "font-normal"
-                      : "font-thin"
-                  }`}
-                >
-                  {navItems.name !== "home"
-                    ? navItems.name.charAt(0).toLocaleUpperCase() +
-                      navItems.name.slice(1)
-                    : "Home"}
-                </span>
-              ) : null}
-            </div>
-          </div>
-        ))}
+        <NavItems BigScreenStatus={BigScreenStatus} />
         <button
-          className="xl:h-[2.5rem] text-gray-200 w-full xl:bg-sky-600 hover:bg-sky-800 
+          className="xl:h-[2.5rem] text-gray-200  xl:bg-sky-600 xl:hover:bg-sky-800 xl:w-full w-fit 
           rounded-full text-[18px] tracking-wider 
             grid 
             justify-items-center 
