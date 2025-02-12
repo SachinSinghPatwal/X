@@ -30,6 +30,7 @@ function EachPost({ post, gap, time }) {
               <img
                 src={fileService.getFilePreview(post.featuredImage)}
                 alt={post.title}
+                className="hover:scale-[103%] transition-all duration-300"
                 style={{
                   outline: ".05rem solid #7B3BD4",
                   outlineOffset: "-1px",

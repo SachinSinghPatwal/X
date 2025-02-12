@@ -142,9 +142,10 @@ function ForYou() {
               >
                 <div
                   className="absolute top-2 right-4 hover:cursor-pointer z-[1] 
-                  w-[27px] h-fit text-center rounded-full  border-gray-200 
-                  border-[2px]  hover:bg-gray-400 transition-colors 
-                  duration-300 text-white hover:text-black hover:border-black
+                  h-[23px] aspect-square text-center rounded-full  
+                  border-gray-200 border-[2px] hover:bg-[#7B3BD4] 
+                  transition-colors duration-300 text-white hover:text-black 
+                  hover:border-black
                   "
                   onClick={() => {
                     setAuthor(
@@ -155,7 +156,11 @@ function ForYou() {
                     );
                   }}
                 >
-                  <FontAwesomeIcon icon={faEllipsis} size="lg" />
+                  <FontAwesomeIcon
+                    icon={faEllipsis}
+                    size="sm"
+                    className="mb-[2px]"
+                  />
                 </div>
                 <EachPost post={post} />
               </div>
