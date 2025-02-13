@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Input, Protected } from "../../index";
+import { Input } from "../../index";
 import { useForm } from "react-hook-form";
 import authService from "../../../AppwriteServices/Auth/Auth";
 import { login as authLogin } from "../../../store/authSlice";
@@ -15,6 +15,7 @@ export default function SignIn() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const { register, handleSubmit } = useForm();
   useEffect(() => {
     setTimeout(() => {
@@ -126,6 +127,9 @@ export default function SignIn() {
                 >
                   <div className="font-semibold text-black ">Login</div>
                 </button>
+                <div className="absolute bottom-4 text-red-500 text-[14px]">
+                  {error}
+                </div>
               </footer>
             </form>
           )}

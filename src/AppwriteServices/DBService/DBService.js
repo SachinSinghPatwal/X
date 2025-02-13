@@ -25,7 +25,7 @@ class DatabaseServices {
         }
       );
     } catch (error) {
-      console.log("appwrite service :: createpost ::error", error);
+      console.log("createpost ::error", error);
     }
   }
 
@@ -43,7 +43,7 @@ class DatabaseServices {
         }
       );
     } catch (error) {
-      console.log("appwrite service :: updatepost ::error");
+      console.log("updatepost ::error");
     }
   }
 
@@ -56,7 +56,7 @@ class DatabaseServices {
       );
       return true;
     } catch (error) {
-      console.log("appwrite service :: deletepost ::error");
+      console.log("deletepost ::error");
       return false;
     }
   }
@@ -69,7 +69,7 @@ class DatabaseServices {
         slug
       );
     } catch (error) {
-      console.log("appwrite service :: getPost ::", error);
+      console.log(" getPost ::", error);
       return false;
     }
   }
@@ -82,7 +82,7 @@ class DatabaseServices {
         queries
       );
     } catch (error) {
-      console.log("appwrite service :: getAllPosts ::error");
+      console.log("getAllPosts ::error");
       return false;
     }
   }

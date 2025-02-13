@@ -23,27 +23,21 @@ class AuthService {
         return userAccount;
       }
     } catch (error) {
-      console.log(
-        "error || appwriteService/Auth || createAccount error",
-        error.message
-      );
+      console.log("createAccount error", error.message);
     }
   }
   async login({ email, password }) {
     try {
       return await this.account.createEmailPasswordSession(email, password);
     } catch (error) {
-      console.log("error || appwriteService/Auth || login  error", error);
+      console.log("login  error", error);
     }
   }
   async getCurrentUser() {
     try {
       return await this.account.get();
     } catch (error) {
-      console.log(
-        "error || appwriteService/Auth || getCurrentUSer error",
-        error
-      );
+      console.log("getCurrentUSer error", error);
     }
   }
 
@@ -51,7 +45,7 @@ class AuthService {
     try {
       return await this.account.deleteSessions();
     } catch (error) {
-      console.log("error || appwriteService/Auth || logOut error", error);
+      console.log("logOut error", error);
     }
   }
 }

@@ -19,7 +19,7 @@ export class FileService {
         file
       );
     } catch (error) {
-      console.log("appwrite service :: uploadFile ::error", error);
+      console.log("uploadFile ::error", error);
       return false;
     }
   }
@@ -29,7 +29,7 @@ export class FileService {
       await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
       return true;
     } catch (error) {
-      console.log("appwrite service :: deleteFile ", error);
+      console.log("deleteFile ", error);
       return false;
     }
   }
