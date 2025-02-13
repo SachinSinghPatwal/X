@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useMediaQuery } from "react-responsive";
 import { AllPostHeader, ForYou } from "../../index";
 import { AllPostContainer } from "../../index";
@@ -15,4 +15,4 @@ function AllPost() {
   );
 }
 
-export default AllPost;
+export default memo(AllPost);

@@ -10,28 +10,35 @@ import { useNavigate } from "react-router-dom";
 import { setTogglingAuthPageStatus } from "../../store/authSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import fallbackLoading from "../../Public/authloading.gif";
+import Authloading from "../../Public/Authloading.webm";
 
 function CreateAccount() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const { register, handleSubmit } = useForm();
-
+  const [error, setError] = useState(false);
+  const [loadingOnButton, setLoadingOnButton] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 400);
   });
   const create = async (data) => {
+    setError("");
+    setLoadingOnButton(true);
     try {
       const userData = await authService.createAccount(data);
       if (userData) {
         const userData = await authService.getCurrentUser();
         userData && dispatch(login(userData));
-        navigate("../");
+        navigate(1, { replace: true });
+        dispatch(setTogglingAuthPageStatus(false));
+        setLoadingOnButton(false);
       }
     } catch (error) {
-      console.log("error in create account", error);
+      setError(error.message);
     }
   };
   return (
@@ -89,6 +96,11 @@ function CreateAccount() {
                     <Input
                       type="text"
                       placeholder="Name"
+                      onKeyDown={(e) => {
+                        if (/\d/.test(e.key)) {
+                          e.preventDefault();
+                        }
+                      }}
                       required
                       minLength={3}
                       {...register("name", {
@@ -99,6 +111,11 @@ function CreateAccount() {
                   <Input
                     type="email"
                     placeholder="@gmail.com"
+                    onKeyDown={(e) => {
+                      if (/\d/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                     required
                     {...register("email", {
                       required: true,
@@ -112,7 +129,7 @@ function CreateAccount() {
                   />
                   <Input
                     type="password"
-                    placeholder="Password must contain 8 letters 
+                    placeholder="Password must contain atleast 8 letters 
                     "
                     required
                     minLength={8}
@@ -135,6 +152,11 @@ function CreateAccount() {
                     type="text"
                     by="dates"
                     required
+                    onKeyDown={(e) => {
+                      if (/\d/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                     minLength={3}
                     maxLength={8}
                     placeholder="Month Name"
@@ -163,13 +185,29 @@ function CreateAccount() {
               hover:cursor-pointer h-[3rem] w-full bg-gray-100"
                   type="submit"
                   onClick={() => {
-                    navigate("../../Home", { replace: true });
+                    navigate(1, { replace: true });
                   }}
                 >
                   <div className="font-semibold text-black ">
-                    Create account
+                    {loadingOnButton ? (
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute bottom-[1rem] left-[34%]"
+                      >
+                        <source src={Authloading} type="video/webm" />
+                        <img src={fallbackLoading} alt="loading..." />
+                      </video>
+                    ) : (
+                      "Create account"
+                    )}
                   </div>
                 </button>
+                <div className="absolute bottom-3 text-[14px] text-red-400">
+                  {error}
+                </div>
               </footer>
             </form>
           )}

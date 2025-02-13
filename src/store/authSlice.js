@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  status: true,
+  status: null,
   userData: null,
   composePostVisibility: false,
   pageNavIconStatus: "home",

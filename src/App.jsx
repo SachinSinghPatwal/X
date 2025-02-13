@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 import authService from "./AppwriteServices/Auth/Auth";
@@ -34,4 +34,4 @@ function App() {
     </div>
   );
 }
-export default App;
+export default memo(App);

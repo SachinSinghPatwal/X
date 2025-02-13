@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 import databaseService from "../../../../AppwriteServices/DBService/DBService";
 import fileService from "../../../../AppwriteServices/FileService/FileService";
 import Loader from "../../../Loader/Loader";
@@ -26,8 +26,6 @@ function ForYou() {
   const composePostVisibility = useSelector(
     (state) => state.auth.composePostVisibility
   );
-
-  // Function to fetch all posts
   const fetchPosts = async () => {
     setLoading(true);
     const allPosts = await databaseService.getAllPost([]);
@@ -36,7 +34,6 @@ function ForYou() {
     }
     setLoading(false);
   };
-
   useEffect(() => {
     fetchPosts();
     const unsubscribe = databaseService.client.subscribe(
@@ -171,4 +168,4 @@ function ForYou() {
   );
 }
 
-export default ForYou;
+export default memo(ForYou);

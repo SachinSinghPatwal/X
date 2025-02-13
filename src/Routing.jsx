@@ -17,17 +17,17 @@ function Routing() {
     <Routes>
       <Route path="/" element={<App />}>
         <Route path="AuthenticatingPage" element={<AuthenticatingPage />}>
-          <Route
-            path="CreateAccount"
-            element={
-              <Protected>
-                <CreateAccount />
-              </Protected>
-            }
-          />
+          <Route path="CreateAccount" element={<CreateAccount />} />
           <Route path="SignIn" element={<SignIn />} />
         </Route>
-        <Route path="Home" element={<Home />}>
+        <Route
+          path="Home"
+          element={
+            <Protected>
+              <Home />
+            </Protected>
+          }
+        >
           <Route path="allpost" element={<AllPost />}>
             <Route index element={<ForYou />} />
           </Route>

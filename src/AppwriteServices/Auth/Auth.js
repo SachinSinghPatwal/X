@@ -18,7 +18,7 @@ class AuthService {
         name
       );
       if (userAccount) {
-        return this.login({ email, password });
+        return this.login({ email, password, name });
       } else {
         return userAccount;
       }
@@ -27,7 +27,6 @@ class AuthService {
         "error || appwriteService/Auth || createAccount error",
         error.message
       );
-      return { error };
     }
   }
   async login({ email, password }) {
@@ -41,7 +40,10 @@ class AuthService {
     try {
       return await this.account.get();
     } catch (error) {
-      return;
+      console.log(
+        "error || appwriteService/Auth || getCurrentUSer error",
+        error
+      );
     }
   }
 

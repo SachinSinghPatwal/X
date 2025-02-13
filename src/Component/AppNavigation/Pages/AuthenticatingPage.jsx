@@ -27,8 +27,8 @@ function AuthenticatingPage({
         } `}
       >
         <div
-          className={`grid md:pr-auto sm:px-[15%] lg:px-[2%] lg:mx-0 sm:py-[3.5rem]
-          lg:pb-[8rem] pb-[6rem] pt-[3rem]
+          className={`grid md:pr-auto sm:px-[15%] lg:px-[2%] lg:mx-0 
+            sm:py-[3.5rem]lg:pb-[8rem] pb-[6rem] pt-[3rem]
         ${smallestScreen && "justify-items-center"}
         lg:w-[98dvw] lg:gap-0 lg:justify-items-center items-center gap-3 
         lg:overflow-hidden lg:items-center 

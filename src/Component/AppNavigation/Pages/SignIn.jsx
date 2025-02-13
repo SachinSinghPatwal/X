@@ -27,7 +27,7 @@ export default function SignIn() {
       if (session) {
         const userData = await authService.getCurrentUser();
         userData && dispatch(authLogin(userData));
-        navigate("../", { replace: true });
+        navigate(1, { replace: true });
       }
     } catch (error) {
       console.log("error in create account", error);
@@ -88,6 +88,11 @@ export default function SignIn() {
                     type="email"
                     placeholder="@gmail.com"
                     required
+                    onKeyDown={(e) => {
+                      if (/\d/.test(e.key)) {
+                        e.preventDefault();
+                      }
+                    }}
                     {...register("email", {
                       required: true,
                       validate: {
@@ -116,7 +121,7 @@ export default function SignIn() {
               hover:bg-[#2675ba]"
                   type="submit"
                   onClick={() => {
-                    navigate(1);
+                    navigate(1, { replace: true });
                   }}
                 >
                   <div className="font-semibold text-black ">Login</div>
