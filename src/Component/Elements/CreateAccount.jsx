@@ -58,7 +58,10 @@ function CreateAccount() {
       <div className="absolute rounded-xl h-[95vh] w-[80vw] lg:w-[40rem] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black z-30 ">
         <div className="grid place-items-center h-full gap-[1.5rem] ">
           {loading && (
-            <div className="grid place-items-center absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40">
+            <div
+              className="grid place-items-center absolute top-1/2 left-1/2 
+            transform -translate-x-1/2 -translate-y-1/2 z-40"
+            >
               <Loader bg="#050505" />
             </div>
           )}
@@ -73,7 +76,8 @@ function CreateAccount() {
           {!loading && (
             <form
               onSubmit={handleSubmit(create)}
-              className="relative max-w-[70%] grid  justify-items-center gap-[1rem] "
+              className="relative max-w-[70%] grid  justify-items-center 
+              gap-[1rem] "
             >
               <button
                 className="absolute left-[-4rem] top-[-5.2rem]"
