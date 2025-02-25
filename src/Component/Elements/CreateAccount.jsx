@@ -55,7 +55,11 @@ function CreateAccount() {
           }
           `}
       </style>
-      <div className="absolute rounded-xl h-[95vh] w-[80vw] lg:w-[40rem] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black z-30 ">
+      <div
+        className="absolute rounded-xl h-[95vh] w-[80vw] lg:w-[40rem] 
+      top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-black 
+      z-30 "
+      >
         <div className="grid place-items-center h-full gap-[1.5rem] ">
           {loading && (
             <div

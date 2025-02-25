@@ -84,9 +84,10 @@ function Message({ post }) {
         <main>
           <Input
             placeholder="Title is required and visible to others above post."
-            className="pl-[.2rem] h-[2rem] absolute z-[10000] left-[10%] 
-            top-[2%] my-[.2rem] rounded-sm bg-[#212426] border-[2px] border-[#7F48CD] 
-            sm:w-[68%] w-[60%] placeholder:text-gray-600 sm:ml-0 ml-[.6rem]"
+            className="pl-[.5rem] h-[2rem] absolute z-[10000] left-[10%] 
+            top-[2%] my-[.2rem] rounded-sm bg-[#212426] border-[2px]
+            border-[#7F48CD] sm:w-[68%] w-[60%] placeholder:text-gray-600 
+            sm:ml-0 ml-[.6rem]"
             {...register("title", {
               required: true,
             })}
@@ -130,8 +131,7 @@ function Message({ post }) {
             onClick={() => {
               dispatch(changeVisibility(!status));
             }}
-            className="absolute bottom-2 left-2 hover:bg-gray-800
-          w-[30px] aspect-square hover:rounded-full transition-all "
+            className="absolute bottom-2 left-2 w-[30px] "
           >
             <FontAwesomeIcon icon={faXmark} size="lg" />
           </button>

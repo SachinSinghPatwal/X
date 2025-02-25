@@ -8,20 +8,13 @@ function Protected({ authentication = true, children }) {
   const navigate = useNavigate();
   const authStatus = useSelector((state) => state.auth.status);
   useEffect(() => {
-    console.log("authentication:", authentication, "authStatus:", authStatus);
     if (authentication && authStatus !== authentication) {
       navigate("/AuthenticatingPage", { replace: true });
-      console.log(
-        "protected: Access Denied - Redirecting to AuthenticatingPage"
-      );
     } else if (!authentication && authStatus !== authentication) {
       navigate("/Home/allpost", { replace: true });
-      console.log("protected: Access Denied - Redirecting to Home/allpost");
     }
     setTimeout(() => setLoading(false), 500);
   }, [authStatus, authentication, navigate]);
-
   return loading ? <Loader bg="#050505" /> : <>{children}</>;
 }
-
 export default Protected;

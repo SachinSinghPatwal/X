@@ -10,6 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { setTogglingAuthPageStatus } from "../../../store/authSlice";
+import fallbackLoading from "../../../Public/authloading.gif";
+import Authloading from "../../../Public/Authloading.webm";
 
 export default function SignIn() {
   const dispatch = useDispatch();
@@ -17,11 +19,13 @@ export default function SignIn() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const { register, handleSubmit } = useForm();
+  const [loadingOnButton, setLoadingOnButton] = useState(false);
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 400);
   }, []);
+
   const login = async (data) => {
     try {
       const session = await authService.login(data);
@@ -122,10 +126,28 @@ export default function SignIn() {
               hover:bg-[#2675ba]"
                   type="submit"
                   onClick={() => {
+                    setLoadingOnButton(true);
                     navigate(1, { replace: true });
                   }}
+                  style={{
+                    background: loadingOnButton && "white",
+                    transition: " 1s background ",
+                  }}
                 >
-                  <div className="font-semibold text-black ">Login</div>
+                  {loadingOnButton ? (
+                    <video
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="absolute bottom-[1.5rem] h-[6rem] left-[34%]"
+                    >
+                      <source src={Authloading} type="video/webm" />
+                      <img src={fallbackLoading} alt="loading..." />
+                    </video>
+                  ) : (
+                    <div className="font-semibold text-black ">Login</div>
+                  )}
                 </button>
                 <div className="absolute bottom-4 text-red-500 text-[14px]">
                   {error}
