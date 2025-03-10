@@ -4,6 +4,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import authService from "./AppwriteServices/Auth/Auth";
 import { login, logout } from "./store/authSlice";
 import { Loader } from "./Component";
+import { Analytics } from "@vercel/analytics/react"
 function App() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
