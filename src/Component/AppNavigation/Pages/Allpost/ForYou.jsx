@@ -82,7 +82,7 @@ function ForYou() {
                 <div
                   className="absolute  text-gray-200 bg-transparent
                   backdrop-blur-[10px] p-2 rounded 
-                right-1 grid top-1 h-full w-[15.5rem] z-[1000] grid-rows-auto 
+                right-1 grid top-1 h-fit w-[15.5rem] z-[1000] grid-rows-auto 
                 gap-[.8rem] px-[1rem] py-[1rem] justify-items-start"
                 >
                   <button
