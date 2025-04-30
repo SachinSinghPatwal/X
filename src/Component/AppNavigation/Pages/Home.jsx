@@ -14,7 +14,7 @@ function Home() {
           <NavContainer />
         </aside>
         <main
-          className="grid sm:grid-cols-[80vw_0px] md:grid-cols-[600px_0px] 
+          className="grid sm:grid-cols-[80vw_0px] h-screen md:grid-cols-[600px_0px] 
       lg:grid-cols-[600px_auto] "
         >
           {status ? (
