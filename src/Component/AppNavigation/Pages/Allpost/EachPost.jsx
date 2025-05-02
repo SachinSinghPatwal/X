@@ -26,7 +26,7 @@ function EachPost({ post, gap, time }) {
             className="hover:cursor-pointer"
           >
             <div className="mt-[-.4rem] text-gray-400 text-[15x] ">{time}</div>
-            {post.featuredImage ? {
+            {/* {post.featuredImage ? {
               // <img
               //   src={fileService.getFilePreview(post.featuredImage)}
               //   alt={post.title}
@@ -37,7 +37,7 @@ function EachPost({ post, gap, time }) {
               //     borderRadius: ".2rem",
               //   }}
               // />
-              }:""}
+              }:""} */}
           </div>
         </div>
       </div>
