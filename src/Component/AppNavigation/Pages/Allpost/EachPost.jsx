@@ -26,18 +26,18 @@ function EachPost({ post, gap, time }) {
             className="hover:cursor-pointer"
           >
             <div className="mt-[-.4rem] text-gray-400 text-[15x] ">{time}</div>
-            {post.featuredImage ? (
-              <img
-                src={fileService.getFilePreview(post.featuredImage)}
-                alt={post.title}
-                className="hover:scale-[103%] transition-all duration-300"
-                style={{
-                  outline: ".05rem solid #7B3BD4",
-                  outlineOffset: "-1px",
-                  borderRadius: ".2rem",
-                }}
-              />
-            ):""}
+            {post.featuredImage ? {
+              // <img
+              //   src={fileService.getFilePreview(post.featuredImage)}
+              //   alt={post.title}
+              //   className="hover:scale-[103%] transition-all duration-300"
+              //   style={{
+              //     outline: ".05rem solid #7B3BD4",
+              //     outlineOffset: "-1px",
+              //     borderRadius: ".2rem",
+              //   }}
+              // />
+              }:""}
           </div>
         </div>
       </div>
