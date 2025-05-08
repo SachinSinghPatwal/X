@@ -6,8 +6,13 @@ class AuthService {
   constructor() {
     this.client
       .setEndpoint(conf.appwriteUrl)
-      .setProject(conf.appwriteProjectId);
+      .setProject(conf.appwriteProjectId)
+      .setLocale("en");
     this.account = new Account(this.client);
+    this.client.headers = {
+      ...this.client.headers,
+      "X-Fallback-Cookies": "true",
+    };
   }
   async createAccount({ email, password, name }) {
     try {
@@ -28,16 +33,22 @@ class AuthService {
   }
   async login({ email, password }) {
     try {
-      return await this.account.createEmailPasswordSession(email, password);
+      const session = await this.account.createEmailPasswordSession(
+        email,
+        password
+      );
+      console.log("✅ Login session created:", session);
+      return session;
     } catch (error) {
-      console.log("login  error", error);
+      console.log("❌ login error:", error.message);
     }
   }
   async getCurrentUser() {
     try {
-      return await this.account.get();
+      const value = await this.account.get();
+      return value;
     } catch (error) {
-      console.log("getCurrentUSer error", error);
+      console.log("getCurrentUSer error", error.message);
     }
   }
 
@@ -45,7 +56,7 @@ class AuthService {
     try {
       return await this.account.deleteSessions();
     } catch (error) {
-      console.log("logOut error", error);
+      console.log("logOut error", error.message);
     }
   }
 }

@@ -56,6 +56,16 @@ function IndividualPost() {
         });
     }
   }, [slug]);
+  const [imageUrl, setImageUrl] = useState(null);
+  useEffect(() => {
+    async function fetchImage() {
+      if (post?.featuredImage) {
+        const image = await fileService.getFileView(post.featuredImage);
+        setImageUrl(image);
+      }
+    }
+    fetchImage();
+  }, [post?.featuredImage]);
   if (loading) {
     return (
       <div className="`h-full w-full relative z-[10000000]">
@@ -81,7 +91,7 @@ function IndividualPost() {
           >
             <button
               className="absolute left-[2vw] transition-all duration-300 top-3
-              text-gray-200 hover:text-[#7F48CD] 
+              text-[#7F48CD] 
               "
               onClick={() => navigate(-1)}
             >
@@ -91,11 +101,7 @@ function IndividualPost() {
                 icon={faXmark}
               />
             </button>
-            <img
-              src={fileService.getFilePreview(post.featuredImage)}
-              alt={post.name}
-              className="w-fit "
-            />
+            <img src={imageUrl} alt={post.name} className="w-fit " />
           </div>
           <div className="grid place-items-center ">
             <div

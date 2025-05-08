@@ -34,8 +34,8 @@ export class FileService {
     }
   }
 
-  getFilePreview(fileId) {
-    return this.bucket.getFilePreview(conf.appwriteBucketId, fileId);
+  async getFileView(fileId) {
+    return this.bucket.getFileView(conf.appwriteBucketId, fileId);
   }
 }
 
