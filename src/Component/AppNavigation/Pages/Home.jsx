@@ -10,7 +10,7 @@ function Home() {
         grid-cols-[13vw_80vw_auto] xl:justify-center items-start
         `}
       >
-        <aside className="h-full">
+        <aside className="min-h-[200vh]">
           <NavContainer />
         </aside>
         <main
