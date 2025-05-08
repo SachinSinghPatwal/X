@@ -101,7 +101,7 @@ function IndividualPost() {
                 icon={faXmark}
               />
             </button>
-            <img src={imageUrl} alt={post.name} className="w-fit " />
+            <img loading="lazy" src={imageUrl} alt={post.name} className="w-fit " />
           </div>
           <div className="grid place-items-center ">
             <div
@@ -139,6 +139,7 @@ function IndividualPost() {
             <div className="grid grid-cols-[70%_auto] items-center p-4 border-b-[1px] border-gray-600 text-gray-200">
               <div>
                 <img
+                loading="lazy"
                   src={Google}
                   alt="pfp"
                   className="w-[24px] inline mr-[.8rem]"

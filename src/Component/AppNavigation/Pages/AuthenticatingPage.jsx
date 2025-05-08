@@ -37,6 +37,7 @@ function AuthenticatingPage({
         >
           <header className="grid justify-items-start gap-[1.5rem] w-fit">
             <img
+              loading="lazy"
               className="w-[6.5rem] lg:w-[25rem] aspect-square -ml-3 lg:ml-[15%]"
               src={Logo}
               alt="logo"

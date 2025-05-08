@@ -22,7 +22,7 @@ function EachPost({ post, gap, time }) {
   return (
     <div className="grid grid-cols-[40px_auto] gap-[.8rem]">
       <div className="h-[40px]">
-        <img src={Google} alt="" />
+        <img loading="lazy" src={Google} alt="" />
       </div>
       <div
         className={`grid grid-rows-[20px_auto_auto]`}
@@ -42,6 +42,7 @@ function EachPost({ post, gap, time }) {
             <div className="mt-[-.4rem] text-gray-400 text-[15px] ">{time}</div>
             {post.featuredImage && imageUrl ? (
               <img
+                loading="lazy"
                 src={imageUrl}
                 alt={post.title}
                 className="hover:scale-[103%] transition-all duration-300"

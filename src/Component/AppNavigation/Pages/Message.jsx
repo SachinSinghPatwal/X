@@ -121,6 +121,7 @@ function Message({ post }) {
           {post && (
             <div className="w-full">
               <img
+                loading="lazy"
                 src={fileService.getFilePreview(post.featuredImage)}
                 alt={post.title}
                 className="rounded-lg"

@@ -70,6 +70,7 @@ function CreateAccount() {
             </div>
           )}
           <img
+            loading="lazy"
             src={Logo}
             style={{ filter: "invert(90%)" }}
             className={`h-[60px] mt-[10px] visible ${
@@ -206,7 +207,11 @@ function CreateAccount() {
                         className="absolute bottom-[1rem] left-[34%]"
                       >
                         <source src={Authloading} type="video/webm" />
-                        <img src={fallbackLoading} alt="loading..." />
+                        <img
+                          loading="lazy"
+                          src={fallbackLoading}
+                          alt="loading..."
+                        />
                       </video>
                     ) : (
                       "Create account"

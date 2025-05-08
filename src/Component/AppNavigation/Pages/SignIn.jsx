@@ -60,6 +60,7 @@ export default function SignIn() {
             </div>
           )}
           <img
+            loading="lazy"
             src={Logo}
             style={{ filter: "invert(90%)" }}
             className={`h-[60px] mt-[10px] visible ${
@@ -143,7 +144,11 @@ export default function SignIn() {
                       className="absolute bottom-[1.5rem] h-[6rem] left-[34%]"
                     >
                       <source src={Authloading} type="video/webm" />
-                      <img src={fallbackLoading} alt="loading..." />
+                      <img
+                        loading="lazy"
+                        src={fallbackLoading}
+                        alt="loading..."
+                      />
                     </video>
                   ) : (
                     <div className="font-semibold text-black ">Login</div>
